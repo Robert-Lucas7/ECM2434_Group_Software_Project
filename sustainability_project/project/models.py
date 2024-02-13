@@ -17,3 +17,15 @@ class User(models.Model):
     streak = models.IntegerField(default=0)
 
 # Create your models here.
+    
+class Challenge(models.Model):
+
+    def __str__(self):
+        return self.username
+    
+    username = models.CharField(max_length=50, unique=True, null=False)
+
+    info = models.CharField(max_length=500, unique=True, null=False)
+    num_completed = models.IntegerField(default=0)
+
+    
