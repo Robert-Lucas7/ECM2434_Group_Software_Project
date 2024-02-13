@@ -15,17 +15,33 @@ class User(models.Model):
     first_name = models.CharField(max_length=30, null=False, blank=False)
     last_name = models.CharField(max_length=30, null=False, blank=False)
     streak = models.IntegerField(default=0)
+    #challenges_completed = models.ManyToManyField("Challenge", related_name="user")
 
 # Create your models here.
-    
+
+
+
 class Challenge(models.Model):
+    title = models.CharField(max_length=70, primary_key=True, default="")
+
 
     def __str__(self):
-        return self.username
+        return self.title
+        #return self.username
     
-    username = models.CharField(max_length=50, unique=True, null=False)
+    #username = models.CharField(max_length=50, unique=True, null=False)
 
     info = models.CharField(max_length=500, unique=True, null=False)
-    num_completed = models.IntegerField(default=0)
+    #num_completed = models.IntegerField(default=0)
+    #date = models.DateField()
+
+class UserChallenges(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  #Set these as composite primary keys
+    challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
+    date= models.DateField()
+
+class ChallengesAssigned(models.Model):
+    challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
+    date_assigned = models.DateField(null=False)
 
     

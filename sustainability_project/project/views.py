@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import User
+from .models import User, Challenge, UserChallenges, ChallengesAssigned
 # Create your views here.
 from django.http import HttpResponse
 
@@ -19,8 +19,12 @@ def base(request):
 
 def profile(request, username):
     user = get_object_or_404(User, pk=username) #Should prevent SQL injection as django queries are parameterized.
+    user_challenges = UserChallenges.objects.filter(user=user)    
+    todays_challenge = ChallengesAssigned.objects.latest("date_assigned")
+    print(todays_challenge.challenge)
     context = {
         'user':user,
-        'challenges': []
+        'user_challenges': user_challenges,
+        'todays_challenge' : todays_challenge.challenge
     }
     return render(request, 'project/profile.html', context)

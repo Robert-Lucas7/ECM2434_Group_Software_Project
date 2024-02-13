@@ -9,21 +9,42 @@
     <div class="row justify-content-center">
         <div class="col-6  text-center border">
             <h2>Completed Challenges</h2>
-            {% for challenge in challenges %}
+            {% for uc in user_challenges %}
                 <div>
-                    <h3>{{challenge.title}}</h3>
-                    <p>{{challenge.description}}</p>
+                    <h3>{{uc.challenge.title}}</h3>
+                    <p>{{uc.challenge.info}}</p>
+                    <p>Date Completed: {{ uc.date }}</p>
                 </div>
             {% empty %}
                 <h2>No challenges completed</h2>
             {% endfor%}
         </div>
         <div class="col-6 text-center">
-            <button class="btn btn-success">  <!-- Colour of the button should change depending on if the user has completed the challenge for that day.-->
+            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#challengePopup">  <!-- Colour of the button should change depending on if the user has completed the challenge for that day.-->
                 Today's Challenge
             </button>
         </div>
     </div>
     
 </div>
+<div class="modal fade" id="challengePopup" tabindex="-1" role="dialog" aria-labelledby="challengePopup" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{todays_challenge.title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>{{todays_challenge.info}}</p>
+          <button class="btn btn-primary">Respond</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
