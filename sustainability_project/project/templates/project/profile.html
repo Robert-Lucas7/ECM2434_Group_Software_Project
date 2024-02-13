@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h1>{{user.username}}'s Profile</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6  text-center border">
+            <h2>Completed Challenges</h2>
+            {% for challenge in challenges %}
+                <div>
+                    <h3>{{challenge.title}}</h3>
+                    <p>{{challenge.description}}</p>
+                </div>
+            {% empty %}
+                <h2>No challenges completed</h2>
+            {% endfor%}
+        </div>
+        <div class="col-6 text-center">
+            <button class="btn btn-success">  <!-- Colour of the button should change depending on if the user has completed the challenge for that day.-->
+                Today's Challenge
+            </button>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
