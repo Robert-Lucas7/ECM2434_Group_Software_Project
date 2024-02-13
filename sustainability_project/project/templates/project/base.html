@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!--This line instructs the first block to be the navbar-->
+    {% include 'navbar.html' %}
+
+    <!--This line instructs the second block to be the content of the page. The endblock tag is used to close the block. Each block is defined
+        in each individual page that extends this layout.-->
+    {% block content %}
+    {% endblock %}
+
+
+    <!--Javascript for the dropdown menu-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
