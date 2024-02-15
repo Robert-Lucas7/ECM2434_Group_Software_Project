@@ -17,6 +17,9 @@ def navbar(request):
 def base(request):
     return render(request, 'project/base.html')
 
+def registration(request):
+    return render(request, 'project/registration.html')
+
 def profile(request, username):
     user = get_object_or_404(User, pk=username) #Should prevent SQL injection as django queries are parameterized.
     user_challenges = UserChallenges.objects.filter(user=user)    
