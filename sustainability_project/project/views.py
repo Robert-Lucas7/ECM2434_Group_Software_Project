@@ -20,6 +20,9 @@ def base(request):
 def registration(request):
     return render(request, 'project/registration.html')
 
+def login(request):
+    return render(request, 'project/login.hmtl')
+
 def profile(request, username):
     user = get_object_or_404(User, pk=username) #Should prevent SQL injection as django queries are parameterized.
     user_challenges = UserChallenges.objects.filter(user=user)    
