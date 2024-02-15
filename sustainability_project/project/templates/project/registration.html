@@ -7,7 +7,6 @@
   <style>
     body {
       font-family: TimesNewRoman;
-
     }
     form {
       max-width: 400px;
@@ -30,9 +29,32 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    ul {
+     list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: darkblue;
+    }
+    li {
+      float: left;
+    }
+    li a {
+     display: block;
+     color: white;
+     text-align: center;
+     padding: 14px 16px;
+     text-decoration: none;
+    }
   </style>
 </head>
 <body>
+  <ul>
+  <li><a href="home.html">Home</a></li>
+  <li><a href="Login.html">Login</a></li>
+</ul>
+
+  <h1 align="center" underline><u>Input info to register</u></h1>
 
   <form id="registrationForm">
     <label for="username">Username:</label>
@@ -71,10 +93,9 @@
         return;
       }
 
-      // You can add more complex validation logic here
-
       // If all validation passes, you can submit the form or perform other actions
       alert("Registration successful!\nUsername: " + username + "\nEmail: " + email);
+      location.replace("home.html");
     }
   </script>
 
