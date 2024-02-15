@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Page</title>
+  <style>
+    body {
+      font-family: TimesNewRoman;
+    }
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+    }
+    button {
+      background-color: darkblue;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    ul {
+     list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: darkblue;
+    }
+    li {
+      float: left;
+    }
+    li a {
+     display: block;
+     color: white;
+     text-align: center;
+     padding: 14px 16px;
+     text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+  <li><a href="home.html">Home</a></li>
+  <li><a href="Registration.html">Registration</a></li>
+</ul>
+
+  <h1 align="center" underline><u>Input info to login</u></h1>
+
+  <form id="registrationForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="button" onclick="validateForm()">Register</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      
+
+
+
+      // Simple validation
+      if (!username || !password ) {
+        alert("All fields are required");
+        return;
+      }
+
+
+      location.replace("home.html");
+    }
+  </script>
+
+</body>
+</html>
