@@ -29,7 +29,7 @@
       border-radius: 5px;
       cursor: pointer;
     }
-    ul {
+    .nav {
      list-style-type: none;
       margin: 0;
       padding: 0;
@@ -49,55 +49,66 @@
   </style>
 </head>
 <body>
-  <ul>
-  <li><a href="home.html">Home</a></li>
-  <li><a href="Login.html">Login</a></li>
-</ul>
+  <ul class="nav">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="Login.html">Login</a></li>
+  </ul>
 
   <h1 align="center" underline><u>Input info to register</u></h1>
 
-  <form id="registrationForm">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-
-    <label for="confirmPassword">Confirm Password:</label>
-    <input type="password" id="confirmPassword" name="confirmPassword" required>
-
-    <button type="button" onclick="validateForm()">Register</button>
+<div id="msg">
+    {% if form.errors %}
+        <div class="error">
+            <p><span>ERROR</span></p>
+            <ul>
+                {% for key, value in form.errors.items %}
+                    {% for error in value %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+  <form id="registrationForm" method="post">
+    {% csrf_token %}
+    {{ form.username.label_tag }}
+    {{ form.username}}
+    {{ form.email.label_tag }}
+    {{ form.email }}
+    {{ form.password1.label_tag }}
+    {{ form.password1}}
+    {{ form.password2.label_tag }}
+    {{ form.password2}}
+    <button type="submit">Sign up</button>
   </form>
 
-  <script>
-    function validateForm() {
-      var username = document.getElementById("username").value;
-      var email = document.getElementById("email").value;
-      var password = document.getElementById("password").value;
-      var confirmPassword = document.getElementById("confirmPassword").value;
+<!--  <script>-->
+<!--    function validateForm() {-->
+<!--      var username = document.getElementById("username").value;-->
+<!--      var email = document.getElementById("email").value;-->
+<!--      var password = document.getElementById("password").value;-->
+<!--      var confirmPassword = document.getElementById("confirmPassword").value;-->
 
 
 
-      // Simple validation
-      if (!username || !email || !password || !confirmPassword) {
-        alert("All fields are required");
-        return;
-      }
+<!--      // Simple validation-->
+<!--      if (!username || !email || !password || !confirmPassword) {-->
+<!--        alert("All fields are required");-->
+<!--        return;-->
+<!--      }-->
 
-      // Check if password and confirm password match
-      if (password !== confirmPassword) {
-        alert("Password and Confirm Password do not match");
-        return;
-      }
+<!--      // Check if password and confirm password match-->
+<!--      if (password !== confirmPassword) {-->
+<!--        alert("Password and Confirm Password do not match");-->
+<!--        return;-->
+<!--      }-->
 
-      // If all validation passes, you can submit the form or perform other actions
-      alert("Registration successful!\nUsername: " + username + "\nEmail: " + email);
-      location.replace("home.html");
-    }
-  </script>
+<!--      // If all validation passes, you can submit the form or perform other actions-->
+<!--      alert("Registration successful!\nUsername: " + username + "\nEmail: " + email);-->
+<!--      location.replace("home.html");-->
+<!--    }-->
+<!--  </script>-->
 
 </body>
 </html>
