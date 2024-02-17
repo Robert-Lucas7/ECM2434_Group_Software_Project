@@ -53,12 +53,11 @@ def user_login(request):
             password = form.cleaned_data.get('password')
             user = authenticate(request, username=username, password=password)
             if user:
-                print("user logged in successfully")
+                print("User logged in successfully")
                 login(request, user)
                 return redirect("home")
     else:
         form = LoginForm()
-    print("Login Failed")
     return render(request, 'login.html', {'form': form})
 
 
