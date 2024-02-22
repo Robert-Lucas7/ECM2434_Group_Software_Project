@@ -4,8 +4,8 @@
 <div class="leaderboard-container">
     <h1>Monthly Streak Leaderboard</h1>
     <ol class="leaderboard">
-        {% for user_streak in leaderboard_users %}
-            <li>{{ user_streak.user.username }} - Streak: {{ user_streak.streak }} days</li>
+        {% for user in users_by_streaks %}
+            <li>{{ user.username }} - Streak: {{ user.streak }} days</li>
         {% empty %}
             <li>No data available</li>
         {% endfor %}

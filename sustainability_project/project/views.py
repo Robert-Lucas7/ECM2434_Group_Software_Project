@@ -2,13 +2,12 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 
-from .forms import Signup, LoginForm
+from .forms import Signup, LoginForm, MakePost
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
 # Create your views here.
 from django.http import HttpResponse
 
 from django.shortcuts import render
-
 
 def index(request):
     return render(request, 'project/index.html')
@@ -28,8 +27,18 @@ def base(request):
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
 
+
 def leaderboard(request):
-    return render(request, 'project/leaderboard.html')
+    users = CustomUser.objects.all()
+    users_by_streaks = users.order_by('-streak')
+    users_by_points = users.order_by('-points')
+    print(users_by_streaks)
+    print(users_by_points)
+    context = {
+        'users_by_streaks' : users_by_streaks,
+        'users_by_points' : users_by_points
+    }
+    return render(request, 'project/leaderboard.html', context)
 
 
 def registration(request):
@@ -92,3 +101,25 @@ def home(request):
 
     # Pass the simulated data to the template
     return render(request, 'home.html', {'posts': sample_posts})
+
+
+
+def make_post(request):
+    if request.method == 'POST':
+        form = MakePost(request.POST)
+        if form.is_valid():
+            comment = form.cleaned_data.get('message')
+            uc = UserChallenges(user = request.user, submitted = datetime.now, completed = True, response = comment)
+            uc.save()
+    else:
+        form = MakePost()
+        return render(request, 'make_post.html', {'form': form})
+
+def test(request):
+    todays_challenge = Challenge.objects.last()
+    context = {
+        'todays_challenge': todays_challenge
+    }
+    print(todays_challenge)
+    return render(request, 'test.html', context=context)
+

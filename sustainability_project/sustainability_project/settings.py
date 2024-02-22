@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = "project.CustomUser"
 
+LOGIN_URL = "/project/login/"
+
 # Application definition
 
 INSTALLED_APPS = [
