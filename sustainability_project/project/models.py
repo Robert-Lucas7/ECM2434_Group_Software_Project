@@ -25,7 +25,7 @@ class DailyChallenge(models.Model):
 
 class UserChallenges(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)  # Set these as composite primary keys
-    daily_challenge = models.ForeignKey(DailyChallenge, on_delete=models.CASCADE)
+    #daily_challenge = models.ForeignKey(DailyChallenge, on_delete=models.CASCADE)
     submitted = models.DateTimeField()
     completed = models.BooleanField(default=False)
     response = models.CharField(max_length=250)
