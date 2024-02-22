@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 
 from .forms import Signup, LoginForm
-from .models import CustomUser, Challenge, UserChallenges, ChallengesAssigned
+from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
 # Create your views here.
 from django.http import HttpResponse
 
@@ -72,8 +72,8 @@ def profile(request, username):
     user = get_object_or_404(CustomUser,
                              username=username)  # Should prevent SQL injection as django queries are parameterized.
     user_challenges = UserChallenges.objects.filter(user=user)
-    todays_challenge = ChallengesAssigned.objects.latest("date_assigned")
-    print(todays_challenge.challenge)
+    todays_challenge = DailyChallenge.objects.latest("date_assigned")
+    #print(todays_challenge.challenge)
     context = {
         'user': user,
         'user_challenges': user_challenges,

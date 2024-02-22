@@ -279,3 +279,163 @@ SyntaxError: f-string: unmatched '('
 === STARTING CRON ===
 2024-02-22: 10 minute walk
 === ENDING CRON ===
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash a869ea98924ee6414e7c330df130659b found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash a869ea98924ee6414e7c330df130659b found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash a869ea98924ee6414e7c330df130659b found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash a869ea98924ee6414e7c330df130659b found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash a869ea98924ee6414e7c330df130659b found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash a869ea98924ee6414e7c330df130659b found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash a869ea98924ee6414e7c330df130659b found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+  File "/home/rob/.local/lib/python3.10/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash a869ea98924ee6414e7c330df130659b found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!

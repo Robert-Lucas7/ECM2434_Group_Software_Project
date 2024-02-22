@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     streak = models.PositiveIntegerField(default=0)
+    points = models.PositiveIntegerField(default=0)
     # challenges_completed = models.ManyToManyField("Challenge", related_name="user")
 
 
@@ -11,25 +12,23 @@ class CustomUser(AbstractUser):
 
 
 class Challenge(models.Model):
-    title = models.CharField(max_length=70, primary_key=True, default="")
-
+    title = models.CharField(max_length=70, primary_key=True, default="")      
+    description = models.CharField(max_length=500, null=False, default="")
+    location_lat = models.DecimalField(max_digits=10,decimal_places = 8, null=True)
+    location_long = models.DecimalField(max_digits=11, decimal_places=8, null=True)
     def __str__(self):
         return self.title
-        # return self.username
-
-    # username = models.CharField(max_length=50, unique=True, null=False)
-
-    info = models.CharField(max_length=500, unique=True, null=False)
-    # num_completed = models.IntegerField(default=0)
-    # date = models.DateField()
-
+    
+class DailyChallenge(models.Model):
+    challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
+    date_assigned = models.DateField(null=False)
 
 class UserChallenges(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)  # Set these as composite primary keys
-    challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
-    date = models.DateField()
+    daily_challenge = models.ForeignKey(DailyChallenge, on_delete=models.CASCADE, default=None)
+    submitted = models.DateTimeField()
+    completed = models.BooleanField(default=False)
+    response = models.CharField(max_length=250)
 
 
-class ChallengesAssigned(models.Model):
-    challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
-    date_assigned = models.DateField(null=False)
+
