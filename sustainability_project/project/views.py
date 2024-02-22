@@ -70,7 +70,7 @@ def user_login(request):
 
 def profile(request, username):
     user = get_object_or_404(CustomUser,
-                             pk=username)  # Should prevent SQL injection as django queries are parameterized.
+                             username=username)  # Should prevent SQL injection as django queries are parameterized.
     user_challenges = UserChallenges.objects.filter(user=user)
     todays_challenge = ChallengesAssigned.objects.latest("date_assigned")
     print(todays_challenge.challenge)
