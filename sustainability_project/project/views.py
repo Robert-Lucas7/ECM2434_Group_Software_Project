@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 
-from .forms import Signup, LoginForm
+from .forms import Signup, LoginForm, MakePost
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
 # Create your views here.
 from django.http import HttpResponse
@@ -106,11 +106,20 @@ def home(request):
 
 def make_post(request):
     if request.method == 'POST':
-        form = make_post(request.POST)
+        form = MakePost(request.POST)
         if form.is_valid():
             comment = form.cleaned_data.get('message')
-            uc = UserChallenges(user = request.user, submitted = datetime.now, completed = True, response = comment)            
+            uc = UserChallenges(user = request.user, submitted = datetime.now, completed = True, response = comment)
             uc.save()
     else:
-        form = make_post()
-    return render(request, 'make_post.html', {'form': form})
+        form = MakePost()
+        return render(request, 'make_post.html', {'form': form})
+
+def test(request):
+    todays_challenge = Challenge.objects.last()
+    context = {
+        'todays_challenge': todays_challenge
+    }
+    print(todays_challenge)
+    return render(request, 'test.html', context=context)
+
