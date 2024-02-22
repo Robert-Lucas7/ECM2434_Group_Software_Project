@@ -33,6 +33,7 @@ AUTH_USER_MODEL = "project.CustomUser"
 # Application definition
 
 INSTALLED_APPS = [
+    
     'project.apps.ProjectConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRONJOBS = [
+    ('* * * * *', 'project.cron.get_new_daily_challenge' , '>> ' + os.path.join(BASE_DIR,'cron_log.log'+' 2>&1 '))
+]
