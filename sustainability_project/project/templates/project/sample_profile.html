@@ -1,24 +1,14 @@
 {% extends 'base.html' %}
-
-{% block content %}
-
 {% load static %}
 
-<div class="profile">
-    <div class="profile-header">
-        <img src="{% static 'project/Example_Profile_Pic.jpg' %}" alt="Profile Picture" class="profile-picture">
-        <div class="profile-stats">
-            <h2 class="username">{{ user.username|default:"Username" }}</h2> <!-- Username added here -->
-            <div class="stats-titles">
-                <span class="stat-title">Stat 1: {{ user.profile.stat1|default:"0" }}</span>
-                <span class="stat-title">Stat 2: {{ user.profile.stat2|default:"0" }}</span>
-                <span class="stat-title">Stat 3: {{ user.profile.stat3|default:"0" }}</span>
-            </div>
-        </div>
-    </div>
-    <div class="content">
-        <!-- Placeholder for future content -->
+{% block content %}
+<div class="profile-container">
+    <img src="{% static 'project/Example_Profile_Pic.jpg' %}" alt="Profile Picture" class="profile-picture">
+    <h2 class="username">{{ user.username|default:"Username" }}</h2>
+    <div class="stats">
+        <p>Stat 1: {{ user.profile.stat1|default:"0" }}</p>
+        <p>Stat 2: {{ user.profile.stat2|default:"0" }}</p>
+        <p>Stat 3: {{ user.profile.stat3|default:"0" }}</p>
     </div>
 </div>
-
 {% endblock %}

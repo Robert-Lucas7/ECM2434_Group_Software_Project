@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="leaderboard-container">
+    <h1>Monthly Streak Leaderboard</h1>
+    <ol class="leaderboard">
+        {% for user_streak in leaderboard_users %}
+            <li>{{ user_streak.user.username }} - Streak: {{ user_streak.streak }} days</li>
+        {% empty %}
+            <li>No data available</li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock %}

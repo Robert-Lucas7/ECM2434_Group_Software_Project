@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, get_object_or_404, redirect
+from datetime import datetime
 
 from .forms import Signup, LoginForm
 from .models import CustomUser, Challenge, UserChallenges, ChallengesAssigned
@@ -26,6 +27,9 @@ def base(request):
 
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
+
+def leaderboard(request):
+    return render(request, 'project/leaderboard.html')
 
 
 def registration(request):
@@ -79,11 +83,11 @@ def profile(request, username):
 
 # This is the view for the home page. It will display the most recent posts.
 def home(request):
-    # Simulated posts data
+    # Simulated posts data with datetime objects for 'created_at'
     sample_posts = [
-        {'title': 'Sample Post 1', 'author': {'username': 'user1'}, 'created_at': 'February 20, 2024', 'content': 'This is the content of the first sample post.'},
-        {'title': 'Sample Post 2', 'author': {'username': 'user2'}, 'created_at': 'February 21, 2024', 'content': 'This is the content of the second sample post, showcasing more information.'},
-        {'title': 'Sample Post 3', 'author': {'username': 'user3'}, 'created_at': 'February 22, 2024', 'content': 'Here is the third sample post. It includes even more content for display.'}
+        {'title': 'Sample Post 1', 'author': {'username': 'user1'}, 'created_at': datetime(2024, 2, 20), 'content': 'This is the content of the first sample post.'},
+        {'title': 'Sample Post 2', 'author': {'username': 'user2'}, 'created_at': datetime(2024, 2, 21), 'content': 'This is the content of the second sample post, showcasing more information.'},
+        {'title': 'Sample Post 3', 'author': {'username': 'user3'}, 'created_at': datetime(2024, 2, 22), 'content': 'Here is the third sample post. It includes even more content for display.'}
     ]
 
     # Pass the simulated data to the template

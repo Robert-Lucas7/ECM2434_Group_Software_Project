@@ -4,21 +4,17 @@
 
     <!-- Secondary Navbar for Daily Challenge -->
     <div class="daily-challenge">
-        <h2>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h2>  <!-- Dynamically display the daily challenge -->
+        <h2>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h2>
     </div>
 
-    <header>
-        <h1>{{ daily_challenge }}</h1>  <!--This displays the daily challenge as the header-->
-    </header>
-
-    
-    <!--Here is an idea of how posts will be displayed. This is just a rough idea and can be changed-->
     <div class="posts-feed">
         {% for post in posts %}
             <div class="post">
-                <h2>{{ post.title }}</h2>
-                <p>Posted by {{ post.author.username }} on {{ post.created_at|date:"M d, Y" }}</p>
-                <div>{{ post.content }}</div>
+                <div class="post-header">
+                    <span class="username">{{ post.author.username }}</span>
+                    <span class="post-date">{{ post.created_at|date:"M d, Y" }}</span>
+                </div>
+                <div class="post-content">{{ post.content }}</div>
             </div>
         {% empty %}
             <p>No Posts!</p>

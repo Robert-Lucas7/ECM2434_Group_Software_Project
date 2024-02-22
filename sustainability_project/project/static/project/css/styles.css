@@ -44,75 +44,39 @@
     margin-top: 30px; /* Adds space at the top to avoid overlapping the navbar */
 }
 
-/* PROFILE STYLES */
-.profile {
+/* Profile Container */
+.profile-container {
     display: flex;
-    justify-content: center; /* Center the profile content horizontally */
-    align-items: center; /* Center the profile content vertically */
-    height: 100vh; /* Make profile take full height of the viewport */
-    margin-top: -400px;
-}
-
-.profile-header {
-    display: flex;
-    align-items: center; /* Keep aligning items in the center */
-    justify-content: center; /* Center the items vertically */
-    flex-direction: column; /* Change to column to stack elements vertically */
-    gap: 20px; /* Adjust gap as needed */
-}
-
-
-.profile-picture {
-    width: 120px; /* Adjust size as necessary */
-    height: 120px; /* Adjust size as necessary */
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.username {
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    margin-bottom: 20px; /* Adjust the margin as needed */
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Profile Picture */
+.profile-picture {
+    width: 30vw; /* Sets the width to 30% of the viewport width */
+    height: 30vw; /* Sets the height equal to the width to maintain a 1:1 aspect ratio */
+    border-radius: 50%; /* Ensures the image is circular */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border: 2px solid #ffffff; /* Optional border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    margin-bottom: 20px; /* Space between picture and username */
+    max-width: 300px; /* Optional: to prevent it from becoming too large on big screens */
+    max-height: 300px; /* Ensures the max size is also a perfect circle */
 }
 
 
-.profile-stats {
-    display: flex;
-    flex-direction: column; /* Change to column to align username above stats */
-    align-items: center; /* Center align the items to match the design */
-}
 
-.stats-titles, .stats-values {
-    display: flex;
-    flex-direction: column; /* Stack stats titles and values vertically */
-}
-
-.stat-title, .stat-value {
-    margin-bottom: 10px; /* Space between each stat title and value */
-    text-align: left; /* Align text to the left */
-}
-
-@media (max-width: 768px) {
-    .profile-picture {
-        margin-right: 10px; /* Smaller margin for small devices */
-        width: 80px; /* Smaller size for mobile */
-        height: 80px; /* Smaller size for mobile */
-    }
-}
-
-@media (min-width: 600px) {
-    .profile-picture {
-        /* Larger size for larger screens */
-        width: 300px; /* Adjusted size */
-        height: 300px; /* Adjusted size */
-        margin-left: 0px; /* Adjust the margin as needed */
-
-    }
+/* Username and Stats */
+.username, .stats p {
+    margin: 10px 0; /* Spacing around text */
+    font-size: 1rem; /* Default font size */
 }
 
 
-/* PROFILE STYLES */
+/* HOME STYLES */
 .daily-challenge {
     background-color: #f0f0f0; /* Light grey background */
     padding: 10px 20px; /* Padding for spacing */
@@ -121,3 +85,57 @@
     border-bottom: 2px solid #ddd; /* Add a bottom border for definition */
     margin-bottom: 20px; /* Add some space between this section and the content below */
 }
+
+.post-content {
+    font-size: 16px; /* Readable font size for content */
+    line-height: 1.6; /* Improve readability with
+    
+    .posts-feed {
+    max-width: 600px; /* Limit the width for readability */
+    margin: 20px auto; /* Center the feed */
+    padding: 0 15px; /* Padding on the sides */
+}
+
+.post {
+    background: #fff; /* Light background for each post */
+    border-bottom: 1px solid #ccc; /* Line separating posts */
+    padding: 15px; /* Padding inside each post */
+    margin-bottom: 20px; /* Space between posts */
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between; /* Space between username and date */
+    align-items: baseline;
+    margin-bottom: 10px; /* Space above the title */
+}
+
+.username {
+    font-weight: bold; /* Make the username stand out */
+    font-size: 16px; /* Slightly larger font size for username */
+}
+
+.post-date {
+    color: #777; /* Subtle color for the date */
+    font-size: 14px; /* Smaller font size for date */
+}
+
+
+/* LEADERBOARD STYLES */
+.leaderboard-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.leaderboard {
+    list-style: none;
+    padding: 0;
+}
+
+.leaderboard li {
+    background-color: #f0f0f0;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
