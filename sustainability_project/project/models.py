@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
 
 class Challenge(models.Model):
     title = models.CharField(max_length=70, primary_key=True, default="")      
-    description = models.CharField(max_length=500, null=False, default="")
+    description = models.CharField(max_length=500, null=False)
     location_lat = models.DecimalField(max_digits=10,decimal_places = 8, null=True)
     location_long = models.DecimalField(max_digits=11, decimal_places=8, null=True)
     def __str__(self):
@@ -25,7 +25,7 @@ class DailyChallenge(models.Model):
 
 class UserChallenges(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)  # Set these as composite primary keys
-    daily_challenge = models.ForeignKey(DailyChallenge, on_delete=models.CASCADE, default=None)
+    daily_challenge = models.ForeignKey(DailyChallenge, on_delete=models.CASCADE)
     submitted = models.DateTimeField()
     completed = models.BooleanField(default=False)
     response = models.CharField(max_length=250)
