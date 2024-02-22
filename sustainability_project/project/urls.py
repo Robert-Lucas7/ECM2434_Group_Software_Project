@@ -12,6 +12,6 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('sample_profile/', views.sample_profile, name='sample_profile'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
-    path('make_post/', views.MakePost, name='make_post'),
+    path('make_post/', views.make_post, name='make_post'),
 
 ]
