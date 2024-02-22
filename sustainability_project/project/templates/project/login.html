@@ -50,8 +50,8 @@
 </head>
 <body>
   <ul>
-  <li><a href="home.html">Home</a></li>
-  <li><a href="Registration.html">Registration</a></li>
+  <li><a href="{% url 'index' %}">Back</a></li>
+  <li><a href="{% url 'registration' %}">Registration</a></li>
 </ul>
 
   <h1 align="center" underline><u>Input info to login</u></h1>
@@ -62,7 +62,7 @@
     {{form.username}}
     {{form.password.label_tag}}
     {{form.password}}
-    <button type="submit" >Register</button>
+    <button type="submit" >Log in</button>
   </form>
 
 
