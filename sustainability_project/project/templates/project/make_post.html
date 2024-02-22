@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="daily-challenge">
+        <h2>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h2>
+    </div>
+
+    <body>
+
+        <h1 align="center" underline><u>Write a comment about the challenege then submit</u></h1>
+
+        <div id="post">
+            {% if form.errors %}
+                <div class="error">
+                    <p><span>ERROR</span></p>
+                    <ul>
+                        {% for key, value in form.errors.items %}
+                            {% for error in value %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <form id="MakePost" method="post">
+            {% csrf_token %}
+            {{form.comment.label_tag}}
+            {{form.comment}}
+            <button type="submit" >Challenge Completed</button>
+        </form>
+    </body>
+
+
+{% endblock %}

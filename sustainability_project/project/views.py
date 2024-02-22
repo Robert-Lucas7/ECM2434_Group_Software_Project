@@ -9,7 +9,6 @@ from django.http import HttpResponse
 
 from django.shortcuts import render
 
-
 def index(request):
     return render(request, 'project/index.html')
 
@@ -28,8 +27,18 @@ def base(request):
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
 
+
 def leaderboard(request):
-    return render(request, 'project/leaderboard.html')
+    users = CustomUser.objects.all()
+    users_by_streaks = users.order_by('-streak')
+    users_by_points = users.order_by('-points')
+    print(users_by_streaks)
+    print(users_by_points)
+    context = {
+        'users_by_streaks' : users_by_streaks,
+        'users_by_points' : users_by_points
+    }
+    return render(request, 'project/leaderboard.html', context)
 
 
 def registration(request):

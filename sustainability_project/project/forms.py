@@ -18,3 +18,7 @@ class Signup(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class MakePost(forms.Form):
+    comment = forms.CharField(max_length=100)

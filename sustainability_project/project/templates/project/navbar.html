@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid d-flex justify-content-between">
     <!-- Circular Profile Icon with Django template tags for dynamic URL and static file -->
     {% load static %}
@@ -24,7 +24,8 @@
       </button>
       <!-- Adjusted Dropdown Menu -->
       <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">My Profile</a>
+          <a class="dropdown-item" href="{% url 'home' %}">Home</a>
+          <a class="dropdown-item" href="{% url 'profile/benuser'}">My Profile</a>
           <a class="dropdown-item" href="{% url 'leaderboard' %}">Leaderboard</a>
           <a class="dropdown-item" href="#">Something else here</a>
       </div>
