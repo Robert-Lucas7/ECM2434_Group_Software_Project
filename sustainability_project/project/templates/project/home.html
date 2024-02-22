@@ -3,10 +3,12 @@
 {% block content %}
 
     <!-- Secondary Navbar for Daily Challenge -->
-    <div class="daily-challenge">
+    <div class="daily-challenge text-center mb-3"> <!-- Added text-center for centering content, mb-3 for some margin below -->
         <h2>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h2>
+        <!-- Submit Challenge Button -->
+        <button type="button" class="btn btn-primary mt-2">Submit Challenge</button> <!-- mt-2 adds a little top margin -->
     </div>
-
+    
     <div class="posts-feed">
         {% for post in posts %}
             <div class="post">
