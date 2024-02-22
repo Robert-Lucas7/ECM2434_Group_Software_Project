@@ -92,3 +92,15 @@ def home(request):
 
     # Pass the simulated data to the template
     return render(request, 'home.html', {'posts': sample_posts})
+
+
+def MakePost(request):
+    if request.method == 'POST':
+        form = MakePost(request.POST)
+        if form.is_valid():
+            comment = form.cleaned_data.get('message')
+            uc = UserChallenges(user = request.user, submitted = datetime.now, completed = True, response = comment)            
+            uc.save()
+    else:
+        form = MakePost()
+    return render(request, 'make_post.html', {'form': form})
