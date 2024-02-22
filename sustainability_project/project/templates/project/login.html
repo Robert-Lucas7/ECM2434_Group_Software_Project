@@ -1,70 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration Page</title>
-  <style>
-    body {
-      font-family: TimesNewRoman;
-    }
-    form {
-      max-width: 400px;
-      margin: 20px auto;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-    }
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 16px;
-    }
-    button {
-      background-color: darkblue;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    ul {
-     list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: darkblue;
-    }
-    li {
-      float: left;
-    }
-    li a {
-     display: block;
-     color: white;
-     text-align: center;
-     padding: 14px 16px;
-     text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <ul>
-  <li><a href="{% url 'index' %}">Back</a></li>
-  <li><a href="{% url 'registration' %}">Registration</a></li>
-</ul>
+{% extends 'base.html' %}
 
-  <h1 align="center" underline><u>Input info to login</u></h1>
+{% block content %}
 
-  <form id="registrationForm" method="post">
-    {% csrf_token %}
-    {{form.username.label_tag}}
-    {{form.username}}
-    {{form.password.label_tag}}
-    {{form.password}}
-    <button type="submit" >Log in</button>
-  </form>
+    <!-- Container for the Login Form, centered with similar styling to profile-container -->
+    <div class="profile-container" style="margin-top: 50px;">
+        <!-- Login Form -->
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
 
 
-</body>
-</html>
+            <!-- Username Input -->
+            <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+
+        </form>
+        <div class="form-group">
+          <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+          <a href="{% url 'registration' %}" class="btn btn-secondary">Registration</a>
+      </div>
+    </div>
+
+{% endblock %}
