@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    <!-- Secondary Navbar for Daily Challenge -->
+    <div class="daily-challenge">
+        <h2>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h2>  <!-- Dynamically display the daily challenge -->
+    </div>
+
     <header>
         <h1>{{ daily_challenge }}</h1>  <!--This displays the daily challenge as the header-->
     </header>

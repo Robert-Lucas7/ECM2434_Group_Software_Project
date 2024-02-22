@@ -24,6 +24,9 @@ def navbar(request):
 def base(request):
     return render(request, 'project/base.html')
 
+def sample_profile(request):
+    return render(request, 'project/sample_profile.html')
+
 
 def registration(request):
     form = Signup(request.POST)
@@ -73,3 +76,15 @@ def profile(request, username):
         'todays_challenge': todays_challenge.challenge
     }
     return render(request, 'project/profile.html', context)
+
+# This is the view for the home page. It will display the most recent posts.
+def home(request):
+    # Simulated posts data
+    sample_posts = [
+        {'title': 'Sample Post 1', 'author': {'username': 'user1'}, 'created_at': 'February 20, 2024', 'content': 'This is the content of the first sample post.'},
+        {'title': 'Sample Post 2', 'author': {'username': 'user2'}, 'created_at': 'February 21, 2024', 'content': 'This is the content of the second sample post, showcasing more information.'},
+        {'title': 'Sample Post 3', 'author': {'username': 'user3'}, 'created_at': 'February 22, 2024', 'content': 'Here is the third sample post. It includes even more content for display.'}
+    ]
+
+    # Pass the simulated data to the template
+    return render(request, 'home.html', {'posts': sample_posts})

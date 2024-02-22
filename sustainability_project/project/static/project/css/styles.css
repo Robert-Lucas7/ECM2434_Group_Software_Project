@@ -1,0 +1,123 @@
+/* Global settings for consistency */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* NAVBAR STYLES */
+.navbar-brand img {
+    width: 60px; /* Base size */
+    height: 60px; /* Base size */
+    border-radius: 50%; /* Circular frame */
+    object-fit: cover; /* Ensures the image covers the area */
+    border: 2px solid #ffffff; /* Optional: adds a white border around the image */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for depth */
+}
+
+@media (max-width: 768px) {
+    .navbar-brand img {
+        width: 40px; /* Smaller size for mobile devices */
+        height: 40px; /* Smaller size for mobile devices */
+    }
+
+    .navbar-nav .nav-link,
+    .navbar-brand {
+        font-size: 20px; /* Increase font size for better visibility */
+    }
+
+    .navbar {
+        padding: 10px 15px; /* Adjusted padding for small devices */
+    }
+
+    .dropdown-menu {
+        font-size: 18px; /* Increased dropdown font size for better readability */
+    }
+}
+
+.card-body a {
+    display: block; /* Make each link block level for better clickability */
+}
+
+.custom-dropdown-menu {
+    margin-right: 0px; /* Adjusts space from the right side of the screen */
+    margin-top: 30px; /* Adds space at the top to avoid overlapping the navbar */
+}
+
+/* PROFILE STYLES */
+.profile {
+    display: flex;
+    justify-content: center; /* Center the profile content horizontally */
+    align-items: center; /* Center the profile content vertically */
+    height: 100vh; /* Make profile take full height of the viewport */
+    margin-top: -400px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center; /* Keep aligning items in the center */
+    justify-content: center; /* Center the items vertically */
+    flex-direction: column; /* Change to column to stack elements vertically */
+    gap: 20px; /* Adjust gap as needed */
+}
+
+
+.profile-picture {
+    width: 120px; /* Adjust size as necessary */
+    height: 120px; /* Adjust size as necessary */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.username {
+    text-align: center;
+    margin-bottom: 20px; /* Adjust the margin as needed */
+}
+
+
+.profile-stats {
+    display: flex;
+    flex-direction: column; /* Change to column to align username above stats */
+    align-items: center; /* Center align the items to match the design */
+}
+
+.stats-titles, .stats-values {
+    display: flex;
+    flex-direction: column; /* Stack stats titles and values vertically */
+}
+
+.stat-title, .stat-value {
+    margin-bottom: 10px; /* Space between each stat title and value */
+    text-align: left; /* Align text to the left */
+}
+
+@media (max-width: 768px) {
+    .profile-picture {
+        margin-right: 10px; /* Smaller margin for small devices */
+        width: 80px; /* Smaller size for mobile */
+        height: 80px; /* Smaller size for mobile */
+    }
+}
+
+@media (min-width: 600px) {
+    .profile-picture {
+        /* Larger size for larger screens */
+        width: 300px; /* Adjusted size */
+        height: 300px; /* Adjusted size */
+        margin-left: 0px; /* Adjust the margin as needed */
+
+    }
+}
+
+
+/* PROFILE STYLES */
+.daily-challenge {
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 10px 20px; /* Padding for spacing */
+    text-align: center; /* Center the text */
+    font-size: 20px; /* Increase font size for visibility */
+    border-bottom: 2px solid #ddd; /* Add a bottom border for definition */
+    margin-bottom: 20px; /* Add some space between this section and the content below */
+}

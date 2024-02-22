@@ -1,34 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+  <div class="container-fluid d-flex justify-content-between">
+    <!-- Circular Profile Icon with Django template tags for dynamic URL and static file -->
+    {% load static %}
+    
+  
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'project/Example_Profile_Pic.jpg' %}" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%;">
+    </a> 
 
-      <!-- Circular Profile Icon -->
-      <a class="navbar-brand" href="#">
-        <img src="/path/to/default/profile/icon.jpg" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%;">
-      </a>
+    <!-- Placeholder for visual balance, ensuring center alignment of the App Name -->
+    <div></div>
 
-      <!-- App Name -->
-      <a class="navbar-brand" href="#">YourAppName</a>
+    <!-- App Name centered with improved CSS for better responsiveness -->
+    <a class="navbar-brand mx-auto font-weight-bold" href="{% url 'home' %}" style="position: absolute; left: 50%; transform: translateX(-50%);">
+      YourAppName
+    </a>
 
-      <!-- Toggle button for mobile views -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <!-- Correctly structured Toggle button for mobile views inside a nav-item, outside of a li element -->
+    <div class="nav-item dropdown">
+     <!-- Dropdown Button -->
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
       </button>
-      
-      <!-- Dropdown Menu -->
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto"> <!-- ml-auto to align it to the right -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown Menu
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
+      <!-- Adjusted Dropdown Menu -->
+      <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+      </div>
       </div>
     </div>
   </nav>
