@@ -79,7 +79,7 @@
 /* HOME STYLES */
 .daily-challenge {
     background-color: #f0f0f0; /* Light grey background */
-    margin-top: 50px;
+    /*margin-top: 50px;*/
     padding: 200px 10px; /* Padding for spacing */
     text-align: center; /* Center the text */
     font-size: 20px; /* Increase font size for visibility */
