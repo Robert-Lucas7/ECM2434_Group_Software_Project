@@ -1,14 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="leaderboard-container">
-    <h1>Monthly Streak Leaderboard</h1>
-    <ol class="leaderboard">
-        {% for user in users_by_streaks %}
-            <li>{{ user.username }} - Streak: {{ user.streak }} days</li>
-        {% empty %}
-            <li>No data available</li>
-        {% endfor %}
-    </ol>
+<div class="text-center">
+    <div>
+        <a href="{% url 'leaderboard' metric='streak'%}"><button>Streaks</button></a>
+        <a href="{% url 'leaderboard' metric='points'%}"><button>Points</button></a>
+    </div>
+    <h1>{{table_header}} Leaderboard</h1>
+    <div class="container">
+        <!-- Write the table headers -->
+        <div class="row ">
+            <div class="col">
+                <h3>Username</h3>
+            </div>
+            <div class="col">
+                <h3>{{table_header}}</h3>
+            </div>
+        </div>
+        <div id="table-contents">
+
+        
+        <!-- Display the first page of the leaderboard-->
+            {% for entry in entries.0 %}
+                <div class="row rounded-pill my-2 p-3 leaderboard {% if forloop.first %} leaderboard-first {% elif forloop.counter0 == 1 %}leaderboard-second{% elif forloop.counter0 == 2 %}leaderboard-third{% else %}leaderboard-other{% endif %}">
+                    <div class="col">
+                        {{ entry.username }}
+                    </div>
+                    <div class="col">
+                        {{entry.metric}}
+                    </div>
+                </div>
+                
+            {% empty %}
+                <li>No data available</li>
+            {% endfor %} 
+        </div>
+    </div>
+    <!-- Creating the page buttons to view the leaderboard data. On each button click the data will change which the 'changeDataDisplayed' function does. -->
+    {% for pageNumber in entries%}
+        <button onclick="changeDataDisplayed( '{{forloop.counter0}}' )">Page {{forloop.counter0|add:"1"}}</button>
+    {% empty %}
+        <button>Page 1</button>
+    {% endfor %}
 </div>
+<script src="/static/leaderboard.js" defer></script>
+{{ entries|json_script:"" }} <!-- Pass the entry data to the script (rendered as <script type="application/json"> variable data here </script>) - from: https://adamj.eu/tech/2022/10/06/how-to-safely-pass-data-to-javascript-in-a-django-template/-->
+
 {% endblock %}

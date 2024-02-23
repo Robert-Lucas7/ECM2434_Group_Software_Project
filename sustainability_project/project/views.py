@@ -1,3 +1,4 @@
+# import json
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
@@ -27,16 +28,42 @@ def base(request):
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
 
-
-def leaderboard(request):
+def leaderboard(request, metric="streak"):
     users = CustomUser.objects.all()
-    users_by_streaks = users.order_by('-streak')
-    users_by_points = users.order_by('-points')
-    print(users_by_streaks)
-    print(users_by_points)
+    order_to_display = None
+    table_header = ""
+    # Sort the users by the metric to be compared.
+    if metric == "points":
+        order_to_display = users.order_by('-points')
+        table_header = "Points"
+    elif metric == "streak":
+        order_to_display = users.order_by('-streak')
+        table_header = "Streak"
+    else:
+        return redirect("leaderboard") #If there is an invalid 'metric' in the url, then redirect to the 'streak' leaderboard page.
+    
+    # Split the entries into pages of 5 and remove potentially sensitive data from the models.
+    data = []
+    current_page = []
+    entries_on_page = 5
+    for i,entry in enumerate(order_to_display):
+        
+        metricValue = 0
+        if metric == "points":
+            metricValue = entry.points
+        else:
+            metricValue = entry.streak
+        current_page.append({
+            'username' : entry.username,
+            'metric' : metricValue
+        })
+        if(len(current_page) == entries_on_page or i == len(order_to_display) - 1):
+            data.append(current_page)
+            current_page = []
+    
     context = {
-        'users_by_streaks' : users_by_streaks,
-        'users_by_points' : users_by_points
+        'entries' : data,
+        'table_header' : table_header
     }
     return render(request, 'project/leaderboard.html', context)
 

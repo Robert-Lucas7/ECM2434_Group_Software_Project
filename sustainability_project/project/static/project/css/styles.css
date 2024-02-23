@@ -139,4 +139,22 @@
     padding: 10px;
     border-radius: 5px;
 }
+/* Rob Leaderboard Changes */
+.leaderboard-first{
+    background-color: gold;
+}
+.leaderboard-second{
+    background-color: silver;
+}
+.leaderboard-third{
+    background-color: #cd7f32
+}
+.leaderboard-other{
+    background-color: aqua;
+}
+.leaderboard:hover{
+    background-color: #777;
+    cursor: pointer;
+}
+
 
