@@ -141,20 +141,33 @@
 }
 /* Rob Leaderboard Changes */
 .leaderboard-first{
-    background-color: gold;
+    background-color: #FFDE2E;
+}
+.leaderboard-first:hover{
+    background-color: #FFD700;
 }
 .leaderboard-second{
-    background-color: silver;
+    background-color: #c0c0c0;
+}
+.leaderboard-second:hover{
+    background-color: #b3b3b3;
 }
 .leaderboard-third{
     background-color: #cd7f32
 }
+.leaderboard-third:hover{
+    background-color: #b9722d;
+}
 .leaderboard-other{
-    background-color: aqua;
+    background-color: #ececec;
+}
+.leaderboard-other:hover{
+    background-color: #e4e4e4;
 }
 .leaderboard:hover{
-    background-color: #777;
     cursor: pointer;
 }
-
+.expand_row{
+    position: absolute;
+}
 

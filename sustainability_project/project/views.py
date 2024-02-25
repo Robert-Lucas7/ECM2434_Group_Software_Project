@@ -1,10 +1,11 @@
-# import json
+import json
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 
 from .forms import Signup, LoginForm, MakePost
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
+from django.db.models import Sum
 # Create your views here.
 from django.http import HttpResponse
 
@@ -30,40 +31,47 @@ def sample_profile(request):
 
 def leaderboard(request, metric="streak"):
     users = CustomUser.objects.all()
-    order_to_display = None
-    table_header = ""
-    # Sort the users by the metric to be compared.
-    if metric == "points":
-        order_to_display = users.order_by('-points')
-        table_header = "Points"
-    elif metric == "streak":
-        order_to_display = users.order_by('-streak')
-        table_header = "Streak"
-    else:
-        return redirect("leaderboard") #If there is an invalid 'metric' in the url, then redirect to the 'streak' leaderboard page.
-    
-    # Split the entries into pages of 5 and remove potentially sensitive data from the models.
+    users_by_streak = users.order_by("-streak")
+    position_of_current_user = -1
     data = []
-    current_page = []
-    entries_on_page = 5
-    for i,entry in enumerate(order_to_display):
-        
-        metricValue = 0
-        if metric == "points":
-            metricValue = entry.points
-        else:
-            metricValue = entry.streak
-        current_page.append({
-            'username' : entry.username,
-            'metric' : metricValue
+    entries_per_page = 5
+    for i, user in enumerate(users_by_streak):
+        if user == request.user: #As users must be logged in to access this page.
+            position_of_current_user = i + 1
+        # Points for the different time periods are determined by iterating over all UserChallenge entries (as there is a points value for each entry)
+        user_challenges = UserChallenges.objects.filter(user=user)
+        overall_user_points = 0
+        this_week_points = 0
+        last_week_points = 0
+        this_months_points = 0
+        last_months_points = 0
+        for uc in user_challenges:
+            datetime_now = datetime.now()
+            if uc.submitted.isocalendar()[1] == datetime_now.isocalendar()[1]:
+                this_week_points += uc.points
+            elif uc.submitted.isocalendar()[1] - 1 == datetime_now.isocalendar()[1] - 1:
+                last_week_points += uc.points
+            if uc.submitted.month == datetime_now.month:
+                this_months_points += uc.points
+            elif uc.submitted.month - 1 == datetime_now.month - 1:
+                last_months_points += uc.points
+            overall_user_points += uc.points 
+
+        data.append({
+            "username" : user.username,
+            # The keys are displayed as a column header (so should be full words).
+            "streak" : user.streak,
+            "points" : overall_user_points if overall_user_points else 0,
+            "this weeks points" : this_week_points,
+            "last weeks points" : last_week_points,
+            "this months points" : this_months_points,
+            "last months points" : last_months_points
         })
-        if(len(current_page) == entries_on_page or i == len(order_to_display) - 1):
-            data.append(current_page)
-            current_page = []
-    
     context = {
         'entries' : data,
-        'table_header' : table_header
+        'user_position' : position_of_current_user,
+        'first_page' : data[:5],
+        'num_pages' : range((len(users) // entries_per_page) + 1) # To iterate over in the template to display the page buttons.
     }
     return render(request, 'project/leaderboard.html', context)
 

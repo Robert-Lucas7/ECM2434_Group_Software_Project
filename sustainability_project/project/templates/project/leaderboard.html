@@ -2,46 +2,76 @@
 
 {% block content %}
 <div class="text-center">
-    <div>
-        <a href="{% url 'leaderboard' metric='streak'%}"><button>Streaks</button></a>
-        <a href="{% url 'leaderboard' metric='points'%}"><button>Points</button></a>
+
+    <!-- Display the 'streak' and 'points' buttons to switch what is displayed on the leaderboard. -->
+    <div class="btn-group btn-group-toggle mt-3" data-toggle="buttons">
+        <label id="streak_button" class="btn btn-secondary active">
+            <input type="radio" name="leaderboard_options" id="streak_button" checked> Streak
+        </label>
+        <label id="points_button" class="btn btn-secondary" data-target="#point_button_options" aria-expanded="false" aria-controls="point_button_options">
+            <input type="radio" name="leaderboard_options"> Points
+        </label>
     </div>
-    <h1>{{table_header}} Leaderboard</h1>
-    <div class="container">
+    <!-- The options for how to display the points: overall, weekly, monthly -->
+    <div class="collapse" id="point_button_options">
+        <div class="btn-group btn-group-toggle mt-1" data-toggle="buttons">
+            <label id="streak_button" class="btn btn-secondary active">
+                <input type="radio" name="point_options" id="total_points_button" checked onclick="sortData('points')"> Total
+            </label>
+            <label id="points_button" class="btn btn-secondary">
+                <input type="radio" name="point_options" id="weekly_points_button" onclick="sortData('this weeks points')"> Weekly
+            </label>
+            <label id="points_button" class="btn btn-secondary">
+                <input type="radio" name="point_options" id="monthly_points_button" onclick="sortData('this months points')"> Monthly
+            </label>
+        </div>
+    </div>
+    <div class="container mt-4">
         <!-- Write the table headers -->
         <div class="row ">
             <div class="col">
                 <h3>Username</h3>
             </div>
             <div class="col">
-                <h3>{{table_header}}</h3>
+                <h3 id="table_heading">Streak</h3>
             </div>
         </div>
         <div id="table-contents">
-
-        
-        <!-- Display the first page of the leaderboard-->
-            {% for entry in entries.0 %}
+            <!-- Display the first page of the leaderboard-->
+            {% for entry in first_page %}
                 <div class="row rounded-pill my-2 p-3 leaderboard {% if forloop.first %} leaderboard-first {% elif forloop.counter0 == 1 %}leaderboard-second{% elif forloop.counter0 == 2 %}leaderboard-third{% else %}leaderboard-other{% endif %}">
                     <div class="col">
                         {{ entry.username }}
                     </div>
                     <div class="col">
-                        {{entry.metric}}
+                        {{entry.streak}}
                     </div>
+                    <div class="expand_row" id="expand_row_{{forloop.counter0}}"></div>
                 </div>
-                
             {% empty %}
                 <li>No data available</li>
             {% endfor %} 
         </div>
     </div>
     <!-- Creating the page buttons to view the leaderboard data. On each button click the data will change which the 'changeDataDisplayed' function does. -->
-    {% for pageNumber in entries%}
-        <button onclick="changeDataDisplayed( '{{forloop.counter0}}' )">Page {{forloop.counter0|add:"1"}}</button>
-    {% empty %}
-        <button>Page 1</button>
+    <div class="btn-group-toggle mt-2 " data-toggle="buttons">
+    {% for pageNumber in num_pages%}
+        <label class="btn btn-secondary active rounded-circle">
+            {% if forloop.first %}
+                <input onclick="changeDataDisplayed( '{{forloop.counter0}}' )" type="radio" name="options" id="streak_button" checked> {{forloop.counter0|add:"1"}}
+            {% else %}
+                <input onclick="changeDataDisplayed( '{{forloop.counter0}}' )" type="radio" name="options" id="streak_button"> {{forloop.counter0|add:"1"}}
+            {% endif %}
+        </label>
+        {% empty %}
+            <label class="btn btn-secondary active">
+                <input type="radio" name="options" checked> 1
+            </label>
     {% endfor %}
+    </div>
+    {% if user_position != -1 %}
+        <h2>User position: {{user_position}}</h2>   
+    {% endif %}
 </div>
 <script src="/static/leaderboard.js" defer></script>
 {{ entries|json_script:"" }} <!-- Pass the entry data to the script (rendered as <script type="application/json"> variable data here </script>) - from: https://adamj.eu/tech/2022/10/06/how-to-safely-pass-data-to-javascript-in-a-django-template/-->
