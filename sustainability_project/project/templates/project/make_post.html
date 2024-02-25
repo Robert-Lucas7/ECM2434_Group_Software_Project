@@ -3,13 +3,13 @@
 {% block content %}
 
     <div class="daily-challenge">
-        <h2>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h2>
+        <h1>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h1>
     </div>
 
     <body>
 
-        <h1 align="center" underline><u>Write a comment about the challenege then submit</u></h1>
-
+        <h3 align="center" underline><u>Write a comment about the challenege then submit</u></h1>
+        <pre>  </pre>
         <div id="post">
             {% if form.errors %}
                 <div class="error">
@@ -25,13 +25,16 @@
             {% endif %}
         </div>
 
-        <form id="MakePost" method="post">
+        <form id="MakePost" method="post" align="center">
             {% csrf_token %}
             {{form.comment.label_tag}}
             {{form.comment}}
-            <button type="submit" >Challenge Completed</button>
+            <button type="submit" href="{url 'home'}" >Challenge Completed</button>
         </form>
     </body>
+
+
+{% endblock %}
 
 
 {% endblock %}
