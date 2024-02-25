@@ -5,7 +5,8 @@ from datetime import datetime
 
 from .forms import Signup, LoginForm, MakePost
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
-from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
+# from django.db.models import Count
 # Create your views here.
 from django.http import HttpResponse
 
@@ -29,15 +30,22 @@ def base(request):
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
 
+@login_required
 def leaderboard(request, metric="streak"):
     users = CustomUser.objects.all()
-    users_by_streak = users.order_by("-streak")
-    position_of_current_user = -1
+    users_by_streak = list(users.order_by("-streak"))
+    position_of_current_user = 0
+    past_current_user = False
     data = []
     entries_per_page = 5
     for i, user in enumerate(users_by_streak):
-        if user == request.user: #As users must be logged in to access this page.
-            position_of_current_user = i + 1
+        if i != 0 and user.streak != users_by_streak[i-1].streak and not past_current_user:
+            position_of_current_user += 1
+            if user == request.user:
+                past_current_user = True
+        # if user == request.user: #As users must be logged in to access this page.
+        #     position_of_current_user = i + 1
+
         # Points for the different time periods are determined by iterating over all UserChallenge entries (as there is a points value for each entry)
         user_challenges = UserChallenges.objects.filter(user=user)
         overall_user_points = 0
@@ -69,9 +77,15 @@ def leaderboard(request, metric="streak"):
         })
     context = {
         'entries' : data,
-        'user_position' : position_of_current_user,
+        'user_position' : position_of_current_user + 1,
         'first_page' : data[:5],
-        'num_pages' : range((len(users) // entries_per_page) + 1) # To iterate over in the template to display the page buttons.
+        'num_pages' : range((len(users) // entries_per_page) + 1), # To iterate over in the template to display the page buttons.
+        'num_challenges_completed' : {
+            "username" : request.user.username,
+            "challenges_completed" : UserChallenges.objects.filter(user=request.user).count(),
+            "challenges_completed this weeks points" : UserChallenges.objects.filter(user=request.user, submitted__week=datetime.now().isocalendar()[1]).count(),
+            "challenges_completed this months points" : UserChallenges.objects.filter(user=request.user, submitted__month=datetime.now().month).count()
+        }
     }
     return render(request, 'project/leaderboard.html', context)
 

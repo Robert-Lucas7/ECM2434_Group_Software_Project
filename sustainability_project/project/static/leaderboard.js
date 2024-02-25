@@ -1,7 +1,7 @@
+
 // If the points button is clicked and the time period options are not displayed, display them.
 $('#points_button').on("click", function(evt) {
     evt.preventDefault(); //Stop it activating twice
-    console.log($('#points_button').attr("aria-expanded"));
     if( $('#points_button').attr("aria-expanded") == "false" ){
         $('.collapse').collapse('show');
         $('#points_button').attr("aria-expanded", "true");
@@ -22,6 +22,7 @@ $('#streak_button').on("click", function(evt){
 let data = JSON.parse(
     document.currentScript.nextElementSibling.textContent
 );
+const challengesData = JSON.parse(document.getElementById('user_challenges_completed').textContent);
 const entriesPerPage = 5;
 let currentlySortedBy = "streak"; //What the data is sorted by
 // Quicksort implementation from: https://www.freecodecamp.org/news/how-to-write-quick-sort-algorithm-with-javascript/
@@ -41,6 +42,37 @@ function quickSort(arr, metricToSort){
     }
     return [...quickSort(leftArr, metricToSort), pivot, ...quickSort(rightArr, metricToSort)];
 }
+function getUserPosition(metricToSort){
+    let position = 0;
+    let count = 0;
+    while( data[count].username != challengesData.username ){ //The logged in user will be in the data int some position so iterate until you find it.
+        if( data[count][metricToSort] != data[count + 1][metricToSort] ){
+            position += 1;
+        }
+        count += 1;
+    }
+    return position + 1;
+}
+function updateCardsDisplayed(metricToSort){
+    //Update the 'challenges completed' card displayed at the top of the page.
+    let num_challenges = 0;
+    switch(metricToSort){
+        case "this weeks points":
+            console.log("HELLO");
+            num_challenges = challengesData[`challenges_completed this weeks points`];
+            break;
+        case "this months points":
+            num_challenges = challengesData["challenges_completed this months points"];
+            break;
+        default:
+            num_challenges = challengesData["challenges_completed"];
+    }
+    $('#challenges_completed_text').html(`Challenges Completed: ${num_challenges}`);
+    //Update the position card displayed at the top of the page.
+    let user_position = getUserPosition(metricToSort);
+    $('#position_text').html(`Your Position: ${user_position}`);
+
+}
 // If the data is not already sorted by the 'metricToSort', sort the data, update the table headings, and change the data displayed in the table.
 function sortData(metricToSort){
     if(currentlySortedBy != metricToSort){ //Don't perform unnecessary sorting (already sorted by the chosen metric).
@@ -48,6 +80,7 @@ function sortData(metricToSort){
         data = quickSort(data, metricToSort);
         let new_heading = metricToSort.charAt(0).toUpperCase() + metricToSort.slice(1);
         document.getElementById('table_heading').innerHTML = `${new_heading}`;
+        updateCardsDisplayed(metricToSort);
         changeDataDisplayed(0, metricToSort);
     }
 }
