@@ -15,11 +15,6 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'project/index.html')
 
-
-def home(request):
-    return render(request, 'project/home.html')
-
-
 def navbar(request):
     return render(request, 'project/navbar.html')
 
@@ -43,9 +38,7 @@ def leaderboard(request, metric="streak"):
             position_of_current_user += 1
             if user == request.user:
                 past_current_user = True
-        # if user == request.user: #As users must be logged in to access this page.
-        #     position_of_current_user = i + 1
-
+        
         # Points for the different time periods are determined by iterating over all UserChallenge entries (as there is a points value for each entry)
         user_challenges = UserChallenges.objects.filter(user=user)
         overall_user_points = 0
@@ -141,15 +134,19 @@ def profile(request, username):
 
 # This is the view for the home page. It will display the most recent posts.
 def home(request):
-    # Simulated posts data with datetime objects for 'created_at'
-    sample_posts = [
-        {'title': 'Sample Post 1', 'author': {'username': 'user1'}, 'created_at': datetime(2024, 2, 20), 'content': 'This is the content of the first sample post.'},
-        {'title': 'Sample Post 2', 'author': {'username': 'user2'}, 'created_at': datetime(2024, 2, 21), 'content': 'This is the content of the second sample post, showcasing more information.'},
-        {'title': 'Sample Post 3', 'author': {'username': 'user3'}, 'created_at': datetime(2024, 2, 22), 'content': 'Here is the third sample post. It includes even more content for display.'}
-    ]
-
-    # Pass the simulated data to the template
-    return render(request, 'home.html', {'posts': sample_posts})
+    #Get the most recent challenge from the database.
+    todays_challenge = DailyChallenge.objects.latest('assigned')
+    #Get all posts that are for the most recent challenge
+    posts_for_todays_challenge = UserChallenges.objects.filter(daily_challenge = todays_challenge).order_by("-submitted")
+    context = {
+        'daily_challenge' : todays_challenge.challenge.title,
+        'posts' : [{
+                    'username' : post.user.username,
+                    'created_at' : post.submitted,
+                    'content' : post.response
+                } for post in posts_for_todays_challenge]
+    }
+    return render(request, 'home.html', context)
 
 
 
