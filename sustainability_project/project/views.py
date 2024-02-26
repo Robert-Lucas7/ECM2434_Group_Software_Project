@@ -159,12 +159,12 @@ def make_post(request):
     if request.method == 'POST':
         form = MakePost(request.POST)
         if form.is_valid():
-            comment = form.cleaned_data.get('message')
-            uc = UserChallenges(user = request.user, submitted = datetime.now, completed = True, response = comment)
+            comment = form.cleaned_data.get('comment')
+            uc = UserChallenges(daily_challenge = DailyChallenge.objects.latest("date_assigned"), user = request.user, submitted = datetime.now(), completed = True, response = comment)
             uc.save()
     else:
         form = MakePost()
-        return render(request, 'make_post.html', {'form': form})
+    return render(request, 'make_post.html', {'form': form})
 
 def test(request):
     todays_challenge = Challenge.objects.last()
