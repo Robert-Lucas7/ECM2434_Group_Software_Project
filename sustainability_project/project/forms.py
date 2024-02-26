@@ -23,5 +23,5 @@ class Signup(UserCreationForm):
 class MakePost(forms.Form):
     comment = forms.CharField(
         max_length=200, 
-        widget=forms.TextInput(attrs={'style': 'width: 300px; height: 100px;'})
+        widget=forms.Textarea(attrs={'style': 'width: 300px; height: 100px;'})
     )
