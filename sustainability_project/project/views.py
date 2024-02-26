@@ -6,7 +6,7 @@ from datetime import datetime
 from .forms import Signup, LoginForm, MakePost
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
 from django.contrib.auth.decorators import login_required
-# from django.db.models import Count
+from django.db.models import Sum
 # Create your views here.
 from django.http import HttpResponse
 
@@ -126,24 +126,30 @@ def profile(request, username):
     context = {
         'user': user,
         'user_challenges': user_challenges,
-        'todays_challenge': todays_challenge.challenge
+        'user_points' : user_challenges.aggregate(Sum("points"))['points__sum']
+        #'todays_challenge': todays_challenge.challenge
     }
     return render(request, 'project/profile.html', context)
 
 
 # This is the view for the home page. It will display the most recent posts.
 def home(request):
+    print(request.user)
+    print()
     #Get the most recent challenge from the database.
     todays_challenge = DailyChallenge.objects.latest('assigned')
     #Get all posts that are for the most recent challenge
     posts_for_todays_challenge = UserChallenges.objects.filter(daily_challenge = todays_challenge).order_by("-submitted")
+    users_challenge = posts_for_todays_challenge.filter(user = request.user)
+    
     context = {
         'daily_challenge' : todays_challenge.challenge.title,
         'posts' : [{
                     'username' : post.user.username,
                     'created_at' : post.submitted,
                     'content' : post.response
-                } for post in posts_for_todays_challenge]
+                } for post in posts_for_todays_challenge],
+        'already_completed_challenge' : True if users_challenge else False #If the user has already completed the daily challenge, they will be given the option to resubmit it.
     }
     return render(request, 'home.html', context)
 

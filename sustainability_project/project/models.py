@@ -4,6 +4,7 @@ from django.utils.timezone import now
 
 class CustomUser(AbstractUser):
     streak = models.PositiveIntegerField(default=0)
+    best_streak =  models.PositiveIntegerField(default=0)
     #points = models.PositiveIntegerField(default=0)
     # challenges_completed = models.ManyToManyField("Challenge", related_name="user")
 

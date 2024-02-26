@@ -5,7 +5,13 @@
     <!-- Secondary Navbar for Daily Challenge -->
     <div class="daily-challenge text-center mb-3">
         <h2>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h2>
-        <a href="{% url 'make_post' %}"><button type="button" class="btn btn-primary mt-2">Submit Challenge</button></a>
+        <!-- Submit Challenge Button -->
+        {% if already_completed_challenge %}
+            <a href="{% url 'make_post' %}"><button type="button" class="btn btn-success mt-2">Submit Again</button></a> 
+        {% else %}
+            <a href="{% url 'make_post' %}"><button type="button" class="btn btn-primary mt-2">Submit Challenge</button></a> <!-- mt-2 adds a little top margin -->
+        {% endif %}
+        
     </div>
     
     <div class="posts-feed">
