@@ -120,17 +120,16 @@ def user_login(request):
 
 
 def profile(request, username):
-    user = get_object_or_404(CustomUser,
-                             username=username)  # Should prevent SQL injection as django queries are parameterized.
+    user = get_object_or_404(CustomUser, username=username)
     user_challenges = UserChallenges.objects.filter(user=user)
-    todays_challenge = DailyChallenge.objects.latest("date_assigned")
-    #print(todays_challenge.challenge)
+    todays_challenge = DailyChallenge.objects.latest("assigned")  # Corrected from "date_assigned" to "assigned"
     context = {
         'user': user,
         'user_challenges': user_challenges,
         'todays_challenge': todays_challenge.challenge
     }
     return render(request, 'project/profile.html', context)
+
 
 # This is the view for the home page. It will display the most recent posts.
 def home(request):
