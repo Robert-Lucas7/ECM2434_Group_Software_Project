@@ -25,11 +25,11 @@
             {% endif %}
         </div>
 
-        <form id="MakePost" method="post" align="center">
+        <form id="MakePost" method="post" align="center" action="{% url 'home' %}">
             {% csrf_token %}
             {{form.comment.label_tag}}
             {{form.comment}}
-            <button type="submit" href="{url 'home'}" >Challenge Completed</button>
+            <button type="submit" >Challenge Completed</button>
         </form>
     </body>
 
