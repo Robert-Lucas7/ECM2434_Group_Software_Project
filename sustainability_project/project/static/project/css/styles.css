@@ -15,6 +15,19 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for depth */
 }
 
+/* Targeting the dropdown button specifically to change its background color */
+.btn-secondary {
+    background-color: #e9ecef; /* Bootstrap's light grey color; adjust as needed */
+    border-color: #e9ecef; /* Adjust the border color to match the background */
+}
+
+/* Adjusting the color on hover to maintain visual feedback */
+.btn-secondary:hover {
+    background-color: #dde2e6; /* A slightly darker shade for hover state */
+    border-color: #d3d9df; /* Matching the border color to hover background */
+}
+
+
 @media (max-width: 768px) {
     .navbar-brand img {
         width: 40px; /* Smaller size for mobile devices */
@@ -43,21 +56,6 @@
     margin-right: 0px; /* Adjusts space from the right side of the screen */
     margin-top: 30px; /* Adds space at the top to avoid overlapping the navbar */
 }
-
-
-/* Targeting the dropdown button specifically to change its background color */
-.btn-secondary {
-    background-color: #e9ecef; /* Bootstrap's light grey color; adjust as needed */
-    border-color: #e9ecef; /* Adjust the border color to match the background */
-}
-
-/* Adjusting the color on hover to maintain visual feedback */
-.btn-secondary:hover {
-    background-color: #dde2e6; /* A slightly darker shade for hover state */
-    border-color: #d3d9df; /* Matching the border color to hover background */
-}
-
-
 
 /* Profile Container */
 .profile-container {
@@ -126,7 +124,6 @@
     background-color: #fff; /* Or any color that fits your design */
     padding: 20px;
 }
-
 
 .post-content {
     font-size: 16px; /* Readable font size for content */

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+
 {% load static %}
+
 {% block content %}
 <div class="challenge-section">
     <!-- Background image set inline to utilize the Django static file system -->
@@ -7,35 +9,36 @@
     <div class="content">
         <h2>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h2>
         <a href="{% url 'make_post' %}" class="btn btn-primary mt-2">Submit Challenge</a>
-</div>
+    </div>
 </div>
 
 <div class="posts-feed">
-{% for post in posts %}
-<div class="post">
-    <div class="post-header">
-        <a class="username" href="{% url 'profile' post.username %}">{{ post.username }}</a>
-        <span class="post-date">{{ post.created_at|date:"H:i M d, Y" }}</span>
+    {% for post in posts %}
+    <div class="post">
+        <div class="post-header">
+            <a class="username" href="{% url 'profile' post.username %}">{{ post.username }}</a>
+            <span class="post-date">{{ post.created_at|date:"H:i M d, Y" }}</span>
+        </div>
+        <div class="post-content">{{ post.content }}</div>
     </div>
-    <div class="post-content">{{ post.content }}</div>
-</div>
-{% empty %}
-<p>No Posts!</p>
-{% endfor %}
+    {% empty %}
+    <p>No Posts!</p>
+    {% endfor %}
 </div>
 <script>
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.challenge-section');
-    let scrollPosition = window.scrollY < 0 ? 0 : window.scrollY;
-
-    // Adjust the size based on scroll position
-    let newSize = Math.max(100 - scrollPosition / 10, 50); // Minimum size 50vh
-    header.style.height = newSize + "vh";
-
-    // Since the background image is part of .background-image, we adjust its blur directly
-    const background = document.querySelector('.background-image');
-    let newBlur = Math.min(scrollPosition / 100, 10); // Maximum blur 10px
-    background.style.filter = `blur(${newBlur}px)`;
-});
-</script>
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.challenge-section');
+        let scrollPosition = window.scrollY < 0 ? 0 : window.scrollY;
+    
+        // Adjust the size based on scroll position
+        let newSize = Math.max(100 - scrollPosition / 10, 50); // Minimum size 50vh
+        header.style.height = newSize + "vh";
+    
+        // Since the background image is part of .background-image, we adjust its blur directly
+        const background = document.querySelector('.background-image');
+        let newBlur = Math.min(scrollPosition / 100, 10); // Maximum blur 10px
+        background.style.filter = `blur(${newBlur}px)`;
+    });
+    </script>
+    
 {% endblock %}
