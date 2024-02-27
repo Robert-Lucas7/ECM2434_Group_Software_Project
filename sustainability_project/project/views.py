@@ -11,16 +11,10 @@ from django.db.models import Sum
 from django.http import HttpResponse
 
 from django.shortcuts import render
+import math
 
 def index(request):
     return render(request, 'project/index.html')
-
-def navbar(request):
-    return render(request, 'project/navbar.html')
-
-
-def base(request):
-    return render(request, 'project/base.html')
 
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
@@ -72,7 +66,7 @@ def leaderboard(request, metric="streak"):
         'entries' : data,
         'user_position' : position_of_current_user + 1,
         'first_page' : data[:5],
-        'num_pages' : range((len(users) // entries_per_page) + 1), # To iterate over in the template to display the page buttons.
+        'num_pages' : range(math.ceil(len(users) /entries_per_page)), # To iterate over in the template to display the page buttons.
         'num_challenges_completed' : {
             "username" : request.user.username,
             "challenges_completed" : UserChallenges.objects.filter(user=request.user).count(),
