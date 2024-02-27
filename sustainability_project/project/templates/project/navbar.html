@@ -3,7 +3,7 @@
     <!-- Circular Profile Icon with Django template tags for dynamic URL and static file -->
     {% load static %}
     
-    {% if request.user %}
+    {% if request.user.is_authenticated %}
     <a class="navbar-brand" href="{% url 'profile' request.user.username %}">
       <img src="{% static 'project/Example_Profile_Pic.jpg' %}" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%;">
     </a> 
@@ -26,7 +26,7 @@
       </button>
       <!-- Adjusted Dropdown Menu -->
       <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu" aria-labelledby="dropdownMenuButton">
-          {% if request.user %}
+          {% if request.user.is_authenticated %}
             <a class="dropdown-item" href="{% url 'home' %}">Home</a>
             <a class="dropdown-item" href="{% url 'profile' request.user.username %}">My Profile</a>
             <a class="dropdown-item" href="{% url 'leaderboard' %}">Leaderboard</a>
