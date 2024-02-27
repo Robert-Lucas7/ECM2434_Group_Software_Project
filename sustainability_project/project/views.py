@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 
+from django.conf import settings
+
 from .forms import Signup, LoginForm, MakePost
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
 from django.contrib.auth.decorators import login_required
@@ -12,6 +14,7 @@ from django.http import HttpResponse
 
 from django.shortcuts import render
 import math
+from django.core.files.storage import FileSystemStorage
 
 def index(request):
     return render(request, 'project/index.html')
@@ -114,22 +117,32 @@ def user_login(request):
 
 
 def profile(request, username):
-    user = get_object_or_404(CustomUser, username=username)
-    user_challenges = UserChallenges.objects.filter(user=user)
-    todays_challenge = DailyChallenge.objects.latest("assigned")  # Corrected from "date_assigned" to "assigned"
-    context = {
-        'user': user,
-        'user_challenges': user_challenges,
-        'user_points' : user_challenges.aggregate(Sum("points"))['points__sum']
-        #'todays_challenge': todays_challenge.challenge
-    }
-    return render(request, 'project/profile.html', context)
+    # If a POST request is made to this page with an image (profile picture) save it to '/media/{username}/profile-picture.{extension}'
+    # Needs improved security - only jpg and png should be uploaded.
+    if request.method == "POST": # From: https://www.geeksforgeeks.org/django-upload-files-with-filesystemstorage/
+        request_file = request.FILES['document'] if 'document' else None #Document should be changed to 'image' (or similar)
+        if request_file:
+            fs = FileSystemStorage(location=f"{settings.MEDIA_ROOT}/{request.user.username}")
+            file = fs.save("profile-picture", request_file)
+            #fileurl = fs.url(file)
+    
+    if request.user.username == username:#If the user requesting the profile page isn't that user, redirect them to the homepage.
+        user = get_object_or_404(CustomUser, username=username)
+        user_challenges = UserChallenges.objects.filter(user=user)
+        todays_challenge = DailyChallenge.objects.latest("assigned")  # Corrected from "date_assigned" to "assigned"
+        context = {
+            'user': user,
+            'user_challenges': user_challenges,
+            'user_points' : user_challenges.aggregate(Sum("points"))['points__sum']
+            #'todays_challenge': todays_challenge.challenge
+        }
+        return render(request, 'project/profile.html', context)
+    else:
+        return redirect("home") 
 
 
 # This is the view for the home page. It will display the most recent posts.
 def home(request):
-    print(request.user)
-    print()
     #Get the most recent challenge from the database.
     todays_challenge = DailyChallenge.objects.latest('assigned')
     #Get all posts that are for the most recent challenge
