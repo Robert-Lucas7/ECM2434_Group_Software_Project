@@ -12,9 +12,11 @@
     <div></div>
 
     <!-- App Name centered with improved CSS for better responsiveness -->
-    <a class="navbar-brand mx-auto font-weight-bold" href="{% url 'home' %}" style="position: absolute; left: 50%; transform: translateX(-50%);">
-      YourAppName
-    </a>
+    {% if request.user %}
+      <a class="navbar-brand mx-auto font-weight-bold" href="{% url 'home' %}" style="position: absolute; left: 50%; transform: translateX(-50%);">
+        YourAppName
+      </a>
+    {% endif %}
 
     <!-- Correctly structured Toggle button for mobile views inside a nav-item, outside of a li element -->
     <div class="nav-item dropdown">
@@ -24,10 +26,15 @@
       </button>
       <!-- Adjusted Dropdown Menu -->
       <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="{% url 'home' %}">Home</a>
-          <a class="dropdown-item" href="{% url 'profile' request.user.username %}">My Profile</a>
-          <a class="dropdown-item" href="{% url 'leaderboard' %}">Leaderboard</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          {% if request.user %}
+            <a class="dropdown-item" href="{% url 'home' %}">Home</a>
+            <a class="dropdown-item" href="{% url 'profile' request.user.username %}">My Profile</a>
+            <a class="dropdown-item" href="{% url 'leaderboard' %}">Leaderboard</a>
+          {% else %}
+            <a class="dropdown-item" href="{% url 'index' %}">Index</a>
+            <a class="dropdown-item" href="{% url 'registration' %}">Registration</a>
+            <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+          {% endif %}
       </div>
       </div>
     </div>
