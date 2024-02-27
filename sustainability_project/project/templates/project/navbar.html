@@ -13,9 +13,9 @@
 
     <!-- App Name centered with improved CSS for better responsiveness -->
     
-      <a class="navbar-brand mx-auto font-weight-bold" href="{% url 'home' %}" style="position: absolute; left: 50%; transform: translateX(-50%);">
-        YourAppName
-      </a>
+    <a class="navbar-logo mx-auto" href="{% url 'home' %}" style="position: absolute; left: 50%; transform: translateX(-50%);">
+      <img src="{% static 'project/brand_logo.png' %}" alt="AppName" style="height: 40px;"> <!-- Adjust 'path/to/your/logo/image.png' and styles as needed -->
+    </a>
     
 
     <!-- Correctly structured Toggle button for mobile views inside a nav-item, outside of a li element -->
