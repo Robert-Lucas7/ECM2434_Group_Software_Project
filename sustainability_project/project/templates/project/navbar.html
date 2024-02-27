@@ -3,20 +3,20 @@
     <!-- Circular Profile Icon with Django template tags for dynamic URL and static file -->
     {% load static %}
     
-  
+    {% if request.user %}
     <a class="navbar-brand" href="{% url 'profile' request.user.username %}">
       <img src="{% static 'project/Example_Profile_Pic.jpg' %}" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%;">
     </a> 
-
+    {% endif %}
     <!-- Placeholder for visual balance, ensuring center alignment of the App Name -->
     <div></div>
 
     <!-- App Name centered with improved CSS for better responsiveness -->
-    {% if request.user %}
+    
       <a class="navbar-brand mx-auto font-weight-bold" href="{% url 'home' %}" style="position: absolute; left: 50%; transform: translateX(-50%);">
         YourAppName
       </a>
-    {% endif %}
+    
 
     <!-- Correctly structured Toggle button for mobile views inside a nav-item, outside of a li element -->
     <div class="nav-item dropdown">
