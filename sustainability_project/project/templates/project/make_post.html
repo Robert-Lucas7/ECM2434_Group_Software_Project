@@ -1,16 +1,50 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
+<head>
+    <style>
+        form {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 3px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+        <div class="challenge-section">
+            <!-- Background image set inline to utilize the Django static file system -->
+            <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}');"></div>
+            <div class="content">
+                <h1>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h1>
+                <a align="center">Write a comment about the challenege then submit</a>
 
-    <div class="daily-challenge">
-        <h1>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h1>
-    </div>
+                <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" >
+                    {% csrf_token %}
+                    <!-- {{form.comment.label_tag}} -->
+                    {{form.comment}}
+                    <button type="submit" class="button">Challenge Completed</button>
+                </form>
+            </div>
 
-    <body>
+        </div>
 
-        <h3 align="center" underline><u>Write a comment about the challenege then submit</u></h1>
-        <pre>  </pre>
-        <div id="post">
+        <div id="post" align="center" >
             {% if form.errors %}
                 <div class="error">
                     <p><span>ERROR</span></p>
@@ -25,14 +59,9 @@
             {% endif %}
         </div>
 
-        <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}">
-            {% csrf_token %}
-            {{form.comment.label_tag}}
-            {{form.comment}}
-            <button type="submit" >Challenge Completed</button>
-        </form>
-    </body>
+    
 
 
 {% endblock %}
+
 
