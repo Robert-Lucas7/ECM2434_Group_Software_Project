@@ -163,15 +163,20 @@ def home(request):
 
 
 def make_post(request):
+    daily_challenge = DailyChallenge.objects.latest("assigned")
     if request.method == 'POST':
         form = MakePost(request.POST)
         if form.is_valid():
             comment = form.cleaned_data.get('comment')
-            uc = UserChallenges(daily_challenge = DailyChallenge.objects.latest("date_assigned"), user = request.user, submitted = datetime.now(), completed = True, response = comment)
+            uc = UserChallenges(daily_challenge = daily_challenge, user = request.user, submitted = datetime.now(), completed = True, response = comment) #To access this page user must be authenticated so request.user is adequate.
             uc.save()
     else:
         form = MakePost()
-    return render(request, 'make_post.html', {'form': form})
+    context = {
+        'form' : form,
+        'daily_challenge' : daily_challenge.challenge.title
+    }
+    return render(request, 'make_post.html', context)
 
 def test(request):
     todays_challenge = Challenge.objects.last()

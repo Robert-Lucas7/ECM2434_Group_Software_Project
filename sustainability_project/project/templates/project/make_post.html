@@ -25,7 +25,7 @@
             {% endif %}
         </div>
 
-        <form id="MakePost" method="post" align="center" action="{% url 'home' %}">
+        <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}">
             {% csrf_token %}
             {{form.comment.label_tag}}
             {{form.comment}}
