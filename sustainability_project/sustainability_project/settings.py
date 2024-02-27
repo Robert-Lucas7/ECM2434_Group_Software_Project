@@ -132,7 +132,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #Where to store user files
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 
 CRONJOBS = [
     ('0 9 * * *', 'project.cron.get_new_daily_challenge' , '>> ' + os.path.join(BASE_DIR,'cron_log.log'+' 2>&1 '))
