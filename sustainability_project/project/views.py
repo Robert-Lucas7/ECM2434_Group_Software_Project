@@ -176,6 +176,16 @@ def make_post(request):
     if request.method == 'POST':
         form = MakePost(request.POST)
         if form.is_valid():
+            user = request.user
+            previous_challenge_completed = UserChallenges.objects.filter(user = user, daily_challenge = daily_challenge)
+            
+            if previous_challenge_completed: #If the user has already submitted a challenge, then delete it and save the new entry.
+                previous_challenge_completed.delete()
+            else:
+                user.streak += 1
+            if user.streak > user.best_streak:
+                user.best_streak = user.streak
+            user.save()
             #Calculating the users points for this challenge
             points = 100 + max(math.ceil((-0.1 * ((now() - daily_challenge.assigned).total_seconds() / 3600) + 2.4) * 10.5),0) + request.user.streak#For a max of around 25 points for submitting quickly.
             print(points)
