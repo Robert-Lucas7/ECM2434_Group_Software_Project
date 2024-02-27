@@ -17,8 +17,8 @@
 
 /* Targeting the dropdown button specifically to change its background color */
 .btn-secondary {
-    background-color: #e9ecef; /* Bootstrap's light grey color; adjust as needed */
-    border-color: #e9ecef; /* Adjust the border color to match the background */
+    background-color: #c7c8c7; /* Bootstrap's light grey color; adjust as needed */
+    border-color: #c7c8c7; /* Adjust the border color to match the background */
 }
 
 /* Adjusting the color on hover to maintain visual feedback */
