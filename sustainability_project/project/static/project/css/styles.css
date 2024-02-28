@@ -207,3 +207,58 @@
 }
 
 
+
+
+
+
+
+/* Village Styles */
+.game-board-container {
+    perspective: 1000px;
+    perspective-origin: 50% 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(6, 100px); /* Create 6 columns */
+    grid-gap: 5px;
+    transform: rotateX(45deg);
+    transition: transform 0.5s ease;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.cell:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 600px) {
+    .game-board {
+        grid-template-columns: repeat(6, 50px);
+    }
+
+    .cell {
+        position: relative; /* Needed for z-index to work */
+        width: 100px;
+        height: 100px;
+        /* Remaining styles */
+    }
+    
+}

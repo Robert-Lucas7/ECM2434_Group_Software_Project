@@ -30,15 +30,21 @@
         const header = document.querySelector('.challenge-section');
         let scrollPosition = window.scrollY < 0 ? 0 : window.scrollY;
     
-        // Adjust the size based on scroll position
-        let newSize = Math.max(100 - scrollPosition / 10, 50); // Minimum size 50vh
+        // Adjust the size more smoothly based on scroll position
+        let newSize = Math.max(100 - scrollPosition / 5, 60); // Adjusted for smoother transition and minimum size
         header.style.height = newSize + "vh";
     
-        // Since the background image is part of .background-image, we adjust its blur directly
+        // Adjust the background image blur, starting from 0px to ensure it's clear on initial load
         const background = document.querySelector('.background-image');
-        let newBlur = Math.min(scrollPosition / 100, 10); // Maximum blur 10px
-        background.style.filter = `blur(${newBlur}px)`;
-    });
-    </script>
+        // Initialize blur effect to 0px on page load
+        let initialBlur = 0; // Ensuring background starts without blur
+        let newBlur = Math.max(initialBlur, Math.min(scrollPosition / 100, 5)); // Adjusted maximum blur for subtlety        background.style.filter = `blur(${newBlur}px)`;
+            });
+        // Set initial blur state on page load to 0px
+        document.addEventListener("DOMContentLoaded", function() {
+            const background = document.querySelector('.background-image');
+            background.style.filter = "blur(0px)";
+        });
+</script>
     
 {% endblock %}

@@ -24,6 +24,25 @@ def index(request):
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
 
+def village(request):
+    # Example board setup
+    board = []
+    for row in range(6):
+        board_row = []
+        for col in range(6):
+            # Example: Assigning a different image based on some logic
+            if (row + col) % 2 == 0:
+                image_path = 'project/animal_assets/tile000.png'  # Adjusted path
+            else:
+                image_path = 'project/animal_assets/tile120.png'  # Adjusted path
+            board_row.append({'image_path': image_path})
+        board.append(board_row)
+
+    context = {
+        'board': board,
+    }
+    return render(request, 'project/village.html', context)
+
 
 @login_required
 def leaderboard(request, metric="streak"):

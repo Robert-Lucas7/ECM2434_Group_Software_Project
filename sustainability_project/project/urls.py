@@ -12,5 +12,6 @@ urlpatterns = [
     path('sample_profile/', views.sample_profile, name='sample_profile'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('make_post/', views.make_post, name='make_post'),
+    path('village/', views.village, name='village'),
 
 ]

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="game-board-container">
+    <div class="game-board">
+        {% for row in board %}
+            <div class="row">
+                {% for cell in row %}
+                    <div class="cell">
+                        <!-- Use the static tag to resolve the full path to the image -->
+                        <img src="{% static 'project/animal_assets/tile000.png' %}" alt="Cell Image">
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
