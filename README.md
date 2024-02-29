@@ -39,12 +39,11 @@ We have also included the versioned source code for archiving.
 
 [./technical-documents/](./technical-documents/)
 
-Technical documents are broken down into front end and back end etc.  
 
 ## PRODUCT DOCUMENTS
-Our product documents are primarily in the form of a product UI. We have not yet hosted our webssite however it can be viewed by running on your local computer.
+Our product documents are primarily in the form of a product UI. We have not yet hosted our website however it can be viewed by running on your local machine. Instructions for this can be found in: ./product-documents/UI.md 
 
 
 The UI and design documents for the client have also been archived under the link below:
 
-[./product-documents/UI/](./product-documents/UI/)
+[./product-documents/](./product-documents/)
