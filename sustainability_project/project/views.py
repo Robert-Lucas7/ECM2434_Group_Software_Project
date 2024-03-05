@@ -119,7 +119,7 @@ def registration(request):
             request_file = open(os.path.join(settings.BASE_DIR,'project','static/project/Example_Profile_Pic.jpg'),'rb') #This should be changed for when the custom profile picture is implemented.
             if request_file:
                 fs = FileSystemStorage(location=f"{settings.MEDIA_ROOT}/{form.cleaned_data.get('username')}")
-                fs.save("profile-picture", request_file)
+                fs.save("profile-picture.jpg", request_file)
             return redirect("login")
         else:
             print(form.errors)
