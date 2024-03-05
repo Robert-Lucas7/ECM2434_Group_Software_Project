@@ -198,18 +198,30 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-def make_post(request):
+def make_post(request):  
+    user = request.user
     daily_challenge = DailyChallenge.objects.latest("assigned")
+    try:
+        previous_challenge_completed = UserChallenges.objects.filter(user = user, daily_challenge = daily_challenge)[0]
+        response = previous_challenge_completed.response
+        completed = previous_challenge_completed.completed
+    except:
+        previous_challenge_completed = False
+        response = None
+        completed = None
+
+
     if request.method == 'POST':
         form = MakePost(request.POST)
         if form.is_valid():
-            user = request.user
-            previous_challenge_completed = UserChallenges.objects.filter(user = user, daily_challenge = daily_challenge)
-            
-            if previous_challenge_completed: #If the user has already submitted a challenge, then delete it and save the new entry.
+            if previous_challenge_completed:
+                print("success")
                 previous_challenge_completed.delete()
             else:
-                user.streak += 1
+                print("fail")
+                user.streak += 1 
+
+
             if user.streak > user.best_streak:
                 user.best_streak = user.streak
             user.save()
@@ -221,11 +233,15 @@ def make_post(request):
             uc = UserChallenges(daily_challenge=daily_challenge, user=request.user,
                                 submitted=datetime.now(), completed=True, response=comment, points = points)
             uc.save()
+
+            return redirect("home")
     else:
         form = MakePost()
     context = {
-        'form': form,
-        'daily_challenge': daily_challenge.challenge.title
+        'form' : form,
+        'daily_challenge' : daily_challenge.challenge.title,
+        'completed' : completed,
+        'response' : response
     }
     return render(request, 'make_post.html', context)
 
