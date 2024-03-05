@@ -1,7 +1,12 @@
 const MIN_ZOOM = 12;
 const EXETER_BOUNDS = L.latLngBounds([50.759496, -3.583118], [50.693802, -3.440272])
 
-console.log(context)
+const contextContainer = document.getElementById("contextContainer");
+
+const LAT = todays_challenge.location_lat;
+const LONG = todays_challenge.location_long;
+
+
 
 // creating map and setting parameters
 let map = L.map('map', {
@@ -19,7 +24,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // adding marker and binding popup
 marker_bounds = EXETER_BOUNDS.getCenter()
 let marker = L.marker(marker_bounds).addTo(map);
-marker.bindPopup("<b>Challenge Name</b><br>Description about challange");
+marker.bindPopup("<b>Challenge Name</b><br>Description about challenge");
 
 let RADIUS = 500
 let circle_bounds = [50.736542, -3.537569]
