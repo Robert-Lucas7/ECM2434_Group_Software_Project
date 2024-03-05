@@ -17,9 +17,6 @@ import json
 def index(request):
     return render(request, 'project/index.html')
 
-def map(request):
-    return render(request, 'project/map.html')
-
 
 def logout_view(request):
     logout(request)
