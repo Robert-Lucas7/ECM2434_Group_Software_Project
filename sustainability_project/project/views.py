@@ -20,8 +20,7 @@ def index(request):
 
 def logout_view(request):
     logout(request)
-    # Redirect to the index page after logging out
-    return redirect('index')
+    return redirect('index') # Redirect to the index page after logging out
 
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
@@ -136,6 +135,8 @@ def user_login(request):
                 print("User logged in successfully")
                 login(request, user)
                 return redirect("home")
+            else:
+                return render(request, 'login.html', {'error': 'Incorrect username or password.'})
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})

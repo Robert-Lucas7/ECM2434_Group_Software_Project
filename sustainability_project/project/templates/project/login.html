@@ -4,10 +4,16 @@
 
     <!-- Container for the Login Form, centered with similar styling to profile-container -->
     <div class="profile-container" style="margin-top: 50px;">
+        
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+
         <!-- Login Form -->
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
-
 
             <!-- Username Input -->
             <div class="form-group">
