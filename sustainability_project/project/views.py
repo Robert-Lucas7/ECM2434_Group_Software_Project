@@ -1,25 +1,26 @@
-import json
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-from datetime import datetime
 from django.utils.timezone import now
 from django.conf import settings
+from django.db.models import Sum
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
 
+from datetime import datetime
+import math
 from .forms import Signup, LoginForm, MakePost
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
-from django.contrib.auth.decorators import login_required
-from django.db.models import Sum
-# Create your views here.
-from django.http import HttpResponse
-
-from django.shortcuts import render
-import math
-from django.core.files.storage import FileSystemStorage
+import json
 
 
 def index(request):
     return render(request, 'project/index.html')
 
+
+def logout_view(request):
+    logout(request)
+    return redirect('index') # Redirect to the index page after logging out
 
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
@@ -102,7 +103,7 @@ def leaderboard(request, metric="streak"):
     }
     return render(request, 'project/leaderboard.html', context)
 
-
+import os
 def registration(request):
     form = Signup(request.POST)
     if request.method == 'POST':
@@ -114,6 +115,11 @@ def registration(request):
             # if new_user is not None:
             #     login(request, new_user)
             #     return redirect('home')
+            # Save user profile to the file system.
+            request_file = open(os.path.join(settings.BASE_DIR,'project','static/project/Example_Profile_Pic.jpg'),'rb') #This should be changed for when the custom profile picture is implemented.
+            if request_file:
+                fs = FileSystemStorage(location=f"{settings.MEDIA_ROOT}/{form.cleaned_data.get('username')}")
+                fs.save("profile-picture.jpg", request_file)
             return redirect("login")
         else:
             print(form.errors)
@@ -134,6 +140,8 @@ def user_login(request):
                 print("User logged in successfully")
                 login(request, user)
                 return redirect("home")
+            else:
+                return render(request, 'login.html', {'error': 'Incorrect username or password.'})
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
@@ -152,20 +160,20 @@ def profile(request, username):
             # fileurl = fs.url(file)
 
     # If the user requesting the profile page isn't that user, redirect them to the homepage.
-    if request.user.username == username:
-        user = get_object_or_404(CustomUser, username=username)
-        user_challenges = UserChallenges.objects.filter(user=user)
-        # Corrected from "date_assigned" to "assigned"
-        todays_challenge = DailyChallenge.objects.latest("assigned")
-        context = {
-            'user': user,
-            'user_challenges': user_challenges,
-            'user_points': user_challenges.aggregate(Sum("points"))['points__sum']
-            # 'todays_challenge': todays_challenge.challenge
-        }
-        return render(request, 'project/profile.html', context)
-    else:
-        return redirect("home")
+    #if request.user.username == username:
+    user = get_object_or_404(CustomUser, username=username)
+    user_challenges = UserChallenges.objects.filter(user=user)
+    # Corrected from "date_assigned" to "assigned"
+    todays_challenge = DailyChallenge.objects.latest("-assigned")
+    context = {
+        'user': user,
+        'user_challenges': user_challenges,
+        'user_points': user_challenges.aggregate(Sum("points"))['points__sum']
+        # 'todays_challenge': todays_challenge.challenge
+    }
+    return render(request, 'project/profile.html', context)
+    #else:
+     #   return redirect("home")
 
 
 # This is the view for the home page. It will display the most recent posts.

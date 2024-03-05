@@ -13,5 +13,6 @@ urlpatterns = [
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('make_post/', views.make_post, name='make_post'),
     path('village/', views.village, name='village'),
+    path('logout/', views.logout_view, name='logout'),
 
 ]
