@@ -12,22 +12,65 @@
             align-items: center;
             flex-direction: column;
         }
-        /*
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            color: #fff;
-            background-color: #007bff;
-            border-radius: 3px;
+        submission {
+            /* display: block;
+            padding: 10px;
+            margin: 20px;
+            background-color: rgb(21, 115, 21);
+            color: white; */
+            display: block;
+            border-radius: 25px;
+            border: 2px solid #73AD21;
+            padding: 10px;
+            background-color: white;
+            color: #73AD21;
+            font-size: 25px;
+            align-items: center;
+            flex-direction: column;
         }
-        .button:hover {
-            background-color: #0056b3;
-        }*/
+        
     </style>
 </head>
+   
+    {% if completed %}  
+    
+    <div class="content">
+        <div class="challenge-section"> 
+            <!-- Background image set inline to utilize the Django static file system -->
+            <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}');"></div>
+            <div class="content">
+                <a>Previous Submission:</a>
+                <submission>{{ response | default:"Previous Comment"}}</submission>
+
+                <h1>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h1>
+                <a align="center">Wanting to change your comment?</a>
+
+                <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" >
+                    {% csrf_token %}
+                    <!-- {{form.comment.label_tag}} -->
+                    {{form.comment}}
+                    <button type="submit" class="btn btn-primary mt-3">Change Submission</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="post" align="center" >
+            {% if form.errors %}
+                <div class="error">
+                    <p><span>ERROR</span></p>
+                    <ul>
+                        {% for key, value in form.errors.items %}
+                            {% for error in value %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+    {% else %} 
         <div class="challenge-section">
             <!-- Background image set inline to utilize the Django static file system -->
             <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}');"></div>
@@ -60,7 +103,7 @@
             {% endif %}
         </div>
 
-    
+    {% endif %}
 
 
 {% endblock %}
