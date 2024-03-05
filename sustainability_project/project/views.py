@@ -1,25 +1,27 @@
-import json
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-from datetime import datetime
 from django.utils.timezone import now
 from django.conf import settings
+from django.db.models import Sum
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
 
+from datetime import datetime
+import math
 from .forms import Signup, LoginForm, MakePost
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
-from django.contrib.auth.decorators import login_required
-from django.db.models import Sum
-# Create your views here.
-from django.http import HttpResponse
-
-from django.shortcuts import render
-import math
-from django.core.files.storage import FileSystemStorage
+import json
 
 
 def index(request):
     return render(request, 'project/index.html')
 
+
+def logout_view(request):
+    logout(request)
+    # Redirect to the index page after logging out
+    return redirect('index')
 
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
