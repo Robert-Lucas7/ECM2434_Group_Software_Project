@@ -1,45 +1,35 @@
 const MIN_ZOOM = 12;
 const EXETER_BOUNDS = L.latLngBounds([50.759496, -3.583118], [50.693802, -3.440272])
 
-const contextContainer = document.getElementById("contextContainer");
 
-const LAT = todays_challenge.location_lat;
-const LONG = todays_challenge.location_long;
+function createMap(LAT, LONG){
+    let map = L.map('map', {
+        center: EXETER_BOUNDS.getCenter(),
+        maxBounds: EXETER_BOUNDS,
+        minZoom: MIN_ZOOM
+    }).setView(EXETER_BOUNDS.getCenter(), MIN_ZOOM);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    let RADIUS = 120
+    let circle_bounds = [LAT, LONG]
+    let circle = L.circle(circle_bounds, {radius: RADIUS}).addTo(map);
+
+    // var fromLatLng = L.latLng(marker_bounds);
+    // var toLatLng = L.latLng(circle_bounds);
+    //
+    // var dis = fromLatLng.distanceTo(toLatLng);
+}
 
 
-
-// creating map and setting parameters
-let map = L.map('map', {
-    center: EXETER_BOUNDS.getCenter(),
-    maxBounds: EXETER_BOUNDS,
-    minZoom: MIN_ZOOM
-}).setView(EXETER_BOUNDS.getCenter(), MIN_ZOOM);
-
-// adding map tile from openstreetmap
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
-// adding marker and binding popup
-marker_bounds = EXETER_BOUNDS.getCenter()
-let marker = L.marker(marker_bounds).addTo(map);
-marker.bindPopup("<b>Challenge Name</b><br>Description about challenge");
-
-let RADIUS = 500
-let circle_bounds = [50.736542, -3.537569]
-let circle = L.circle(circle_bounds, {radius: RADIUS}).addTo(map);
-
-var fromLatLng = L.latLng(marker_bounds);
-var toLatLng = L.latLng(circle_bounds);
-
-var dis = fromLatLng.distanceTo(toLatLng);
-console.log(dis);
-document.querySelector("#share").addEventListener(
-    "click", () => {
-        findMyCoordinates()
-    }
-)
+// document.querySelector("#share").addEventListener(
+//     "click", () => {
+//         findMyCoordinates()
+//     }
+// )
 
 function inCircle(distance){
     return distance < RADIUS;
@@ -78,4 +68,8 @@ function findMyCoordinates() {
     } else {
         alert("Geolocation is not supported by your browser");
     }
+}
+
+if (LAT && LONG){
+    createMap(LAT, LONG)
 }

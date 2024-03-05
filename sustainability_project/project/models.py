@@ -22,7 +22,7 @@ class Challenge(models.Model):
     
 class DailyChallenge(models.Model):
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
-    assigned = models.DateTimeField(default=now())
+    assigned = models.DateTimeField(default=now(), null=True)
 
 
 class UserChallenges(models.Model):

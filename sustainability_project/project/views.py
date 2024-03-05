@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.timezone import now
@@ -20,10 +20,21 @@ def index(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('index') # Redirect to the index page after logging out
+    return redirect('index')  # Redirect to the index page after logging out
+
 
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
+
+
+def map(request):
+    # Will update
+    daily_challenge = DailyChallenge.objects.get(challenge_id="Walk to reed pond")
+    print(daily_challenge.challenge)
+    challenge = daily_challenge.challenge
+
+    return render(request, 'map.html', context={'challenge': challenge})
+
 
 def village(request):
     # Example board setup
@@ -54,7 +65,7 @@ def leaderboard(request, metric="streak"):
     data = []
     entries_per_page = 5
     for i, user in enumerate(users_by_streak):
-        if i != 0 and user.streak != users_by_streak[i-1].streak and not past_current_user:
+        if i != 0 and user.streak != users_by_streak[i - 1].streak and not past_current_user:
             position_of_current_user += 1
             if user == request.user:
                 past_current_user = True
@@ -97,13 +108,18 @@ def leaderboard(request, metric="streak"):
         'num_challenges_completed': {
             "username": request.user.username,
             "challenges_completed": UserChallenges.objects.filter(user=request.user).count(),
-            "challenges_completed this weeks points": UserChallenges.objects.filter(user=request.user, submitted__week=datetime.now().isocalendar()[1]).count(),
-            "challenges_completed this months points": UserChallenges.objects.filter(user=request.user, submitted__month=datetime.now().month).count()
+            "challenges_completed this weeks points": UserChallenges.objects.filter(user=request.user, submitted__week=
+            datetime.now().isocalendar()[1]).count(),
+            "challenges_completed this months points": UserChallenges.objects.filter(user=request.user,
+                                                                                     submitted__month=datetime.now().month).count()
         }
     }
     return render(request, 'project/leaderboard.html', context)
 
+
 import os
+
+
 def registration(request):
     form = Signup(request.POST)
     if request.method == 'POST':
@@ -116,7 +132,8 @@ def registration(request):
             #     login(request, new_user)
             #     return redirect('home')
             # Save user profile to the file system.
-            request_file = open(os.path.join(settings.BASE_DIR,'project','static/project/Example_Profile_Pic.jpg'),'rb') #This should be changed for when the custom profile picture is implemented.
+            request_file = open(os.path.join(settings.BASE_DIR, 'project', 'static/project/Example_Profile_Pic.jpg'),
+                                'rb')  # This should be changed for when the custom profile picture is implemented.
             if request_file:
                 fs = FileSystemStorage(location=f"{settings.MEDIA_ROOT}/{form.cleaned_data.get('username')}")
                 fs.save("profile-picture.jpg", request_file)
@@ -160,7 +177,7 @@ def profile(request, username):
             # fileurl = fs.url(file)
 
     # If the user requesting the profile page isn't that user, redirect them to the homepage.
-    #if request.user.username == username:
+    # if request.user.username == username:
     user = get_object_or_404(CustomUser, username=username)
     user_challenges = UserChallenges.objects.filter(user=user)
     # Corrected from "date_assigned" to "assigned"
@@ -172,8 +189,8 @@ def profile(request, username):
         # 'todays_challenge': todays_challenge.challenge
     }
     return render(request, 'project/profile.html', context)
-    #else:
-     #   return redirect("home")
+    # else:
+    #   return redirect("home")
 
 
 # This is the view for the home page. It will display the most recent posts.
@@ -198,18 +215,17 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-def make_post(request):  
+def make_post(request):
     user = request.user
     daily_challenge = DailyChallenge.objects.latest("assigned")
     try:
-        previous_challenge_completed = UserChallenges.objects.filter(user = user, daily_challenge = daily_challenge)[0]
+        previous_challenge_completed = UserChallenges.objects.filter(user=user, daily_challenge=daily_challenge)[0]
         response = previous_challenge_completed.response
         completed = previous_challenge_completed.completed
     except:
         previous_challenge_completed = False
         response = None
         completed = None
-
 
     if request.method == 'POST':
         form = MakePost(request.POST)
@@ -219,37 +235,30 @@ def make_post(request):
                 previous_challenge_completed.delete()
             else:
                 print("fail")
-                user.streak += 1 
-
+                user.streak += 1
 
             if user.streak > user.best_streak:
                 user.best_streak = user.streak
             user.save()
-            #Calculating the users points for this challenge
-            points = 100 + max(math.ceil((-0.1 * ((now() - daily_challenge.assigned).total_seconds() / 3600) + 2.4) * 10.5),0) + request.user.streak#For a max of around 25 points for submitting quickly.
+            # Calculating the users points for this challenge
+            points = 100 + max(
+                math.ceil((-0.1 * ((now() - daily_challenge.assigned).total_seconds() / 3600) + 2.4) * 10.5),
+                0) + request.user.streak  # For a max of around 25 points for submitting quickly.
             print(points)
             comment = form.cleaned_data.get('comment')
             # To access this page user must be authenticated so request.user is adequate.
             uc = UserChallenges(daily_challenge=daily_challenge, user=request.user,
-                                submitted=datetime.now(), completed=True, response=comment, points = points)
+                                submitted=datetime.now(), completed=True, response=comment, points=points)
             uc.save()
 
             return redirect("home")
     else:
         form = MakePost()
     context = {
-        'form' : form,
-        'daily_challenge' : daily_challenge.challenge.title,
-        'completed' : completed,
-        'response' : response
+        'form': form,
+        'daily_challenge': daily_challenge.challenge.title,
+        'completed': completed,
+        'response': response
     }
     return render(request, 'make_post.html', context)
 
-
-def test(request):
-    todays_challenge = Challenge.objects.last()
-    context = {
-        'todays_challenge': todays_challenge
-    }
-    print(todays_challenge)
-    return render(request, 'test.html', context=context)
