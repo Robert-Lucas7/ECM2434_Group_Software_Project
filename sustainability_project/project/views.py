@@ -104,7 +104,7 @@ def leaderboard(request, metric="streak"):
     }
     return render(request, 'project/leaderboard.html', context)
 
-
+import os
 def registration(request):
     form = Signup(request.POST)
     if request.method == 'POST':
@@ -116,6 +116,11 @@ def registration(request):
             # if new_user is not None:
             #     login(request, new_user)
             #     return redirect('home')
+            # Save user profile to the file system.
+            request_file = open(os.path.join(settings.BASE_DIR,'project','static/project/Example_Profile_Pic.jpg'),'rb') #This should be changed for when the custom profile picture is implemented.
+            if request_file:
+                fs = FileSystemStorage(location=f"{settings.MEDIA_ROOT}/{form.cleaned_data.get('username')}")
+                fs.save("profile-picture", request_file)
             return redirect("login")
         else:
             print(form.errors)
@@ -154,20 +159,20 @@ def profile(request, username):
             # fileurl = fs.url(file)
 
     # If the user requesting the profile page isn't that user, redirect them to the homepage.
-    if request.user.username == username:
-        user = get_object_or_404(CustomUser, username=username)
-        user_challenges = UserChallenges.objects.filter(user=user)
-        # Corrected from "date_assigned" to "assigned"
-        todays_challenge = DailyChallenge.objects.latest("assigned")
-        context = {
-            'user': user,
-            'user_challenges': user_challenges,
-            'user_points': user_challenges.aggregate(Sum("points"))['points__sum']
-            # 'todays_challenge': todays_challenge.challenge
-        }
-        return render(request, 'project/profile.html', context)
-    else:
-        return redirect("home")
+    #if request.user.username == username:
+    user = get_object_or_404(CustomUser, username=username)
+    user_challenges = UserChallenges.objects.filter(user=user)
+    # Corrected from "date_assigned" to "assigned"
+    todays_challenge = DailyChallenge.objects.latest("-assigned")
+    context = {
+        'user': user,
+        'user_challenges': user_challenges,
+        'user_points': user_challenges.aggregate(Sum("points"))['points__sum']
+        # 'todays_challenge': todays_challenge.challenge
+    }
+    return render(request, 'project/profile.html', context)
+    #else:
+     #   return redirect("home")
 
 
 # This is the view for the home page. It will display the most recent posts.
