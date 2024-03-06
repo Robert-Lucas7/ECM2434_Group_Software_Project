@@ -32,5 +32,7 @@ class UserChallenges(models.Model):
     completed = models.BooleanField(default=False)
     response = models.CharField(max_length=250)
     points = models.PositiveIntegerField(default=0)
+    # user_lat = models.DecimalField(max_digits=10, decimal_places=8, null=True)
+    # user_long = models.DecimalField(max_digits=11, decimal_places=8, null=True)
 
 

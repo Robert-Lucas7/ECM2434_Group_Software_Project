@@ -28,7 +28,15 @@
             align-items: center;
             flex-direction: column;
         }
-        
+
+        #map {
+            height: 300px;
+            width: 300px;
+            justify-content: center;
+            display: flex;
+            margin-top: 25px;
+        }
+
     </style>
 </head>
    
@@ -50,8 +58,7 @@
                 <pre></pre>
                 <pre></pre>
 
-
-                <h1>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h1>
+                <h1>{{ daily_challenge.title|default:"Daily Challenge Sample Text" }}</h1>
                 <a align="center">Wanting to change your comment?</a>
 
                 <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" >
@@ -79,20 +86,29 @@
         </div>
 
     </div>
-    {% else %} 
+    {% else %}
+        <script>
+            const LAT = "{{ daily_challenge.location_lat }}";
+            const LONG = "{{ daily_challenge.location_long }}";
+            const TITLE = "{{ daily_challenge.title }}";
+            const DESCRIPTION = "{{ daily_challenge.description }}";
+            console.log("{{ daily_challenge}}")
+        </script>
         <div class="challenge-section">
             <!-- Background image set inline to utilize the Django static file system -->
             <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}');"></div>
             <div class="content">
-                <h1>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h1>
+                <h1>{{ daily_challenge.title|default:"Daily Challenge Sample Text" }}</h1>
                 <a align="center">Write a comment about the challenege then submit</a>
 
                 <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" >
                     {% csrf_token %}
-                    <!-- {{form.comment.label_tag}} -->
                     {{form.comment}}
-                    <button type="submit" class="btn btn-primary mt-3">Challenge Completed</button>
+{#                    <input type="hidden" id="userLat" name="user_lat">#}
+{#                    <input type="hidden" id="userLong" name="user_long">#}
+                    <button id="submitBtn" type="submit" class="btn btn-primary mt-3">Challenge Completed</button>
                 </form>
+                <div id="map"></div>
             </div>
 
         </div>
@@ -111,6 +127,7 @@
                 </div>
             {% endif %}
         </div>
+        <script src="{% static 'mapper.js' %}"></script>
 
     {% endif %}
 

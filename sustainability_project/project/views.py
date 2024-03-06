@@ -196,7 +196,8 @@ def profile(request, username):
 # This is the view for the home page. It will display the most recent posts.
 def home(request):
     # Get the most recent challenge from the database.
-    todays_challenge = DailyChallenge.objects.latest('assigned')
+    # Currently doesn't actually get latest, just so can test out all challenges
+    todays_challenge = DailyChallenge.objects.all()[2]
     # Get all posts that are for the most recent challenge
     posts_for_todays_challenge = UserChallenges.objects.filter(
         daily_challenge=todays_challenge).order_by("-submitted")
@@ -217,7 +218,8 @@ def home(request):
 
 def make_post(request):
     user = request.user
-    daily_challenge = DailyChallenge.objects.latest("assigned")
+    daily_challenge = DailyChallenge.objects.all()[2]
+
     try:
         previous_challenge_completed = UserChallenges.objects.filter(user=user, daily_challenge=daily_challenge)[0]
         response = previous_challenge_completed.response
@@ -256,7 +258,7 @@ def make_post(request):
         form = MakePost()
     context = {
         'form': form,
-        'daily_challenge': daily_challenge.challenge.title,
+        'daily_challenge': daily_challenge.challenge,
         'completed': completed,
         'response': response
     }
