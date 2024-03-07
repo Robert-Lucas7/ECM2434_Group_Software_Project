@@ -14,6 +14,6 @@ urlpatterns = [
     path('make_post/', views.make_post, name='make_post'),
     path('village/', views.village, name='village'),
     path('logout/', views.logout_view, name='logout'),
-    path('map/', views.map, name='map')
+    path('map/', views.map, name='map'),
 
 ]
