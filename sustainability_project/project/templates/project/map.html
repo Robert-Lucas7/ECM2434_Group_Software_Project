@@ -17,22 +17,19 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-        }
+        }t
     </style>
 </head>
 <body>
     {% load static %}
-
-        <script>
-            const LAT = "{{ challenge.location_lat }}";
-            const LONG = "{{ challenge.location_long }}";
-            const TITLE = "{{ challenge.title }}";
-            const DESCRIPTION = "{{ challenge.description }}";
-            console.log("{{challenge}}")
-        </script>
-
-        <div id="map"></div>
-        <script src="{% static 'mapper.js' %}"></script>
-
+    <script>
+        const challenges = JSON.parse('{{ challenges|safe }}')
+        const marker_pic = "{% static "project/marker/marker.jpg" %}"
+    </script>
+    {% for challenge in challenges %}
+        {{ challenge.response }}
+    {% endfor %}
+    <div id="map"></div>
+    <script src="{% static 'map-challenges.js' %}"></script>
 </body>
 </html>

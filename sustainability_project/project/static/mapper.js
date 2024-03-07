@@ -77,8 +77,8 @@ if (LAT != "None"){
               let distance = fromLatLng.distanceTo(toLatLng);
 
               if(inCircle(distance, RADIUS)) {
-                  // document.getElementById('userLat').value = coordinates[0]
-                  // document.getElementById('userLong').value = coordinates[1]
+                  document.getElementById('userLat').value = coordinates[0]
+                  document.getElementById('userLong').value = coordinates[1]
                   document.getElementById('MakePost').submit();
               } else {
                   alert("You are not near the location")

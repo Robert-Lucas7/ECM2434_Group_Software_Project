@@ -104,8 +104,8 @@
                 <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" >
                     {% csrf_token %}
                     {{form.comment}}
-{#                    <input type="hidden" id="userLat" name="user_lat">#}
-{#                    <input type="hidden" id="userLong" name="user_long">#}
+                    <input type="hidden" id="userLat" name="user_lat">
+                    <input type="hidden" id="userLong" name="user_long">
                     <button id="submitBtn" type="submit" class="btn btn-primary mt-3">Challenge Completed</button>
                 </form>
                 <div id="map"></div>

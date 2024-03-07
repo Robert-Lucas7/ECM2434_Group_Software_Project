@@ -29,11 +29,17 @@ def sample_profile(request):
 
 def map(request):
     # Will update
-    daily_challenge = DailyChallenge.objects.get(challenge_id="Walk to reed pond")
-    print(daily_challenge.challenge)
-    challenge = daily_challenge.challenge
 
-    return render(request, 'map.html', context={'challenge': challenge})
+    user = request.user
+
+    completed_challenges = UserChallenges.objects.filter(user=user).exclude(user_lat__isnull=True)
+
+    challenge_list = [[challenge.response, float(challenge.user_lat), float(challenge.user_long)]
+                      for challenge in completed_challenges]
+
+    print(challenge_list)
+
+    return render(request, 'map.html', context={'challenges': json.dumps(challenge_list)})
 
 
 def village(request):
@@ -218,7 +224,7 @@ def home(request):
 
 def make_post(request):
     user = request.user
-    daily_challenge = DailyChallenge.objects.all()[2]
+    daily_challenge = DailyChallenge.objects.all()[6]
 
     try:
         previous_challenge_completed = UserChallenges.objects.filter(user=user, daily_challenge=daily_challenge)[0]
@@ -247,10 +253,15 @@ def make_post(request):
                 math.ceil((-0.1 * ((now() - daily_challenge.assigned).total_seconds() / 3600) + 2.4) * 10.5),
                 0) + request.user.streak  # For a max of around 25 points for submitting quickly.
             print(points)
+
             comment = form.cleaned_data.get('comment')
+            user_lat = request.POST.get('user_lat')
+            user_long = request.POST.get('user_long')
+
             # To access this page user must be authenticated so request.user is adequate.
             uc = UserChallenges(daily_challenge=daily_challenge, user=request.user,
-                                submitted=datetime.now(), completed=True, response=comment, points=points)
+                                submitted=datetime.now(), completed=True, response=comment,
+                                points=points, user_lat=user_lat, user_long=user_long)
             uc.save()
 
             return redirect("home")
