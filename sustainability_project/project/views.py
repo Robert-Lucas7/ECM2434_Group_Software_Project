@@ -26,7 +26,7 @@ def logout_view(request):
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
 
-
+@login_required()
 def map(request):
     # Will update
 
@@ -41,7 +41,7 @@ def map(request):
 
     return render(request, 'map.html', context={'challenges': json.dumps(challenge_list)})
 
-
+@login_required()
 def village(request):
     # Example board setup
     board = []
@@ -169,7 +169,7 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
-
+@login_required()
 def profile(request, username):
     # If a POST request is made to this page with an image (profile picture) save it to '/media/{username}/profile-picture.{extension}'
     # Needs improved security - only jpg and png should be uploaded.
@@ -200,6 +200,7 @@ def profile(request, username):
 
 
 # This is the view for the home page. It will display the most recent posts.
+@login_required()
 def home(request):
     # Get the most recent challenge from the database.
     # Currently doesn't actually get latest, just so can test out all challenges
@@ -221,7 +222,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-
+@login_required()
 def make_post(request):
     user = request.user
     daily_challenge = DailyChallenge.objects.all()[2]
