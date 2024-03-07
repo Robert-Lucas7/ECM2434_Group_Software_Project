@@ -86,11 +86,30 @@ if (LAT != "None"){
           })
          .catch(error => {
             console.error("Error:", error);
-                 // Handle error
          });
 
     }
 )
+} else {
+    document.querySelector("#submitBtn").addEventListener(
+    "click", function(event) {
+            event.preventDefault();
+            if (navigator.geolocation) {
+                document.getElementById("submitBtn").disabled = true;
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const coordinates = [position.coords.latitude, position.coords.longitude];
+                            document.getElementById('userLat').value = coordinates[0]
+                            document.getElementById('userLong').value = coordinates[1]
+                            document.getElementById('MakePost').submit();
+                    },
+                    err => {
+                        document.getElementById('MakePost').submit();
+                    });
+            }
+        });
 }
+
+
 
 

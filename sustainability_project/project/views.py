@@ -224,7 +224,7 @@ def home(request):
 
 def make_post(request):
     user = request.user
-    daily_challenge = DailyChallenge.objects.all()[6]
+    daily_challenge = DailyChallenge.objects.all()[2]
 
     try:
         previous_challenge_completed = UserChallenges.objects.filter(user=user, daily_challenge=daily_challenge)[0]
@@ -257,6 +257,11 @@ def make_post(request):
             comment = form.cleaned_data.get('comment')
             user_lat = request.POST.get('user_lat')
             user_long = request.POST.get('user_long')
+
+            if not user_lat or not user_long:
+                user_lat = None
+                user_long = None
+
 
             # To access this page user must be authenticated so request.user is adequate.
             uc = UserChallenges(daily_challenge=daily_challenge, user=request.user,
