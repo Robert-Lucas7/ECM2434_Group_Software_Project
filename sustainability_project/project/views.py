@@ -32,8 +32,9 @@ def map(request):
     daily_challenge = DailyChallenge.objects.get(challenge_id="Walk to reed pond")
     print(daily_challenge.challenge)
     challenge = daily_challenge.challenge
+    context={'challenge': challenge}
 
-    return render(request, 'map.html', context={'challenge': challenge})
+    return render(request, 'project/map.html', context)
 
 
 def village(request):
