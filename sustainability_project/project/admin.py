@@ -1,3 +1,18 @@
 from django.contrib import admin
 
-# Register your models here.
+# Register your models here. (so that they can be interracted with by admins)
+from django.contrib import admin
+
+from .models import Village, VillageShop, CustomUser
+
+@admin.register(Village)
+class VillageAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(VillageShop)
+class VillageShopAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(CustomUser)
+class CustomUserAdmin(admin.ModelAdmin):
+    pass

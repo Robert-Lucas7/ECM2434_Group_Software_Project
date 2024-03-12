@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div style="padding-top: 100px;"></div>
+<h1>Village Shop</h1>
+<div class="container text-center shop-table-container rounded-lg py-2">
+    <div class="row mx-1">
+        <div class="col-4">
+            <h3>Items</h3>
+        </div>
+        <div class="col-4">
+            <h3>Cost</h3>
+        </div>
+        <div class="col-2">
+            <h3>Remaining</h3>
+        </div>
+       <div class="col">
+            <!-- Placeholder -->
+       </div>
+    </div>
+    {% for item in items %}
+        <div class="row py-2 bg-danger m-1 rounded-pill">
+            <div class="col-4">
+                {{item.item}}
+                <img class="coin-img" src="{% static 'project/tree.png' %}">
+            </div>
+            <div class="col-4">
+                {{item.cost}}
+                <img class="coin-img" src="{% static 'project/coin.png' %}">
+            </div>
+            <div class="col-2">
+                {{item.quantity_remaining}}
+            </div>
+            <div class="col-2">
+                {% if item.can_afford%}
+                    <a href="{% url 'village' %}"><button onclick="buyVillageItem('{{item.item}}')" class="btn {% if item.can_afford %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button></a>
+                {% else %}
+                    <button class="btn {% if item.can_afford %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <div class="row mt-2">
+        <div class="col">
+            Coins: {{num_coins}}
+            <img class="coin-img" src="{% static 'project/coin.png' %}">
+        </div>
+    </div>
+</div>
+<div>
+    Attributions:
+    <a href="https://www.flaticon.com/free-icons/coin" title="coin icons">Coin icons created by Freepik - Flaticon</a>
+</div>
+
+<script src="/static/village_shop.js"></script>
+{% endblock %}
