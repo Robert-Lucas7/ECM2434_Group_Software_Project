@@ -3,14 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.timezone import now
 from django.conf import settings
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 
 from datetime import datetime
 import math
 from .forms import Signup, LoginForm, MakePost
-from .models import CustomUser, Challenge, UserChallenges, DailyChallenge
+from .models import CustomUser, Challenge, UserChallenges, DailyChallenge, Village, VillageShop
 import json
 
 
@@ -40,6 +40,24 @@ def map(request):
     print(challenge_list)
 
     return render(request, 'map.html', context={'challenges': json.dumps(challenge_list)})
+
+@login_required()
+def village_shop(request):
+    num_coins = UserChallenges.objects.filter(user=request.user).aggregate(Sum('points'))['points__sum']
+    if not num_coins:
+        num_coins = 0
+    items = [{
+        'item' : item.item,
+        'cost' : item.cost,
+        'quantity_remaining' : item.max_quantity - Village.objects.filter(user=request.user, item=item).count(),
+        'can_afford' : num_coins > item.cost
+    } for item in VillageShop.objects.all()]
+    context = {
+        'num_coins' : num_coins,
+        'items' : items
+    }
+
+    return render(request, 'project/village_shop.html', context)
 
 @login_required()
 def village(request):
