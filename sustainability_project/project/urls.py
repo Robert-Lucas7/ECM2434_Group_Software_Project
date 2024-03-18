@@ -16,6 +16,7 @@ urlpatterns = [
     path('village_shop/', views.village_shop, name='village_shop'),
     path('logout/', views.logout_view, name='logout'),
     path('map/', views.map, name='map'),
-    path('privacy_policy/', views.privacy_policy, name='privacy_policy')
+    path('privacy_policy/', views.privacy_policy, name='privacy_policy'),
+    path('gamekeeper/', views.gamekeeper, name='gamekeeper')
 
 ]

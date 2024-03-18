@@ -227,7 +227,7 @@ def profile(request, username):
 def home(request):
     # Get the most recent challenge from the database.
     # Currently doesn't actually get latest, just so can test out all challenges
-    todays_challenge = DailyChallenge.objects.all()[2]
+    todays_challenge = DailyChallenge.objects.all()[0]
     # Get all posts that are for the most recent challenge
     posts_for_todays_challenge = UserChallenges.objects.filter(
         daily_challenge=todays_challenge).order_by("-submitted")
@@ -248,7 +248,7 @@ def home(request):
 @login_required()
 def make_post(request):
     user = request.user
-    daily_challenge = DailyChallenge.objects.all()[2]
+    daily_challenge = DailyChallenge.objects.all()[0]
 
     try:
         previous_challenge_completed = UserChallenges.objects.filter(user=user, daily_challenge=daily_challenge)[0]
@@ -303,4 +303,20 @@ def make_post(request):
         'response': response
     }
     return render(request, 'make_post.html', context)
+
+@login_required()
+def gamekeeper(request):
+
+    # get user
+    user = request.user
+
+    if user.is_gamekeeper:
+        # all_users = CustomUser.objects.all()
+        user_challenges = UserChallenges.objects.all()
+
+        return render(request, 'game_keeper.html', context={'userchallenges': user_challenges})
+    else:
+        print(user.is_gamekeeper)
+        return redirect('home')
+
 

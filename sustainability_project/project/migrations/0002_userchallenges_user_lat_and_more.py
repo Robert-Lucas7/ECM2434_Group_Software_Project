@@ -10,11 +10,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name="userchallenges",
-            name="user_lat",
-            field=models.DecimalField(decimal_places=8, max_digits=10, null=True),
-        ),
         migrations.AlterField(
             model_name="dailychallenge",
             name="assigned",
