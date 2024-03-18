@@ -37,6 +37,13 @@
                 <input type="password" name="{{ form.password2.name }}" class="form-control" placeholder="Password confirmation" required>
             </div>
 
+            <div>   
+                <input type="checkbox" name="{{ form.tsandcs }}"  required>
+                <label for="tsandcs"> I have read and agree to the terms and conditions</label>
+            </div>
+
+            <a href="{% url 'privacy_policy' %}">Terms and Conditions</a>
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Sign up</button>
             </div>
