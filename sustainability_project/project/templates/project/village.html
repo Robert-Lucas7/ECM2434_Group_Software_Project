@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load math_filters %}
+
 {% block content %}
 <div class="game-board-container">
     <div class="game-board">
         {% for row in board %}
-            <div class="row"> <!-- Should rename this class to column -->
+            <div class="row">
                 {% for cell in row %}
-                    <a href="{% url 'village_shop'%}?position={{ forloop.parentloop.counter0|find_grid_position:forloop.counter0 }}"> 
                     <div class="cell">
                         {% if cell.image_path %}
                             <img src="{% static cell.image_path %}" alt="Cell Image">

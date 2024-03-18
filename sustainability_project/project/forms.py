@@ -32,8 +32,5 @@ class MakePost(forms.Form):
         widget=forms.Textarea(attrs={'style': 'width: 300px; height: 100px;'})
     )
 
-# class BuyItemForm(forms.Form):
-#     item = forms.CharField(max_length=25)
-#     position = forms.IntegerField()
 
 
