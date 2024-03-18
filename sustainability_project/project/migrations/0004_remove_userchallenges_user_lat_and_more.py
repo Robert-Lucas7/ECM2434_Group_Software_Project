@@ -10,10 +10,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name="userchallenges",
-            name="user_lat",
-        ),
         migrations.AlterField(
             model_name="dailychallenge",
             name="assigned",
