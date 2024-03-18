@@ -17,6 +17,8 @@ import json
 def index(request):
     return render(request, 'project/index.html')
 
+def privacy_policy(request):
+    return render(request, 'project/privacy_policy.html')
 
 def logout_view(request):
     logout(request)
