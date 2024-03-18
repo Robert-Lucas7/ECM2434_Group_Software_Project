@@ -245,10 +245,9 @@
     transform: rotateX(45deg);
     transition: transform 0.5s ease;
 }
-
 .cell {
-    width: 100px;
-    height: 100px;
+    width: 100px; /* Increase if you want larger cells */
+    height: 100px; /* Increase if you want larger cells */
     background-size: cover;
     background-position: center;
     border: 1px solid #ccc;
@@ -258,11 +257,21 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.2s ease;
+    position: relative; /* Position relative to allow absolute positioning inside */
 }
 
 .cell:hover {
     transform: translateY(-10px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.cell img {
+    width: 70%; /* Fill the width of the cell */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute;
+    bottom: 10; /* Align the image to the bottom of the cell */
+    transform: translateZ(0); /* Bring image to the same plane as the cell */
+    transform-origin: bottom; /* Set the base of the image as the rotation point */
 }
 
 @media (max-width: 600px) {
@@ -272,9 +281,12 @@
 
     .cell {
         position: relative; /* Needed for z-index to work */
-        width: 100px;
-        height: 100px;
-        /* Remaining styles */
+        width: 50px; /* Adjust size for smaller screens */
+        height: 50px; /* Adjust size for smaller screens */
+    }
+
+    .cell img {
+        height: 100px; /* Adjusted for smaller screens */
     }
     
 }
