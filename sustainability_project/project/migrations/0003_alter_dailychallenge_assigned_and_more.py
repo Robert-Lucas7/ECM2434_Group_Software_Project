@@ -6,7 +6,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("project", "0001_initial"),
+        ("project", "0002_userchallenges_user_lat_and_more"),
     ]
 
     operations = [
@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name="assigned",
             field=models.DateTimeField(
                 default=datetime.datetime(
-                    2024, 3, 18, 11, 57, 30, 556186, tzinfo=datetime.timezone.utc
+                    2024, 3, 18, 11, 57, 46, 940009, tzinfo=datetime.timezone.utc
                 ),
                 null=True,
             ),
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
             name="submitted",
             field=models.DateTimeField(
                 default=datetime.datetime(
-                    2024, 3, 18, 11, 57, 30, 556453, tzinfo=datetime.timezone.utc
+                    2024, 3, 18, 11, 57, 46, 940214, tzinfo=datetime.timezone.utc
                 )
             ),
         ),
