@@ -6,13 +6,14 @@ class VillageShop(models.Model):
     item = models.CharField(max_length=25) #The item in the village.
     cost = models.PositiveIntegerField() #The cost of the item.
     max_quantity = models.PositiveIntegerField()
-
+    image_name = models.CharField(max_length=50, default="")
     def __str__(self):
         return self.item
     
 class CustomUser(AbstractUser):
     streak = models.PositiveIntegerField(default=0)
     best_streak =  models.PositiveIntegerField(default=0)
+    coins = models.PositiveIntegerField(default=0)
     #points = models.PositiveIntegerField(default=0)
     # challenges_completed = models.ManyToManyField("Challenge", related_name="user")
 
@@ -20,11 +21,10 @@ class Village(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)  #The user that the village items are for.
     item = models.ForeignKey(VillageShop, on_delete=models.CASCADE) #Details on how much the items cost and the maximum number of them allowed.
     purchased = models.DateTimeField(default=now()) #When the item was purchased
-    item_number = models.PositiveIntegerField() #The occurrence number of that item (e.g. tree0, tree1, tree2, etc)
-    row_position = models.IntegerField() #The position of the item on the nxm 'village' grid
-    col_position = models.IntegerField()
+    # item_number = models.PositiveIntegerField() #The occurrence number of that item (e.g. tree0, tree1, tree2, etc)
+    position = models.PositiveIntegerField() # Position must be positive or zero.
     def __self__(self):
-        return f"{self.user.username} - {self.item}"
+        return f"{self.user.username} - {self.item} - {self.position}"
 # Create your models here.
 
 
