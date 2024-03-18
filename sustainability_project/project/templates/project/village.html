@@ -9,8 +9,11 @@
             <div class="row">
                 {% for cell in row %}
                     <div class="cell">
-                        <!-- Use the static tag to resolve the full path to the image -->
-                        <img src="{% static 'project/animal_assets/tile000.png' %}" alt="Cell Image">
+                        {% if cell.image_path %}
+                            <img src="{% static cell.image_path %}" alt="Cell Image">
+                        {% else %}
+                            <!-- This tile is intentionally left empty -->
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

@@ -12,6 +12,7 @@ import math
 from .forms import Signup, LoginForm, MakePost
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge, Village, VillageShop
 import json
+import random
 
 
 def index(request):
@@ -61,24 +62,26 @@ def village_shop(request):
 
     return render(request, 'project/village_shop.html', context)
 
-@login_required()
+@login_required
 def village(request):
-    # Example board setup
     board = []
-    for row in range(6):
+    total_images = 480  # Total available images, from tile000.png to tile479.png
+    available_images = [f'tile{i:03d}.png' for i in range(total_images)]
+    empty_chance = 0.3  # Approx 30% of the tiles will be empty
+
+    for row in range(6):  # Assuming a 6x6 board
         board_row = []
         for col in range(6):
-            # Example: Assigning a different image based on some logic
-            if (row + col) % 2 == 0:
-                image_path = 'project/animal_assets/tile000.png'  # Adjusted path
+            if random.random() > empty_chance and available_images:
+                # Select a random image and remove it from the list to avoid repeats
+                image_path = f'project/animal_assets/{random.choice(available_images)}'
+                available_images.remove(image_path.split('/')[-1])
             else:
-                image_path = 'project/animal_assets/tile120.png'  # Adjusted path
+                image_path = None  # This tile will be empty
             board_row.append({'image_path': image_path})
         board.append(board_row)
 
-    context = {
-        'board': board,
-    }
+    context = {'board': board}
     return render(request, 'project/village.html', context)
 
 
