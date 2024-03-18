@@ -296,28 +296,6 @@
     height: 5vh;
 }
 
-.sidebar {
-    flex: 1;
-    border-right: 1px solid #ccc;
-    position: fixed; /* This positions your sidebar relative to the viewport */
-    top: 0; /* This aligns it to the top */
-    left: 0; /* This aligns it to the left */
-    max-height: 100vh; /* This sets the maximum height to the height of the viewport */
-    overflow-y: auto; /* This adds scroll to the sidebar if the content is taller than the viewport */
-    padding-top: 100px;
-    padding-left: 80px;
-    padding-right: 0px;
-    width: 20%; /* Adjust the width as needed */
-}
-
-.content-container {
-    flex: 5;
-    padding: 1em;
-    padding-top: 100px;
-    padding-left: 50px;
-    margin-left: 20%;
-}
-
 .shop-table-container{
     background-color: #c7c8c7;
 }
