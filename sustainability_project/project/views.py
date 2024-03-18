@@ -65,16 +65,17 @@ def village_shop(request):
 @login_required
 def village(request):
     board = []
-    total_images = 480  # Total available images, from tile000.png to tile479.png
-    available_images = [f'tile{i:03d}.png' for i in range(total_images)]
-    empty_chance = 0.3  # Approx 30% of the tiles will be empty
+    total_images = 9  # Total available images, from 01.png to 09.png
+    # Corrected the range to start from 1 and added proper formatting for file names
+    available_images = [f'{i:02d}.png' for i in range(1, total_images + 1)]
+    empty_chance = 0.9  # Approx 30% of the tiles will be empty
 
     for row in range(6):  # Assuming a 6x6 board
         board_row = []
         for col in range(6):
             if random.random() > empty_chance and available_images:
                 # Select a random image and remove it from the list to avoid repeats
-                image_path = f'project/animal_assets/{random.choice(available_images)}'
+                image_path = f'project/game_assets/{random.choice(available_images)}'
                 available_images.remove(image_path.split('/')[-1])
             else:
                 image_path = None  # This tile will be empty

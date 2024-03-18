@@ -8,13 +8,14 @@
         {% for row in board %}
             <div class="row">
                 {% for cell in row %}
-                    <div class="cell">
+                    <!-- Wrap the cell content with an <a> tag pointing to village_shop -->
+                    <a href="{% url 'village_shop' %}" class="cell">
                         {% if cell.image_path %}
                             <img src="{% static cell.image_path %}" alt="Cell Image">
                         {% else %}
                             <!-- This tile is intentionally left empty -->
                         {% endif %}
-                    </div>
+                    </a>
                 {% endfor %}
             </div>
         {% endfor %}
