@@ -4,6 +4,12 @@
 
 {% block content %}
 <div style="padding-top: 100px;"></div>
+{% if error %}
+    <div class="text-center rounded-lg bg-warning w-50 mx-auto p-3">
+        <h1>An error has occurred</h1>
+        <a href="{% url 'village' %}"><button class="btn btn-danger">Back to village</button></a>
+    </div>
+{% else %}
 <h1 class="text-center">Village Shop</h1>
 <div class="container text-center shop-table-container rounded-lg py-2">
     <div class="row mx-1">
@@ -24,7 +30,7 @@
         <div class="row py-2 bg-secondary m-1 rounded-pill">
             <div class="col-4 my-auto">
                 {{item.item}}
-                <img class="coin-img" src="{% static 'project/animal_assets/tile000.png' %}">
+                <img class="coin-img" src="{% static 'project/animal_assets/'|add:item.image_name %}">
             </div>
             <div class="col-4 my-auto">
                 {{item.cost}}
@@ -34,12 +40,19 @@
                 {{item.quantity_remaining}}
             </div>
             <div class="col-2 my-auto">
-                {% if item.can_afford%}
-                    <a href="{% url 'village' %}"><button onclick="buyVillageItem('{{item.item}}')" class="btn {% if item.can_afford %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button></a>
+                <form action="{% url 'village_shop' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="item" value="{{item.item}}">
+                    <input type="hidden" name="position" value="{{position}}">
+                    <button type='submit' class='btn {% if item.can_afford and item.quantity_remaining > 0 %} btn-success {% else %} btn-danger {% endif %}'>Buy</button>
+                </form>
+                <!-- {% if item.can_afford %}
+                    <a href="{% url 'village' %}"><button onclick="buyVillageItem('{{item.item}}')" class="btn {% if item.can_afford and item.quantity_remaining %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button></a>
                 {% else %}
-                    <button class="btn {% if item.can_afford %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button>
-                {% endif %}
+                    <button class="btn {% if item.can_afford and item.quantity_remaining %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button>
+                {% endif %} -->
             </div>
+            
         </div>
     {% endfor %}
     <div class="row mt-2">
@@ -48,11 +61,14 @@
             <img class="coin-img" src="{% static 'project/coin.png' %}">
         </div>
     </div>
+    <div class="row mt-2">
+        <a href="{% url 'village' %}" class="mx-auto"><button class="btn btn-primary">Return to village</button></a>
+    </div>
 </div>
 <div>
     Attributions:
     <a href="https://www.flaticon.com/free-icons/coin" title="coin icons">Coin icons created by Freepik - Flaticon</a>
 </div>
-
+{% endif %}
 <script src="/static/village_shop.js"></script>
 {% endblock %}

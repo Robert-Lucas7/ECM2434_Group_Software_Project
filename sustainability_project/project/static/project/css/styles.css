@@ -230,66 +230,58 @@
 
 /* Village Styles */
 .game-board-container {
-    perspective: 1000px;
-    perspective-origin: 50% 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+    width: calc(100% - 20px); /* Adjust width accounting for padding */
+    margin: 80px auto 0 auto; /* Increased top margin to 80px */
+    padding: 10px; /* Padding to ensure content doesn't touch the edges */
 }
 
 .game-board {
-    display: grid;
-    grid-template-columns: repeat(6, 100px); /* Create 6 columns */
-    grid-gap: 5px;
-    transform: rotateX(45deg);
-    transition: transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .cell {
-    width: 100px; /* Increase if you want larger cells */
-    height: 100px; /* Increase if you want larger cells */
-    background-size: cover;
-    background-position: center;
+    width: 12vw; /* Reduced viewport width percentage to make cells smaller */
+    height: 12vw; /* Height same as width to maintain square shape */
+    max-width: 80px; /* Reduced max-width to make cells smaller */
+    max-height: 80px; /* Reduced max-height to maintain square shape */
     border: 1px solid #ccc;
+    margin-bottom: 5px; /* Space between cells */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
-    position: relative; /* Position relative to allow absolute positioning inside */
+    position: relative;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
 }
 
 .cell:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    background-color: #f0f0f0; /* Light shade for highlighting */
 }
 
 .cell img {
-    width: 70%; /* Fill the width of the cell */
-    height: auto; /* Maintain aspect ratio */
-    position: absolute;
-    bottom: 10; /* Align the image to the bottom of the cell */
-    transform: translateZ(0); /* Bring image to the same plane as the cell */
-    transform-origin: bottom; /* Set the base of the image as the rotation point */
+    max-width: 90%; /* Leave some space inside the cell */
+    max-height: 90%; /* As above, for height */
+    object-fit: contain; /* Ensures the image fits without cropping or stretching */
 }
 
-@media (max-width: 600px) {
-    .game-board {
-        grid-template-columns: repeat(6, 50px);
-    }
-
+@media (max-width: 768px) {
     .cell {
-        position: relative; /* Needed for z-index to work */
-        width: 50px; /* Adjust size for smaller screens */
-        height: 50px; /* Adjust size for smaller screens */
+        width: 12vw; /* Increase the cell size slightly for medium-sized screens */
+        height: 12vw; /* Keep the cell square */
     }
-
-    .cell img {
-        height: 100px; /* Adjusted for smaller screens */
-    }
-    
 }
+
+@media (max-width: 480px) {
+    .cell {
+        width: 12vw; /* Increase the cell size for small screens */
+        height: 12vw; /* Keep the cell square */
+    }
+}
+
+
+
 
 /* Village shop */
 .coin-img{

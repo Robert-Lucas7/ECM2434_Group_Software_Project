@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+ {% block content %}
+    <style>
+        .user_container {
+            width: 50%;
+            height: 10%;
+            display: flex;
+            z-index: 1; /* Ensure text is above other elements */
+            justify-content: space-evenly;
+            background-color: forestgreen;
+            align-items: center;
+            margin: 5px auto; /* Adjust margin for spacing between stacked containers */
+            border-color:black;
+            border-width: 2px;
+        }
+        .user_box {
+            color: black;
+            padding: 3px;
+            border: 1px solid black; /* Add border style */
+            margin: 5px; /* Add margin for spacing between user boxes */
+            flex-grow: 1;
+        }
+        .page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            flex-direction: column;
+        }
+    </style>
+{#    <div class="page">#}
+{#        {% for userchallenge in userchallenges %}#}
+{#            <div class="user_container">#}
+{#                {% for item in userchallenge %}#}
+{#                    <span class="user_box">{{ item }}</span>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+ <div class="container mt-5">
+  <div class="row justify-content-center">
+     <div class="col-12 col-lg-8 mb-5"> <!-- Added mb-5 for bottom margin -->
+      <div class="border p-4 rounded-3 shadow-sm" style="background-color: #f8f9fa;">
+        <h2 class="mb-4 text-center">Completed Challenges</h2>
+         <div class="list-group">
+                {% for uc in userchallenges %}
+                  <div class="list-group-item list-group-item-action mb-2 rounded text-start" style="background-color: #e9ecef;">
+                    <h5 class="mb-1">Title: {{ uc.daily_challenge.challenge.title }}</h5>
+                    <p class="mb-1">Description: {{ uc.daily_challenge.challenge.description }}</p>
+                    <p class="mb-1">Response: {{uc.response}}</p>
+                    <small class="text-muted">Date Completed: {{ uc.submitted|date:"d M Y" }}</small>
+                  </div>
+                {% endfor %}
+         </div>
+      </div>
+     </div>
+  </div>
+ </div>
+{% endblock %}
