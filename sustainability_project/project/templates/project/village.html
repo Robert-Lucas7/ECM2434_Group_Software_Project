@@ -10,7 +10,7 @@
                 {% for cell in row %}
                     <div class="cell">
                         {% if cell.image_path %}
-                            <img src="{% static cell.image_path %}" alt="Cell Image">
+                            <img src="{% static 'project/game_assets/'|add:cell.image_path %}" alt="Cell Image">
                         {% else %}
                             <!-- This tile is intentionally left empty -->
                         {% endif %}
