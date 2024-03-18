@@ -2,6 +2,23 @@
 
 {% block content %}
 
+<head>
+    <style>
+        .profile_photos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .pp-img {
+            width: 50px; /* adjust size as needed */
+            height: 50px; /* adjust size as needed */
+            border-radius: 50%;
+            margin: 5px; /* adjust spacing as needed */
+        }
+
+    </style>
+</head>
 <div class="centered-container" style="padding-top: 60px;">
     <div class="profile-container">
         <!-- Displays Errors  -->
@@ -37,6 +54,28 @@
                 <input type="password" name="{{ form.password2.name }}" class="form-control" placeholder="Password confirmation" required>
             </div>
 
+            <pre></pre>
+
+             <div class="profile_photos">
+                <img class="pp-img" src="{% static 'project/marker/rabbit.jpeg' %}" alt="rabbit_image">
+                <img class="pp-img" src="{% static 'project/marker/monkey.jpeg' %}" alt="monkey_image">
+                <img class="pp-img" src="{% static 'project/marker/cat.jpeg' %}" alt="cat_image">
+                <img class="pp-img" src="{% static 'project/marker/dog.jpeg' %}" alt="dog_image">
+            </div>
+            <pre></pre>
+            <div class="form-group">
+                Profile Photo: <select name="{{ form.profile_picture.name }}" id="pp">
+                <option value="" selected="selected">Select Profile Picture</option>
+                <option value="rabbit.jpeg" >Rabbit</option>
+                <option value="monkey.jpeg" >Monkey</option>
+                <option value="cat.jpeg" >Cat</option>
+                <option value="dog.jpeg" >Dog</option>
+                </select>
+            </div>
+            <pre></pre>
+            <pre></pre>
+
+            
             <div>   
                 <input type="checkbox" name="{{ form.tsandcs }}"  required>
                 <label for="tsandcs"> I have read and agree to the terms and conditions</label>
