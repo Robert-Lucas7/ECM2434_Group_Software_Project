@@ -36,6 +36,7 @@
 </head>
 <body>
     {% load static %}
+    <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}'); filter: blur(0px)"></div>
     <script>
         const challenges = JSON.parse('{{ challenges|safe }}')
         const todays_challenges = JSON.parse('{{ todays_challenges|safe }}')
