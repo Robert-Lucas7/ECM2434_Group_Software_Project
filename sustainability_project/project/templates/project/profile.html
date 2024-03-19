@@ -31,23 +31,20 @@
         <form id="ChangeProfilePicture" method="POST" align="center" action="{% url 'profile' request.user.username %}">
 
           <div class="form-group">
-            Profile Photo: <select name="{{ form.profile_picture.name }}" id="profile-picture-select">
-            <option value="" selected="selected">Select Profile Picture</option>
-            <option value="rabbit.jpeg" >Rabbit</option>
-            <option value="monkey.jpeg" >Monkey</option>
-            <option value="cat.jpeg" >Cat</option>
-            <option value="dog.jpeg" >Dog</option>
-            </select>
+            Profile Photo: <select name="profile_picture" id="profile-picture-select">
+                <option value="" selected="selected">Select Profile Picture</option>
+                <option value="rabbit.jpeg" >Rabbit</option>
+                <option value="monkey.jpeg" >Monkey</option>
+                <option value="cat.jpeg" >Cat</option>
+                <option value="dog.jpeg" >Dog</option>
+                </select>
           </div>
 
           {% csrf_token %}
           <div class="form-group">
-            <button type="submit" class="button change-profile-picture">Change Profile Picture</button>
+            <button type="submit" class="button change-profile-picture" id="profilesubmit">Change Profile Picture</button>
           </div>
-          <input type="hidden" name="profile-picture" id="selected-profile-picture" value="">
         </form>
-
-
         <h2 class="username">{{ user.username|default:"Username" }}</h2>
         <div class="stats">
           <p>Current Streak: {{ user.streak|default:"0" }}</p>
@@ -89,10 +86,10 @@
   document.addEventListener("DOMContentLoaded", function() {
     // Get the profile picture select element
     var select = document.getElementById("profile-picture-select");
-    
+
     // Get the profile picture display element
     var profilePicture = document.getElementById("profile-picture");
-    
+
     // Add event listener for change event on select element
     select.addEventListener("change", function() {
       // Set the src attribute of the profile picture display element to the selected value

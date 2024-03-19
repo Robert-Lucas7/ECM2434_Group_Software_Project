@@ -293,16 +293,11 @@ def profile(request, username):
         #         location=f"{settings.MEDIA_ROOT}/{request.user.username}")
         #     file = fs.save("profile-picture", request_file)
             # fileurl = fs.url(file)
-        form = ChangeProfilePicture(request.POST)
-        if form.is_valid():
-            profile_picture = form.cleaned_data.get('profile_picture')
+        profile_picture = request.POST.get('profile_picture')
+        if profile_picture:
             user = request.user
             user.profile_picture = profile_picture
-            print(profile_picture)
             user.save()
-        else:
-            print(form.errors)
-            return render(request, 'project/profile.html', {'form': form})
     # If the user requesting the profile page isn't that user, redirect them to the homepage.
     # if request.user.username == username:
     user = get_object_or_404(CustomUser, username=username)
