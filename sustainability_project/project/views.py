@@ -394,16 +394,21 @@ def make_post(request):
 @login_required()
 def gamekeeper(request):
 
-    # get user
-    user = request.user
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post = UserChallenges.objects.get(id=post_id)
+        post.delete()
 
+    user = request.user
     if user.is_gamekeeper:
         # all_users = CustomUser.objects.all()
         user_challenges = UserChallenges.objects.all()
 
         return render(request, 'game_keeper.html', context={'userchallenges': user_challenges})
     else:
-        print(user.is_gamekeeper)
         return redirect('home')
+
+
+
 
 

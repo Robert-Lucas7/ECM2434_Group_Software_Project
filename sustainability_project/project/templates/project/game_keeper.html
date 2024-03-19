@@ -53,6 +53,11 @@
                     <p class="mb-1">Description: {{ uc.daily_challenge.challenge.description }}</p>
                     <p class="mb-1">Response: {{uc.response}}</p>
                     <small class="text-muted">Date Completed: {{ uc.submitted|date:"d M Y" }}</small>
+                    <form id="deleteForm" method="post" action="{% url 'gamekeeper' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{ uc.id }}">
+                        <button type="submit" class="btn btn-danger" style="float: right;">Delete Post</button>
+                    </form>
                   </div>
                 {% endfor %}
          </div>
