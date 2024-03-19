@@ -51,49 +51,50 @@ def map(request):
                                                 'todays_challenges': json.dumps(todays_challenge_list)})
 
 
-def buy_village_item(request):
-    if request.method == "POST":
-        pass
-    return render(request, 'project/village.html', {})
-
 
 @login_required()
 def village_shop(request):
     # There must be a query parameter called 'position' in the get request of this page so you know in which position to store the bought item. If this parameter
     # isn't present an error page will be displayed with an option to go back to the village page.
-    if request.method == "GET":
-        valid_position = True
-        if 'position' in request.GET:
-            pos = request.GET['position']
-            if pos.isdigit():
-                pos = int(pos)
-                if pos < 0 or pos > 35:
-                    valid_position = False
-            else:
+    
+    valid_position = True
+    if 'position' in request.GET:
+        pos = request.GET['position']
+        if pos.isdigit():
+            pos = int(pos)
+            if pos < 0 or pos > 35:
                 valid_position = False
         else:
             valid_position = False
-        context = {}
-        if valid_position:
-            num_coins = request.user.coins  # UserChallenges.objects.filter(user=request.user).aggregate(Sum('points'))['points__sum']
-            if not num_coins:
-                num_coins = 0
-            items = [{
-                'item': item.item,
-                'cost': item.cost,
-                'quantity_remaining': item.max_quantity - Village.objects.filter(user=request.user, item=item).count(),
-                'can_afford': num_coins > item.cost,
-                'image_name': item.image_name
-            } for item in VillageShop.objects.all()]
-            context = {
-                'num_coins': num_coins,
-                'items': items,
-                'position': int(request.GET['position'])
-            }
-        context['error'] = not valid_position
-        return render(request, 'project/village_shop.html', context)
-    elif request.method == "POST":
-        print(request.POST)
+    else:
+        valid_position = False
+    context = {}
+    if valid_position:
+        num_coins = request.user.coins  # UserChallenges.objects.filter(user=request.user).aggregate(Sum('points'))['points__sum']
+        if not num_coins:
+            num_coins = 0
+        items = [{
+            'item': item.item,
+            'cost': item.cost,
+            'quantity_remaining': item.max_quantity - Village.objects.filter(user=request.user, item=item).count(),
+            'can_afford': num_coins > item.cost,
+            'image_name': item.image_name
+        } for item in VillageShop.objects.all()]
+        context = {
+            'num_coins': num_coins,
+            'items': items,
+            'position': int(request.GET['position'])
+        }
+    context['error'] = not valid_position
+    return render(request, 'project/village_shop.html', context)
+    
+
+
+@login_required
+def village(request):
+    # The grid will always be 6x6 so the 'position' attribute can be used to find the row/col.
+    errors = []
+    if request.method == "POST":
         if 'item' in request.POST and 'position' in request.POST:
             valid = True
             # Validate position - convert to 'helper' function.
@@ -101,9 +102,9 @@ def village_shop(request):
             if pos.isdigit():
                 pos = int(pos)
                 if pos < 0 or pos > 35:
-                    valid_position = False
+                    valid = False
             else:
-                valid_position = False
+                valid = False
             # Validate item
             all_items = VillageShop.objects.filter(item=request.POST['item'])  # Safe from sql injection.
             if len(all_items) != 1:
@@ -112,7 +113,11 @@ def village_shop(request):
             if valid:
                 shop_item = all_items[0]  # all_items has exactly one element in it.
                 num_same_items = Village.objects.filter(user=request.user, item=shop_item).count()
-                if num_same_items < shop_item.max_quantity and shop_item.cost <= request.user.coins:  # Can buy the item.
+                if num_same_items >= shop_item.max_quantity:
+                    errors.append("Cannot buy item due to max quantity")
+                if shop_item.cost > request.user.coins:
+                    errors.append("Insufficient coints to buy item")
+                if len(errors) == 0:  # Can buy the item.
                     # Check if there is already an item in the position and if there is delete it.
                     item_in_position = Village.objects.filter(user=request.user,
                                                               position=pos)  # pos has been converted to an int before.
@@ -122,28 +127,12 @@ def village_shop(request):
                     request.user.coins -= shop_item.cost
                     new_item.save()
                     request.user.save()
-                else:
-                    print("CANNOT BUY ITEM DUE TO MAX_QUANTITY")
-                return redirect('village')  # The changes will be reflected when the village page loads again.
             else:
                 print("INVALID POST PARAMS")
-
-        return render(request, 'project/village_shop.html')
-
-
-@login_required
-def village(request):
-    # The grid will always be 6x6 so the 'position' attribute can be used to find the row/col.
+    
     # Build the board from the DB.
     all_village_items = list(Village.objects.filter(user=request.user).order_by("position"))
-    # for item in all_village_items:
-    #     print(f"{item.position}")
     board = []
-    # total_images = 9  # Total available images, from 01.png to 09.png
-    # Corrected the range to start from 1 and added proper formatting for file names
-    # available_images = [f'{i:02d}.png' for i in range(1, total_images + 1)]
-    # empty_chance = 0.9  # Approx 30% of the tiles will be empty
-
     for row in range(6):  # Assuming a 6x6 board
         board_row = []
         for col in range(6):
@@ -151,28 +140,16 @@ def village(request):
             if len(all_village_items) > 0 and all_village_items[0].position == row * 6 + col:
                 image_path = all_village_items[0].item.image_name
                 all_village_items.pop(0)
-            # if random.random() > empty_chance and available_images:
-            #     # Select a random image and remove it from the list to avoid repeats
-            #     image_path = f'project/game_assets/{random.choice(available_images)}'
-            #     available_images.remove(image_path.split('/')[-1])
-            # else:
-            #     image_path = None  # This tile will be empty
-            board_row.append({'image_path': image_path})
-            # if random.random() > empty_chance and available_images:
-            #     # Select a random image and remove it from the list to avoid repeats
-            #     image_path = f'project/animal_assets/{random.choice(available_images)}'
-            #     available_images.remove(image_path.split('/')[-1])
-            # else:
-            #     image_path = None  # This tile will be empty
-            # board_row.append({'image_path': image_path})
+            board_row.append({'image_path': image_path})       
         board.append(board_row)
-    print(board)
+    # print(board)
     num_coins = request.user.coins  # Get the current user's coins
     if not num_coins:
         num_coins = 0  # Default to 0 if None
     context = {
         'board': board,
-        'num_coins': num_coins  # Add num_coins to the context
+        'num_coins': num_coins,  # Add num_coins to the context
+        'errors' : errors
     }
     return render(request, 'project/village.html', context)
 

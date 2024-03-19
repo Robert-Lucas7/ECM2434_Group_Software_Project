@@ -40,7 +40,7 @@
                 {{item.quantity_remaining}}
             </div>
             <div class="col-2 my-auto">
-                <form action="{% url 'village_shop' %}" method="POST">
+                <form action="{% url 'village' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="item" value="{{item.item}}">
                     <input type="hidden" name="position" value="{{position}}">
