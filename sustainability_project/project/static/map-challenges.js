@@ -34,7 +34,6 @@ document.querySelector("#yoursub").addEventListener(
             markers.addLayer(marker);
         }
         console.log(challenges)
-        console.log("now here")
         map.addLayer(markers);
     })
 
@@ -48,6 +47,5 @@ document.querySelector("#todaysub").addEventListener(
             marker.bindPopup("<b>" + todays_challenges[i][0] + "</b>");
             markers.addLayer(marker);
         }
-        console.log("here");
         map.addLayer(markers);
     })
