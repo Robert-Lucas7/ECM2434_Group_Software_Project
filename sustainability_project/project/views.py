@@ -9,7 +9,7 @@ from django.core.files.storage import FileSystemStorage
 
 from datetime import datetime
 import math
-from .forms import Signup, LoginForm, MakePost
+from .forms import Signup, LoginForm, MakePost, ChangeProfilePicture
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge, Village, VillageShop
 import json
 import random
@@ -234,18 +234,14 @@ def registration(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            # username = form.cleaned_data.get('username')
-            # password = form.cleaned_data.get('password1')
-            # new_user = authenticate(username=username, password=password)
-            # if new_user is not None:
-            #     login(request, new_user)
-            #     return redirect('home')
-            # Save user profile to the file system.
-            request_file = open(os.path.join(settings.BASE_DIR, 'project', 'static/project/Example_Profile_Pic.jpg'),
-                                'rb')  # This should be changed for when the custom profile picture is implemented.
-            if request_file:
-                fs = FileSystemStorage(location=f"{settings.MEDIA_ROOT}/{form.cleaned_data.get('username')}")
-                fs.save("profile-picture.jpg", request_file)
+            user = CustomUser.objects.get(username=form.cleaned_data.get('username'))
+            profile_picture  = form.cleaned_data.get('profile_picture')
+            user.profile_picture = profile_picture
+            user.save()
+            # request_file = open(os.path.join(settings.BASE_DIR, 'project', 'static/project/Example_Profile_Pic.jpg'), 'rb')  # This should be changed for when the custom profile picture is implemented.
+            # if request_file:
+            #     fs = FileSystemStorage(location=f"{settings.MEDIA_ROOT}/{form.cleaned_data.get('username')}")
+            #     fs.save("profile-picture.jpg", request_file)
             return redirect("login")
         else:
             print(form.errors)
@@ -278,13 +274,22 @@ def profile(request, username):
     # Needs improved security - only jpg and png should be uploaded.
     if request.method == "POST":  # From: https://www.geeksforgeeks.org/django-upload-files-with-filesystemstorage/
         # Document should be changed to 'image' (or similar)
-        request_file = request.FILES['document'] if 'document' else None
-        if request_file:
-            fs = FileSystemStorage(
-                location=f"{settings.MEDIA_ROOT}/{request.user.username}")
-            file = fs.save("profile-picture", request_file)
+        # request_file = request.FILES['document'] if 'document' else None
+        # if request_file:
+        #     fs = FileSystemStorage(
+        #         location=f"{settings.MEDIA_ROOT}/{request.user.username}")
+        #     file = fs.save("profile-picture", request_file)
             # fileurl = fs.url(file)
-
+        form = ChangeProfilePicture(request.POST)
+        if form.is_valid():
+            profile_picture = form.cleaned_data.get('profile_picture')
+            user = request.user
+            user.profile_picture = profile_picture
+            print(profile_picture)
+            user.save()
+        else:
+            print(form.errors)
+            return render(request, 'project/profile.html', {'form': form})
     # If the user requesting the profile page isn't that user, redirect them to the homepage.
     # if request.user.username == username:
     user = get_object_or_404(CustomUser, username=username)

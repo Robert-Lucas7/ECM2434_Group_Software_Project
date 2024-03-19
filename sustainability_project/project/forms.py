@@ -17,7 +17,7 @@ class LoginForm(forms.Form):
 class Signup(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', 'profile_picture']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -31,6 +31,10 @@ class MakePost(forms.Form):
         max_length=200, 
         widget=forms.Textarea(attrs={'style': 'width: 300px; height: 100px;'})
     )
+
+
+class ChangeProfilePicture(forms.Form):
+    profile_picture = forms.CharField(max_length=25)
 
 # class BuyItemForm(forms.Form):
 #     item = forms.CharField(max_length=25)
