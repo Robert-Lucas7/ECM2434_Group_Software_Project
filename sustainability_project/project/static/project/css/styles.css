@@ -228,55 +228,92 @@
 }
 
 
-/* Village Styles */
+
+/* Village Styles - Cleaned Up Version */
+
+/* General Container for Game Board */
 .game-board-container {
-    width: calc(100% - 20px); /* Adjust width accounting for padding */
-    margin: 80px auto 0 auto; /* Increased top margin to 80px */
-    padding: 10px; /* Padding to ensure content doesn't touch the edges */
+    width: calc(100% - 20px);
+    margin: 20px auto;
+    padding: 10px;
+    padding-top: 180px; /* Account for navbar + top content, avoid overlapping */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+/* Game Board Styling */
 .game-board {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Individual Cell Styling */
 .cell {
-    width: 12vw; /* Reduced viewport width percentage to make cells smaller */
-    height: 12vw; /* Height same as width to maintain square shape */
-    max-width: 80px; /* Reduced max-width to make cells smaller */
-    max-height: 80px; /* Reduced max-height to maintain square shape */
+    width: 12vw;
+    height: 12vw;
+    max-width: 80px;
+    max-height: 80px;
+    margin-bottom: 5px;
     border: 1px solid #ccc;
-    margin-bottom: 5px; /* Space between cells */
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .cell:hover {
-    background-color: #f0f0f0; /* Light shade for highlighting */
+    background-color: #e0e0e0;
+    transform: scale(1.05);
 }
 
 .cell img {
-    max-width: 90%; /* Leave some space inside the cell */
-    max-height: 90%; /* As above, for height */
-    object-fit: contain; /* Ensures the image fits without cropping or stretching */
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
 }
 
+
+.user-coins-display {
+    display: flex;
+    align-items: center; /* Align items in the center vertically */
+    justify-content: center; /* Center the content horizontally */
+    position: absolute; /* Position it absolutely relative to its positioned parent */
+    top: 100px; /* Adjust this value as needed to lower the coin display */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the element horizontally */
+    font-size: 20px; /* Adjust font size as needed */
+}
+
+
+.coins-text-and-value, .coin-img-container {
+    display: inline-flex; /* Display inline-flex to align text and image next to each other */
+    align-items: center; /* Align the items vertically in the center */
+}
+
+.coin-img {
+    height: 5vh; /* Adjust the size of the coin image as needed */
+    margin-left: 10px; /* Add some space between the text and the coin image */
+}
+
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .cell {
-        width: 12vw; /* Increase the cell size slightly for medium-sized screens */
-        height: 12vw; /* Keep the cell square */
+        width: 16vw;
+        height: 16vw;
     }
 }
 
 @media (max-width: 480px) {
     .cell {
-        width: 12vw; /* Increase the cell size for small screens */
-        height: 12vw; /* Keep the cell square */
+        width: 24vw;
+        height: 24vw;
     }
 }
 

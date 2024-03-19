@@ -15,8 +15,7 @@ class CustomUser(AbstractUser):
     best_streak =  models.PositiveIntegerField(default=0)
     coins = models.PositiveIntegerField(default=0)
     profile_picture = models.CharField(max_length=25, default="blank.jpeg")
-    #points = models.PositiveIntegerField(default=0)
-    # challenges_completed = models.ManyToManyField("Challenge", related_name="user")
+    is_gamekeeper = models.BooleanField(default=False)
 
 class Village(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)  #The user that the village items are for.

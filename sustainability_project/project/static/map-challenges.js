@@ -2,6 +2,7 @@ const MIN_ZOOM = 14;
 const EXETER_BOUNDS = L.latLngBounds([50.742380, -3.524876], [50.731452, -3.545301])
 const EXETER_CENTER = [50.737096, -3.535094]
 const RADIUS = 80
+var markers = L.markerClusterGroup();
 
 var env_icon = L.icon({
     iconUrl: marker_pic,
@@ -21,12 +22,30 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-// console.log(challenges[0][2])
 
-for(let i=0; i<challenges.length; i++){
-    let coordinates = [challenges[i][1], challenges[i][2]]
+document.querySelector("#yoursub").addEventListener(
+    "click", function(event) {
+        markers.clearLayers();
+        for(let i=0; i<challenges.length; i++){
+            let coordinates = [challenges[i][1], challenges[i][2]]
+            console.log(coordinates)
+            let marker = L.marker(coordinates, {icon: env_icon});
+            marker.bindPopup("<b>" + challenges[i][0] + "</b>");
+            markers.addLayer(marker);
+        }
+        console.log(challenges)
+        map.addLayer(markers);
+    })
 
-    let marker = L.marker(coordinates, {icon: env_icon}).addTo(map);
-    marker.bindPopup("<b>" + challenges[i][0] + "</b>");
-}
+document.querySelector("#todaysub").addEventListener(
+    "click", function(event) {
+        markers.clearLayers();
+        for(let i=0; i<todays_challenges.length; i++){
+            let coordinates = [todays_challenges[i][1], todays_challenges[i][2]]
 
+            let marker = L.marker(coordinates, {icon: env_icon});
+            marker.bindPopup("<b>" + todays_challenges[i][0] + "</b>");
+            markers.addLayer(marker);
+        }
+        map.addLayer(markers);
+    })

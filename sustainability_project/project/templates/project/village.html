@@ -4,6 +4,12 @@
 {% load math_filters %}
 {% block content %}
 <div class="game-board-container">
+    <div class="user-coins-display">
+        <div class="coins-text-and-value">Coins: {{ num_coins }}</div>
+        <div class="coin-img-container">
+            <img class="coin-img" src="{% static 'project/coin.png' %}" alt="Coin">
+        </div>
+    </div>
     <div class="game-board">
         {% for row in board %}
             <div class="row"> <!-- Should rename this class to column -->

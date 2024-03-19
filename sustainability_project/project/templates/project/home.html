@@ -3,11 +3,29 @@
 {% load static %}
 
 {% block content %}
+<style>
+
+.content {
+    background: rgba(41, 117, 37, 0.5); /* Adjust the alpha value to your preferred opacity */
+    padding: 30px; /* Adjust padding as needed */
+    border-radius: 50px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 600px) {
+    .content {
+        font-size: 1.5em; /* Smaller font size for smaller screens */
+    }
+}
+
+</style>
 <div class="challenge-section">
     <!-- Background image set inline to utilize the Django static file system -->
     <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}');"></div>
     <div class="content">
-        <h2>{{ daily_challenge|default:"Daily Challenge Sample Text" }}</h2>
+        <p>Todays challenge:</p>
+        <p  style="font-weight: 400;">{{ daily_challenge|default:"Daily Challenge Sample Text" }}</p>
         <a href="{% url 'make_post' %}" class="btn btn-primary mt-2">Submit Challenge</a>
     </div>
 </div>

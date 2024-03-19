@@ -18,8 +18,10 @@ import random
 def index(request):
     return render(request, 'project/index.html')
 
+
 def privacy_policy(request):
     return render(request, 'project/privacy_policy.html')
+
 
 def logout_view(request):
     logout(request)
@@ -29,6 +31,7 @@ def logout_view(request):
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
 
+
 @login_required()
 def map(request):
     # Will update
@@ -36,18 +39,23 @@ def map(request):
     user = request.user
 
     completed_challenges = UserChallenges.objects.filter(user=user).exclude(user_lat__isnull=True)
+    todays_challenges = UserChallenges.objects.filter(submitted__date=datetime.now()).exclude(user_lat__isnull=True)
 
     challenge_list = [[challenge.response, float(challenge.user_lat), float(challenge.user_long)]
                       for challenge in completed_challenges]
 
-    print(challenge_list)
+    todays_challenge_list = [[challenge.response, float(challenge.user_lat), float(challenge.user_long)]
+        for challenge in todays_challenges]
 
-    return render(request, 'map.html', context={'challenges': json.dumps(challenge_list)})
+    return render(request, 'map.html', context={'challenges': json.dumps(challenge_list),
+                                                'todays_challenges': json.dumps(todays_challenge_list)})
+
 
 def buy_village_item(request):
     if request.method == "POST":
         pass
     return render(request, 'project/village.html', {})
+
 
 @login_required()
 def village_shop(request):
@@ -67,20 +75,20 @@ def village_shop(request):
             valid_position = False
         context = {}
         if valid_position:
-            num_coins = request.user.coins #UserChallenges.objects.filter(user=request.user).aggregate(Sum('points'))['points__sum']
+            num_coins = request.user.coins  # UserChallenges.objects.filter(user=request.user).aggregate(Sum('points'))['points__sum']
             if not num_coins:
                 num_coins = 0
             items = [{
-                'item' : item.item,
-                'cost' : item.cost,
-                'quantity_remaining' : item.max_quantity - Village.objects.filter(user=request.user, item=item).count(),
-                'can_afford' : num_coins > item.cost,
-                'image_name' : item.image_name
+                'item': item.item,
+                'cost': item.cost,
+                'quantity_remaining': item.max_quantity - Village.objects.filter(user=request.user, item=item).count(),
+                'can_afford': num_coins > item.cost,
+                'image_name': item.image_name
             } for item in VillageShop.objects.all()]
             context = {
-                'num_coins' : num_coins,
-                'items' : items,
-                'position' : int(request.GET['position'])
+                'num_coins': num_coins,
+                'items': items,
+                'position': int(request.GET['position'])
             }
         context['error'] = not valid_position
         return render(request, 'project/village_shop.html', context)
@@ -97,16 +105,17 @@ def village_shop(request):
             else:
                 valid_position = False
             # Validate item
-            all_items = VillageShop.objects.filter(item=request.POST['item']) # Safe from sql injection.
+            all_items = VillageShop.objects.filter(item=request.POST['item'])  # Safe from sql injection.
             if len(all_items) != 1:
                 valid = False
-            
+
             if valid:
-                shop_item = all_items[0] # all_items has exactly one element in it.
+                shop_item = all_items[0]  # all_items has exactly one element in it.
                 num_same_items = Village.objects.filter(user=request.user, item=shop_item).count()
-                if num_same_items < shop_item.max_quantity and shop_item.cost <= request.user.coins: # Can buy the item.
+                if num_same_items < shop_item.max_quantity and shop_item.cost <= request.user.coins:  # Can buy the item.
                     # Check if there is already an item in the position and if there is delete it.
-                    item_in_position = Village.objects.filter(user = request.user, position=pos) # pos has been converted to an int before.
+                    item_in_position = Village.objects.filter(user=request.user,
+                                                              position=pos)  # pos has been converted to an int before.
                     if item_in_position:
                         item_in_position.delete()
                     new_item = Village(user=request.user, item=shop_item, position=pos)
@@ -115,15 +124,12 @@ def village_shop(request):
                     request.user.save()
                 else:
                     print("CANNOT BUY ITEM DUE TO MAX_QUANTITY")
-                return redirect('village') # The changes will be reflected when the village page loads again.
+                return redirect('village')  # The changes will be reflected when the village page loads again.
             else:
                 print("INVALID POST PARAMS")
-            
+
         return render(request, 'project/village_shop.html')
 
-    
-
-    
 
 @login_required
 def village(request):
@@ -137,7 +143,7 @@ def village(request):
     # Corrected the range to start from 1 and added proper formatting for file names
     # available_images = [f'{i:02d}.png' for i in range(1, total_images + 1)]
     # empty_chance = 0.9  # Approx 30% of the tiles will be empty
-    
+
     for row in range(6):  # Assuming a 6x6 board
         board_row = []
         for col in range(6):
@@ -161,7 +167,13 @@ def village(request):
             # board_row.append({'image_path': image_path})
         board.append(board_row)
     print(board)
-    context = {'board': board}
+    num_coins = request.user.coins  # Get the current user's coins
+    if not num_coins:
+        num_coins = 0  # Default to 0 if None
+    context = {
+        'board': board,
+        'num_coins': num_coins  # Add num_coins to the context
+    }
     return render(request, 'project/village.html', context)
 
 
@@ -268,6 +280,7 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
+
 @login_required()
 def profile(request, username):
     # If a POST request is made to this page with an image (profile picture) save it to '/media/{username}/profile-picture.{extension}'
@@ -330,6 +343,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+
 @login_required()
 def make_post(request):
     user = request.user
@@ -356,7 +370,7 @@ def make_post(request):
 
             if user.streak > user.best_streak:
                 user.best_streak = user.streak
-            
+
             # Calculating the users points for this challenge
             points = 100 + max(
                 math.ceil((-0.1 * ((now() - daily_challenge.assigned).total_seconds() / 3600) + 2.4) * 10.5),
@@ -371,7 +385,6 @@ def make_post(request):
             if not user_lat or not user_long:
                 user_lat = None
                 user_long = None
-
 
             # To access this page user must be authenticated so request.user is adequate.
             uc = UserChallenges(daily_challenge=daily_challenge, user=request.user,
@@ -390,19 +403,30 @@ def make_post(request):
     }
     return render(request, 'make_post.html', context)
 
+
 @login_required()
 def gamekeeper(request):
+    if request.method == 'POST':
+        if 'deleteButton' in request.POST:
+            post_id = request.POST.get('post_id')
+            post = UserChallenges.objects.get(id=post_id)
+            post.delete()
 
-    # get user
+        elif 'editButton' in request.POST:
+            post_id = request.POST.get('post_id')
+            post = UserChallenges.objects.get(id=post_id)
+
+            new_response = request.POST.get('response')
+            post.response = new_response
+            post.save()
+
+
+
     user = request.user
-
     if user.is_gamekeeper:
         # all_users = CustomUser.objects.all()
         user_challenges = UserChallenges.objects.all()
 
         return render(request, 'game_keeper.html', context={'userchallenges': user_challenges})
     else:
-        print(user.is_gamekeeper)
         return redirect('home')
-
-

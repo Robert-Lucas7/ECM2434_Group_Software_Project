@@ -13,11 +13,6 @@
             flex-direction: column;
         }
         submission {
-            /* display: block;
-            padding: 10px;
-            margin: 20px;
-            background-color: rgb(21, 115, 21);
-            color: white; */
             display: block;
             border-radius: 25px;
             border: 2px solid #73AD21;
@@ -63,7 +58,6 @@
 
                 <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" >
                     {% csrf_token %}
-                    <!-- {{form.comment.label_tag}} -->
                     {{form.comment}}
                     <button type="submit" class="btn btn-primary mt-3">Change Submission</button>
                 </form>
