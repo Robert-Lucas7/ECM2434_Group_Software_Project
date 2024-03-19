@@ -21,7 +21,21 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-        }t
+        }
+        /* Adjust the map to take full width and the remaining height on mobile, avoiding navbar overlap */
+        @media (max-width: 768px) {
+            #map {
+                height: calc(100vh - 60px); /* Subtract navbar height from full viewport height */
+                width: 100vw; /* Make the map take the full viewport width */
+                position: fixed; /* Use fixed to fill the screen without affecting document flow */
+                top: 60px; /* Shift down for the navbar; adjust based on actual navbar height */
+                left: 0; /* Align to the left */
+                z-index: -1; /* Ensure it stays behind the navbar/content */
+                transform: none; /* Remove the transform applied in the default style */
+            }
+        }
+
+
     </style>
 </head>
 <body>

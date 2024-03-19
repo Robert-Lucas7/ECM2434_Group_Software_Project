@@ -3,17 +3,21 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.timezone import now
 
 class VillageShop(models.Model):
-    item = models.CharField(max_length=25) #The item in the village.
-    cost = models.PositiveIntegerField() #The cost of the item.
+    item = models.CharField(max_length=25)  # The item in the village.
+    cost = models.PositiveIntegerField()  # The cost of the item.
     max_quantity = models.PositiveIntegerField()
     image_name = models.CharField(max_length=50, default="")
+    score = models.IntegerField(default=0)  # Add this line for the score of each item
+
     def __str__(self):
         return self.item
+
     
 class CustomUser(AbstractUser):
     streak = models.PositiveIntegerField(default=0)
     best_streak =  models.PositiveIntegerField(default=0)
     coins = models.PositiveIntegerField(default=0)
+    score = models.PositiveIntegerField(default=0)
     #points = models.PositiveIntegerField(default=0)
     # challenges_completed = models.ManyToManyField("Challenge", related_name="user")
 
