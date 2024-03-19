@@ -19,7 +19,10 @@ class TestUserChallenges(TestCase):
 
         # Create a Challenge object
         self.challenge = Challenge.objects.create(
-            # fill in the necessary fields here
+            title='Test Challenge',
+            description='Test description',
+            location_lat=51.5074,
+            location_long=0.1278
         )
 
         # Create a DailyChallenge object
@@ -65,6 +68,7 @@ class TestUserChallenges(TestCase):
         response = self.client.post(reverse('make_post'), data)
         self.assertEqual(response.status_code, 200)  # should render the form again
         self.assertEqual(UserChallenges.objects.count(), 0)  # no object should be created
+
 
     def test_create_user_challenge_unauthenticated(self):
         self.client.logout()  # log out the user
