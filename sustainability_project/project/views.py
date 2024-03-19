@@ -402,9 +402,20 @@ def make_post(request):
 @login_required()
 def gamekeeper(request):
     if request.method == 'POST':
-        post_id = request.POST.get('post_id')
-        post = UserChallenges.objects.get(id=post_id)
-        post.delete()
+        if 'deleteButton' in request.POST:
+            post_id = request.POST.get('post_id')
+            post = UserChallenges.objects.get(id=post_id)
+            post.delete()
+
+        elif 'editButton' in request.POST:
+            post_id = request.POST.get('post_id')
+            post = UserChallenges.objects.get(id=post_id)
+
+            new_response = request.POST.get('response')
+            post.response = new_response
+            post.save()
+
+
 
     user = request.user
     if user.is_gamekeeper:
