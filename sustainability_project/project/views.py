@@ -161,7 +161,13 @@ def village(request):
             # board_row.append({'image_path': image_path})
         board.append(board_row)
     print(board)
-    context = {'board': board}
+    num_coins = request.user.coins  # Get the current user's coins
+    if not num_coins:
+        num_coins = 0  # Default to 0 if None
+    context = {
+        'board': board,
+        'num_coins': num_coins  # Add num_coins to the context
+    }
     return render(request, 'project/village.html', context)
 
 
