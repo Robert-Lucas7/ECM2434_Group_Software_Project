@@ -3,44 +3,6 @@
 {% load static %}
 
  {% block content %}
-    <style>
-        .user_container {
-            width: 50%;
-            height: 10%;
-            display: flex;
-            z-index: 1; /* Ensure text is above other elements */
-            justify-content: space-evenly;
-            background-color: forestgreen;
-            align-items: center;
-            margin: 5px auto; /* Adjust margin for spacing between stacked containers */
-            border-color:black;
-            border-width: 2px;
-        }
-        .user_box {
-            color: black;
-            padding: 3px;
-            border: 1px solid black; /* Add border style */
-            margin: 5px; /* Add margin for spacing between user boxes */
-            flex-grow: 1;
-        }
-        .page {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            flex-direction: column;
-        }
-    </style>
-{#    <div class="page">#}
-{#        {% for userchallenge in userchallenges %}#}
-{#            <div class="user_container">#}
-{#                {% for item in userchallenge %}#}
-{#                    <span class="user_box">{{ item }}</span>#}
-{#                {% endfor %}#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
  <div class="container mt-5">
   <div class="row justify-content-center">
      <div class="col-12 col-lg-8 mb-5"> <!-- Added mb-5 for bottom margin -->
