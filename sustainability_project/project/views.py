@@ -414,14 +414,17 @@ def gamekeeper(request):
             new_response = request.POST.get('response')
             post.response = new_response
             post.save()
-
-
+        elif 'challengeDelete' in request.POST:
+            challenge_title = request.POST.get('challenge_title')
+            challenge = Challenge.objects.get(title=challenge_title)
+            print(f'Challenge {challenge_title} has been deleted')
+            challenge.delete()
 
     user = request.user
     if user.is_gamekeeper:
-        # all_users = CustomUser.objects.all()
         user_challenges = UserChallenges.objects.all()
+        challenges = Challenge.objects.all()
 
-        return render(request, 'game_keeper.html', context={'userchallenges': user_challenges})
+        return render(request, 'game_keeper.html', context={'userchallenges': user_challenges, 'challenges': challenges})
     else:
         return redirect('home')
