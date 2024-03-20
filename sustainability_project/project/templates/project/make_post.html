@@ -116,7 +116,7 @@
             <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}');"></div>
             <div class="content" id="content">
                 <h1>{{ daily_challenge.title|default:"Daily Challenge Sample Text" }}</h1>
-                <a align="center">Write a comment about the challenege then submit</a>
+                <a align="center">Write a comment about the challenge then submit</a>
 
                 <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" class="form-section">
                     {% csrf_token %}
