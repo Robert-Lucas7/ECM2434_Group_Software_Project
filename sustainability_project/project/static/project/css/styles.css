@@ -5,33 +5,45 @@
     padding: 0;
 }
 
+
+
 /* NAVBAR STYLES */
 .navbar-brand img {
-    width: 60px; /* Base size */
-    height: 60px; /* Base size */
-    border-radius: 50%; /* Circular frame */
-    object-fit: cover; /* Ensures the image covers the area */
-    border: 2px solid #ffffff; /* Optional: adds a white border around the image */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for depth */
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-/* Targeting the dropdown button specifically to change its background color */
-.btn-secondary {
-    background-color: #c7c8c7; /* Bootstrap's light grey color; adjust as needed */
-    border-color: #c7c8c7; /* Adjust the border color to match the background */
+.btn-primary {
+    background-color: #297525;
+    border-color: #297525; 
 }
 
 /* Adjusting the color on hover to maintain visual feedback */
-.btn-secondary:hover {
-    background-color: #dde2e6; /* A slightly darker shade for hover state */
-    border-color: #d3d9df; /* Matching the border color to hover background */
+.btn-primary:hover {
+    background-color: #225c1f; 
+    border-color: #225c1f; 
 }
 
 
+.btn-secondary {
+    background-color: #aef4c4; 
+    border-color: #aef4c4; 
+}
+
+.btn-secondary:hover {
+    background-color: #80dd9d;
+    border-color: #80dd9d; 
+}
+
+/* Adjustments for mobile devices */
 @media (max-width: 768px) {
     .navbar-brand img {
-        width: 40px; /* Smaller size for mobile devices */
-        height: 40px; /* Smaller size for mobile devices */
+        width: 40px; 
+        height: 40px; 
     }
 
     .navbar-nav .nav-link,
@@ -53,8 +65,8 @@
 }
 
 .custom-dropdown-menu {
-    margin-right: 0px; /* Adjusts space from the right side of the screen */
-    margin-top: 30px; /* Adds space at the top to avoid overlapping the navbar */
+    margin-right: 0px; 
+    margin-top: 30px; 
 }
 
 /* Profile Container */
@@ -69,30 +81,30 @@
 
 /* Profile Picture */
 .profile-picture {
-    width: 30vw; /* Sets the width to 30% of the viewport width */
-    height: 30vw; /* Sets the height equal to the width to maintain a 1:1 aspect ratio */
-    border-radius: 50%; /* Ensures the image is circular */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    border: 2px solid #ffffff; /* Optional border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-    margin-bottom: 20px; /* Space between picture and username */
-    max-width: 300px; /* Optional: to prevent it from becoming too large on big screens */
-    max-height: 300px; /* Ensures the max size is also a perfect circle */
+    width: 30vw; 
+    height: 30vw; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 
 
 /* Username and Stats */
 .username, .stats p {
-    margin: 10px 0; /* Spacing around text */
-    font-size: 1rem; /* Default font size */
+    margin: 10px 0; 
+    font-size: 1rem; 
 }
 
 
 /* HOME STYLES */
 .challenge-section {
     position: relative;
-    height: 100vh; /* Adjust the initial height as needed */
+    height: 100vh; 
     color: white;
     text-align: center;
     display: flex;
@@ -121,42 +133,40 @@
 }
 
 .posts-feed {
-    background-color: #fff; /* Or any color that fits your design */
+    background-color: #fff; 
     padding: 20px;
 }
 
 .post-content {
-    font-size: 16px; /* Readable font size for content */
-    line-height: 1.6; /* Improve readability with
-    
-    .posts-feed {
-    max-width: 600px; /* Limit the width for readability */
-    margin: 20px auto; /* Center the feed */
-    padding: 0 15px; /* Padding on the sides */
+    font-size: 16px;
+    line-height: 1.6; 
+    /* max-width: 600px;  */
+    margin: 20px auto; 
+    padding: 0 15px; 
 }
 
 .post {
-    background: #fff; /* Light background for each post */
-    border-bottom: 1px solid #ccc; /* Line separating posts */
-    padding: 15px; /* Padding inside each post */
-    margin-bottom: 20px; /* Space between posts */
+    background: #fff; 
+    border-bottom: 1px solid #ccc; 
+    padding: 15px; 
+    margin-bottom: 20px; 
 }
 
 .post-header {
     display: flex;
-    justify-content: space-between; /* Space between username and date */
+    justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 10px; /* Space above the title */
+    margin-bottom: 10px;
 }
 
 .username {
-    font-weight: bold; /* Make the username stand out */
-    font-size: 16px; /* Slightly larger font size for username */
+    font-weight: bold; 
+    font-size: 16px; 
 }
 
 .post-date {
-    color: #777; /* Subtle color for the date */
-    font-size: 14px; /* Smaller font size for date */
+    color: #777; 
+    font-size: 14px; 
 }
 
 
@@ -177,7 +187,7 @@
     padding: 10px;
     border-radius: 5px;
 }
-/* Rob Leaderboard Changes */
+
 .leaderboard-first{
     background-color: #FFDE2E;
 }
@@ -209,7 +219,6 @@
     color: black;
 }
 
-
 /* Index styles */
 .index-container {
     font-family: Arial, sans-serif;
@@ -231,28 +240,24 @@
 }
 
 
+/* Village Styles */
 
-/* Village Styles - Cleaned Up Version */
-
-/* General Container for Game Board */
 .game-board-container {
     width: calc(100% - 20px);
     margin: 20px auto;
     padding: 10px;
-    padding-top: 180px; /* Account for navbar + top content, avoid overlapping */
+    padding-top: 180px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* Game Board Styling */
 .game-board {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Individual Cell Styling */
 .cell {
     width: 12vw;
     height: 12vw;
@@ -284,52 +289,49 @@
 
 .user-coins-display {
     display: flex;
-    align-items: center; /* Align items in the center vertically */
-    justify-content: center; /* Center the content horizontally */
-    position: absolute; /* Position it absolutely relative to its positioned parent */
-    top: 100px; /* Adjust this value as needed to lower the coin display */
+    align-items: center; 
+    justify-content: center; 
+    position: absolute; 
+    top: 100px; 
     left: 50%;
-    transform: translateX(-50%); /* Centers the element horizontally */
-    font-size: 20px; /* Adjust font size as needed */
+    transform: translateX(-50%); 
+    font-size: 20px; 
 }
 
 
 .coins-text-and-value, .coin-img-container {
-    display: inline-flex; /* Display inline-flex to align text and image next to each other */
-    align-items: center; /* Align the items vertically in the center */
+    display: inline-flex; 
+    align-items: center; 
 }
 
 .coin-img {
-    height: 5vh; /* Adjust the size of the coin image as needed */
-    margin-left: 10px; /* Add some space between the text and the coin image */
+    height: 5vh; 
+    margin-left: 10px;
 }
 
 .user-info-display {
     display: flex;
-    flex-direction: column; /* Stack score and coins vertically */
-    align-items: center; /* Center-align the items */
-    justify-content: center; /* Center content vertically if there's extra space */
-    position: absolute; /* Adjust as necessary */
-    top: 100px; /* Adjust based on your navbar height */
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    position: absolute; 
+    top: 100px; 
     left: 50%;
     transform: translateX(-50%);
     font-size: 20px;
 }
 
 .total-score-display {
-    margin-bottom: 20px; /* Adjust spacing as needed */
-    font-weight: bold; /* Makes the font bold */
-    font-size: 24px; /* Increases the font size, adjust as needed */
+    margin-bottom: 20px; 
+    font-weight: bold; 
+    font-size: 24px; 
 }
 
-
-/* Optionally, adjust the bottom margin of the last item to reduce excess space */
 .coins-display {
-    margin-bottom: 0; /* Removes bottom margin from the coins display if unnecessary */
+    margin-bottom: 0; 
 }
 
-
-/* Responsive Adjustments */
+/* Adjustments for mobile devices */
 @media (max-width: 768px) {
     .cell {
         width: 12vw;
@@ -345,8 +347,6 @@
 }
 
 
-
-
 /* Village shop */
 .coin-img{
     height: 5vh;
@@ -355,15 +355,15 @@
 .sidebar {
     flex: 1;
     border-right: 1px solid #ccc;
-    position: fixed; /* This positions your sidebar relative to the viewport */
-    top: 0; /* This aligns it to the top */
-    left: 0; /* This aligns it to the left */
-    max-height: 100vh; /* This sets the maximum height to the height of the viewport */
-    overflow-y: auto; /* This adds scroll to the sidebar if the content is taller than the viewport */
+    position: fixed;
+    top: 0;
+    left: 0; 
+    max-height: 100vh; 
+    overflow-y: auto; 
     padding-top: 100px;
     padding-left: 80px;
     padding-right: 0px;
-    width: 20%; /* Adjust the width as needed */
+    width: 20%; 
 }
 
 .content-container {

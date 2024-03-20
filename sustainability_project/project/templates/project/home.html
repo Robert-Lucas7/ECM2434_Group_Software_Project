@@ -5,6 +5,19 @@
 {% block content %}
 <style>
 
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+
+
 .content {
     background: rgba(41, 117, 37, 0.5); 
     padding: 30px; 
@@ -25,17 +38,17 @@
 
 .cookie-consent-overlay {
     display: none; 
-    position: fixed; /* Fixed position */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 1050; /* Under the cookie consent banner */
-    cursor: pointer; /* Add a pointer on hover */
-    backdrop-filter: blur(10px); /* This will blur the content underneath */
+    background-color: rgba(0,0,0,0.5); 
+    z-index: 1050; 
+    cursor: pointer;
+    backdrop-filter: blur(10px); 
 }
 
 .cookie-consent-banner {
@@ -89,6 +102,7 @@
     <p>No Posts!</p>
     {% endfor %}
 </div>
+
 <!-- Cookier banner -->
 <div id="cookieConsentOverlay" class="cookie-consent-overlay"></div>
 <div id="cookieConsentBanner" class="cookie-consent-banner">
