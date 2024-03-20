@@ -208,6 +208,10 @@
 .link{
     color: black;
 }
+.link:hover{
+    color: black;
+    text-decoration: none;
+}
 
 
 /* Index styles */
