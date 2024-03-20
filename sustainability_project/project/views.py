@@ -7,6 +7,7 @@ from django.db.models import Sum, Count
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ValidationError
+from django.contrib import messages
 
 from datetime import datetime
 import math
@@ -40,6 +41,31 @@ def sample_profile(request):
     return render(request, 'project/sample_profile.html')
 
 
+@login_required
+def remove_item(request):
+    if request.method == "POST":
+        pos = request.POST.get('position')
+        if pos:
+            pos = int(pos)  # Ensure pos is an integer
+            # Retrieve the item to be removed
+            item_to_remove = Village.objects.filter(user=request.user, position=pos).first()
+            if item_to_remove:
+                # Calculate refund amount (60% of the item's cost)
+                refund_amount = int(item_to_remove.item.cost * 0.6)
+                # Add the refund amount to the user's coins
+                request.user.coins += refund_amount
+                # Save the updated user
+                request.user.save()
+                # Delete the item from the village
+                item_to_remove.delete()
+                messages.success(request, f"Item successfully removed. {refund_amount} coins refunded.")
+            else:
+                messages.error(request, "No item found in the selected position.")
+        else:
+            messages.error(request, "Position not specified.")
+    # Redirect back to the referring page or to the 'village'
+    return redirect(request.META.get('HTTP_REFERER', 'village'))
+
 @login_required()
 def map(request):
     # Will update
@@ -60,108 +86,109 @@ def map(request):
 
 
 
+from django.shortcuts import render, redirect
+
 @login_required()
 def village_shop(request):
-    # There must be a query parameter called 'position' in the get request of this page so you know in which position to store the bought item. If this parameter
-    # isn't present an error page will be displayed with an option to go back to the village page.
-    
-    valid_position = True
-    if 'position' in request.GET:
-        pos = request.GET['position']
-        if pos.isdigit():
-            pos = int(pos)
-            if pos < 0 or pos > 35:
-                valid_position = False
-        else:
-            valid_position = False
+    pos = request.GET.get('position', None)
+    context = {'error': True}  # Default context in case of an invalid position
+    if pos and pos.isdigit():
+        pos = int(pos)
+        if 0 <= pos <= 35:
+            item_to_remove = Village.objects.filter(user=request.user, position=pos).first()
+            refund_amount = 0
+            if item_to_remove:
+                refund_amount = int(item_to_remove.item.cost * 0.6)
+            
+            items = [{
+                'item': item.item,
+                'cost': item.cost,
+                'can_afford': request.user.coins >= item.cost,
+                'image_name': item.image_name
+            } for item in VillageShop.objects.all()]
+
+            context = {
+                'num_coins': request.user.coins,
+                'items': items,
+                'position': pos,
+                'item_to_remove': item_to_remove,
+                'refund_amount': refund_amount,  # Add this to the context
+            }
     else:
-        valid_position = False
-    context = {}
-    if valid_position:
-        num_coins = request.user.coins  # UserChallenges.objects.filter(user=request.user).aggregate(Sum('points'))['points__sum']
-        if not num_coins:
-            num_coins = 0
-        items = [{
-            'item': item.item,
-            'cost': item.cost,
-            'can_afford': num_coins > item.cost,
-            'image_name': item.image_name
-        } for item in VillageShop.objects.all()]
-        context = {
-            'num_coins': num_coins,
-            'items': items,
-            'position': int(request.GET['position'])
-        }
-    context['error'] = not valid_position
+        return redirect('error_page')  # Redirect to an error page or handle as fits your application
+
     return render(request, 'project/village_shop.html', context)
+
+
     
 
 @login_required
 def village(request, username):
     user = get_object_or_404(CustomUser, username=username)
-    # The grid will always be 6x6 so the 'position' attribute can be used to find the row/col.
-    errors = []
     if request.method == "POST" and user == request.user:
-        if 'item' in request.POST and 'position' in request.POST:
-            valid = True
-            # Validate position - convert to 'helper' function.
-            pos = request.POST['position']
-            if pos.isdigit():
-                pos = int(pos)
-                if pos < 0 or pos > 35:
-                    valid = False
-            else:
-                valid = False
-            # Validate item
-            all_items = VillageShop.objects.filter(item=request.POST['item'])  # Safe from sql injection.
-            if len(all_items) != 1:
-                valid = False
+        item_name = request.POST.get('item')
+        pos = request.POST.get('position')
 
-            if valid:
-                shop_item = all_items[0]  # all_items has exactly one element in it.
-                num_same_items = Village.objects.filter(user=request.user, item=shop_item).count()
-                if shop_item.cost > request.user.coins:
-                    errors.append("Insufficient coints to buy item")
-                if len(errors) == 0:  # Can buy the item.
-                    # Check if there is already an item in the position and if there is delete it.
-                    item_in_position = Village.objects.filter(user=request.user,
-                                                              position=pos)  # pos has been converted to an int before.
-                    if item_in_position:
-                        item_in_position.delete()
-                    new_item = Village(user=request.user, item=shop_item, position=pos)
-                    user.coins -= shop_item.cost
-                    new_item.save()
-                    user.save()
-            else:
-                print("INVALID POST PARAMS")
-    
-    all_village_items = Village.objects.filter(user=user).order_by("position")
-    board = []
-    total_score = 0 #initialize score
-    for row in range(6):
-        board_row = []
-        for col in range(6):
-            image_path = None
-            item_score = 0
-            if all_village_items.exists() and all_village_items[0].position == row * 6 + col:
-                village_item = all_village_items[0]
-                image_path = village_item.item.image_name
-                item_score = village_item.item.score # Fetch the score
-                all_village_items = all_village_items[1:] # Move to the next item
-            board_row.append({'image_path': image_path, 'score': item_score})
-            total_score += item_score # Add the score to the total score     
-        board.append(board_row)
-    user.score = total_score # Update the user's score
-    user.save()
-    num_coins = user.coins if user.coins else 0
-    context = {
-        'board': board,
-        'num_coins': num_coins,
-        'total_score': total_score,
-        'user': user,
-        
-    }
-    return render(request, 'project/village.html', context)
+        if not pos.isdigit() or not item_name:
+            messages.error(request, "Invalid request.")
+            return redirect('village', username=username)
+
+        pos = int(pos)
+        if pos < 0 or pos > 35:
+            messages.error(request, "Invalid position.")
+            return redirect('village', username=username)
+
+        try:
+            shop_item = VillageShop.objects.get(item=item_name)
+        except VillageShop.DoesNotExist:
+            messages.error(request, "Item does not exist.")
+            return redirect('village', username=username)
+
+        existing_item = Village.objects.filter(user=user, position=pos).first()
+        if existing_item:
+            refund_amount = int(existing_item.item.cost * 0.6)
+            user.coins += refund_amount
+            existing_item.delete()
+
+        if user.coins < shop_item.cost:
+            messages.error(request, "Insufficient coins to buy this item.")
+            return redirect('village', username=username)
+
+        user.coins -= shop_item.cost
+        Village.objects.create(user=user, item=shop_item, position=pos)
+        user.save()
+        messages.success(request, "Item placed successfully.")
+    else:
+        # Handling for GET requests or any other method
+        all_village_items = Village.objects.filter(user=user).order_by("position")
+        board = []
+        total_score = 0
+        for row in range(6):
+            board_row = []
+            for col in range(6):
+                image_path = None
+                item_score = 0
+                if all_village_items.exists() and all_village_items[0].position == row * 6 + col:
+                    village_item = all_village_items[0]
+                    image_path = village_item.item.image_name
+                    item_score = village_item.item.score
+                    all_village_items = all_village_items[1:]
+                board_row.append({'image_path': image_path, 'score': item_score})
+                total_score += item_score
+            board.append(board_row)
+        user.score = total_score
+        user.save()
+        num_coins = user.coins if user.coins else 0
+        context = {
+            'board': board,
+            'num_coins': num_coins,
+            'total_score': total_score,
+            'user': user,
+        }
+        return render(request, 'project/village.html', context)
+
+    # Redirect back to the village page after POST action
+    return redirect('village', username=username)
 
 
 @login_required

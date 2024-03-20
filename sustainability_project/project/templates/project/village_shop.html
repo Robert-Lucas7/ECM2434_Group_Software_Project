@@ -3,6 +3,11 @@
 {% load static %}
 
 {% block content %}
+<style>
+    h1, h2, h3 {
+        color: #297525;
+    }
+</style>
 <div style="padding-top: 100px;"></div>
 {% if error %}
     <div class="text-center rounded-lg bg-warning w-50 mx-auto p-3">
@@ -58,6 +63,23 @@
             </div>
         </div>
     {% endfor %}
+    {% if item_to_remove %}
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Replace Item?</h4>
+        <p>You're about to replace an item in this position. You will receive a 60% refund on the removed item.</p>
+        <hr>
+        <p class="mb-0">Replacing: <strong>{{ item_to_remove.item.item }}</strong> - Refund: <strong>{{ refund_amount }}</strong> coins</p>
+        <!-- Optionally, provide a button to remove the item without replacement -->
+        <form action="{% url 'remove_item' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="position" value="{{ position }}">
+            <button type="submit" class="btn btn-danger btn-sm">Remove Item Only</button>
+        </form>
+        
+    </div>
+    {% endif %}
+
+
 </div>
 {% endif %}
 <script src="/static/village_shop.js"></script>

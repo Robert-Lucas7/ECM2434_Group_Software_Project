@@ -7,10 +7,9 @@ The group members are:
 
 1. Robert Lucas
 2. Elliot Kent 
-3. Joshua Coates
-4. Henry Forrest
-5. Benjamin Vail
-6. Daniel Price 
+3. Henry Forrest
+4. Benjamin Vail
+5. Daniel Price 
 
 
 This is a submission for Sprint 1. There are three types of document that you will find the following places.

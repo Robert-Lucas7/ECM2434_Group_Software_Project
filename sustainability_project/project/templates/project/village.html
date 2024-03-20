@@ -2,8 +2,13 @@
 
 {% load static %}
 {% load math_filters %}
+
 {% block content %}
 <div class="game-board-container">
+    <div class="village-name-display">
+        <!-- Display the village name here -->
+        Village: {{ village_name }}
+    </div>
     {% if errors %}
         {% for error in errors %}
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -14,33 +19,36 @@
             </div>
         {% endfor %}
     {% endif %}
-    <div class="user-info-display">
-        <div class="total-score-display">
-            Score: {{ total_score }}
-        </div>
-        <div class="coins-display">
-            <div class="coins-text-and-value">Coins: {{ num_coins }}</div>
-            <div class="coin-img-container">
-                <img class="coin-img" src="{% static 'project/coin.png' %}" alt="Coin">
+    <div class="game-board">
+        <div class="user-info-display" style="display: flex; flex-direction: column;">
+            <div class="total-score-display">
+                Score: {{ total_score }}
+            </div>
+            <div class="coins-display" style="display: flex; align-items: center;">
+                <div class="coins-text-and-value">Coins: {{ num_coins }}</div>
+                <div class="coin-img-container">
+                    <img class="coin-img" src="{% static 'project/coin.png' %}" alt="Coin" style="width: auto; height: 5vh;">
+                </div>
+            </div>
+            <div class="game-explanation">
+                <!-- Add your game explanation here -->
+                Click a tile to build your village!
             </div>
         </div>
-    </div>
-    <div class="game-board">
         {% for row in board %}
-            <div class="row"> <!-- Should rename this class to column -->
+            <div class="row"> <!-- Consider renaming this class to avoid confusion with Bootstrap's .row -->
                 {% for cell in row %}
-                
-                {% if user == request.user %}
-                    <a href="{% url 'village_shop'%}?position={{ forloop.parentloop.counter0|find_grid_position:forloop.counter0 }}"> 
-                {% endif %}
-                        <div class="cell">
-                        {% if cell.image_path %}
-                            <img src="{% static 'project/game_assets/'|add:cell.image_path %}" alt="Cell Image">
-                        {% else %}
-                            <!-- This tile is intentionally left empty -->
-                        {% endif %}
-                    </div>
-                {% endfor %}
+                    {% if user == request.user %}
+                        <a href="{% url 'village_shop'%}?position={{ forloop.parentloop.counter0|find_grid_position:forloop.counter0 }}"> 
+                    {% endif %}
+                            <div class="cell">
+                                {% if cell.image_path %}
+                                    <img src="{% static 'project/game_assets/'|add:cell.image_path %}" alt="Cell Image">
+                                {% else %}
+                                    <!-- This tile is intentionally left empty -->
+                                {% endif %}
+                            </div>
+                    {% endfor %}
             </div>
         {% endfor %}
     </div>
