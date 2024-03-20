@@ -25,6 +25,8 @@ def privacy_policy(request):
 
 def terms_conditions(request):
     return render(request, 'project/terms_conditions.html')
+def terms_conditions(request):
+    return render(request, 'project/terms_conditions.html')
 
 def logout_view(request):
     logout(request)
@@ -91,12 +93,12 @@ def village_shop(request):
     return render(request, 'project/village_shop.html', context)
     
 
-
 @login_required
-def village(request):
+def village(request, username):
+    user = get_object_or_404(CustomUser, username=username)
     # The grid will always be 6x6 so the 'position' attribute can be used to find the row/col.
     errors = []
-    if request.method == "POST":
+    if request.method == "POST" and user == request.user:
         if 'item' in request.POST and 'position' in request.POST:
             valid = True
             # Validate position - convert to 'helper' function.
@@ -130,7 +132,6 @@ def village(request):
             else:
                 print("INVALID POST PARAMS")
     
-    user = request.user
     all_village_items = Village.objects.filter(user=user).order_by("position")
     board = []
     total_score = 0 #initialize score
@@ -145,7 +146,7 @@ def village(request):
                 item_score = village_item.item.score # Fetch the score
                 all_village_items = all_village_items[1:] # Move to the next item
             board_row.append({'image_path': image_path, 'score': item_score})
-            total_score += item_score # Add the score to the total score    
+            total_score += item_score # Add the score to the total score     
         board.append(board_row)
     user.score = total_score # Update the user's score
     user.save()
@@ -154,6 +155,8 @@ def village(request):
         'board': board,
         'num_coins': num_coins,
         'total_score': total_score,
+        'user': user,
+        
     }
     return render(request, 'project/village.html', context)
 
@@ -184,7 +187,7 @@ def leaderboard(request, metric="streak"):
             # The keys are displayed as a column header (so should be full words).
             "streak": user.streak,
             "monthly coins": this_months_coins,
-            "village score" : 0 #This needs to be changed when the village score is implemented
+            "village score" : user.score, 
         })
     context = {
         'entries': data,
@@ -247,14 +250,7 @@ def user_login(request):
 def profile(request, username):
     # If a POST request is made to this page with an image (profile picture) save it to '/media/{username}/profile-picture.{extension}'
     # Needs improved security - only jpg and png should be uploaded.
-    if request.method == "POST":  # From: https://www.geeksforgeeks.org/django-upload-files-with-filesystemstorage/
-        # Document should be changed to 'image' (or similar)
-        # request_file = request.FILES['document'] if 'document' else None
-        # if request_file:
-        #     fs = FileSystemStorage(
-        #         location=f"{settings.MEDIA_ROOT}/{request.user.username}")
-        #     file = fs.save("profile-picture", request_file)
-            # fileurl = fs.url(file)
+    if request.method == "POST":  
         profile_picture = request.POST.get('profile_picture')
         if profile_picture:
             user = request.user

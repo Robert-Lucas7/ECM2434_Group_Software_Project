@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .page-container {
+        display: flex;
+    }
+
+    .sidebar {
+        flex: 1;
+        border-right: 1px solid #ccc;
+        position: fixed;
+        top: 0;
+        left: 0;
+        max-height: 100vh;
+        overflow-y: auto;
+        padding-top: 100px;
+        padding-left: 80px;
+        padding-right: 0px;
+        width: 20%;
+    }
+
+    .content-container {
+        flex: 5;
+        padding: 1em;
+        padding-top: 100px;
+        padding-left: 50px;
+        margin-left: 20%;
+    }
+
+    @media screen and (max-width: 600px) {
+        .sidebar {
+            display: none;
+        }
+
+        .content-container {
+            margin-left: 0;
+        }
+        
+        h1 {
+            font-size: 2em;
+        }
+        h2 {
+            font-size: 1.5em;
+        }
+    }
+</style>
+<div class="page-container">
+    <div class="sidebar">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#registration">Registration</a></li>
+            <li><a href="#content">Content</a></li>
+            <li><a href="#leaderboard">Leaderboard and Competition</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#termination">Termination</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <div class="content-container">
+        <center><h1>Terms and Conditions</h1></center>
+    
+        <h2 id="registration">Registration</h2>
+        <p><b>Eligibility:</b> The app is intended for use by university students. A valid university email address is required for registration.</p>
+        <p><b>Account Responsibility:</b> You are responsible for maintaining the confidentiality of your account and password.</p>
+
+        <h2 id="content">Content</h2>
+        <p><b>User-Generated Content:</b> Users may post text responses to challenges.</p>
+        <p>Prohibited Use:</b> You agree not to post content that is unlawful, threatening, or otherwise injurious to third parties.</p>
+        <p><b>Content Removal:</b> 0 to Hero reserves the right to monitor and edit or remove any content.</p>
+    
+
+        <h2 id="leaderboard">Leaderboard and Competition</h2>
+        <p><b>Leaderboard:</b> 0 to Hero features a leaderboard that displays users' scores based on their participation and success in challenges.</p>
+        <p><b>Fair Play:</b> Users are expected to compete in a fair and respectful manner. Any attempts to manipulate scores or engage in dishonest behavior may result in account suspension or termination.</p>
+        
+
+        <h2 id="privacy">Privacy</h2>
+        <p><b>Data Collection:</b> By using 0 to Hero, you agree to the collection and use of information in accordance with our Privacy Policy. We collect personal information such as your university email address for the purpose of registration and managing your account.</p>
+        
+
+        <h2 id="termination">Termination</h2>
+        <p>We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms and Conditions.</p>
+
+        <h2 id="contact-us">Contact Us</h2>
+        <p>If you have any questions about these Terms and Conditions, please contact us at 0toHero@gmail.com. </p>
+
+        {% endblock %}

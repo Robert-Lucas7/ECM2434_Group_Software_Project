@@ -6,8 +6,8 @@
 <style>
 
 .content {
-    background: rgba(41, 117, 37, 0.5); /* Adjust the alpha value to your preferred opacity */
-    padding: 30px; /* Adjust padding as needed */
+    background: rgba(41, 117, 37, 0.5); 
+    padding: 30px; 
     border-radius: 50px;
     font-size: 2em;
     font-weight: 700;
@@ -17,8 +17,54 @@
     .content {
         font-size: 1.5em; /* Smaller font size for smaller screens */
     }
+
+    .cookie-consent-banner {
+        width: 95%;
+    }
 }
 
+.cookie-consent-overlay {
+    display: none; 
+    position: fixed; /* Fixed position */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 1050; /* Under the cookie consent banner */
+    cursor: pointer; /* Add a pointer on hover */
+    backdrop-filter: blur(10px); /* This will blur the content underneath */
+}
+
+.cookie-consent-banner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(41, 117, 37, 1); 
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+    border-radius: 30px;
+
+    display: none; 
+    z-index: 1051;
+}
+.cookie-consent-banner p {
+    margin: 0;
+    padding: 0;
+}
+.cookie-consent-banner button {
+    background-color: #17A2B8;
+    color: white;
+    border: black;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 15px 0;
+    cursor: pointer;
+    }
 </style>
 <div class="challenge-section">
     <!-- Background image set inline to utilize the Django static file system -->
@@ -43,6 +89,13 @@
     <p>No Posts!</p>
     {% endfor %}
 </div>
+<!-- Cookier banner -->
+<div id="cookieConsentOverlay" class="cookie-consent-overlay"></div>
+<div id="cookieConsentBanner" class="cookie-consent-banner">
+    <p>We use cookies to improve your experience on our site. By continuing to use our site, you accept our use of cookies. <a href="{% url 'privacy_policy' %}">Learn more</a>.</p>
+    <button id="acceptCookieConsent">Accept</button>
+</div>
+
 <script>
     window.addEventListener('scroll', function() {
         const header = document.querySelector('.challenge-section');
@@ -57,12 +110,29 @@
         // Initialize blur effect to 0px on page load
         let initialBlur = 0; // Ensuring background starts without blur
         let newBlur = Math.max(initialBlur, Math.min(scrollPosition / 100, 5)); // Adjusted maximum blur for subtlety        background.style.filter = `blur(${newBlur}px)`;
-            });
-        // Set initial blur state on page load to 0px
-        document.addEventListener("DOMContentLoaded", function() {
-            const background = document.querySelector('.background-image');
-            background.style.filter = "blur(0px)";
-        });
+    });
+
+    // Set initial blur state on page load to 0px
+    document.addEventListener("DOMContentLoaded", function() {
+        const background = document.querySelector('.background-image');
+        background.style.filter = "blur(0px)";
+    });
+
+    // Cookie Consent Banner JavaScript
+    document.addEventListener("DOMContentLoaded", function() {
+      var consent = localStorage.getItem('userConsent');
+      if (!consent) {
+        document.getElementById('cookieConsentBanner').style.display = 'block';
+        document.getElementById('cookieConsentOverlay').style.display = 'block';
+      }
+
+      document.getElementById('acceptCookieConsent').onclick = function() {
+        localStorage.setItem('userConsent', 'true');
+        document.getElementById('cookieConsentBanner').style.display = 'none';
+        document.getElementById('cookieConsentOverlay').style.display = 'none';
+      };
+    });
+
 </script>
     
 {% endblock %}

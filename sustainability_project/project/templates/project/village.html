@@ -29,8 +29,11 @@
         {% for row in board %}
             <div class="row"> <!-- Should rename this class to column -->
                 {% for cell in row %}
+                
+                {% if user == request.user %}
                     <a href="{% url 'village_shop'%}?position={{ forloop.parentloop.counter0|find_grid_position:forloop.counter0 }}"> 
-                    <div class="cell">
+                {% endif %}
+                        <div class="cell">
                         {% if cell.image_path %}
                             <img src="{% static 'project/game_assets/'|add:cell.image_path %}" alt="Cell Image">
                         {% else %}
