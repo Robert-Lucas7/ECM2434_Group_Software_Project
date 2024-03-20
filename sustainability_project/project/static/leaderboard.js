@@ -1,3 +1,4 @@
+// Code by Rob
 
 //On page load - get the user and points data from the script tag.
 let data = JSON.parse(

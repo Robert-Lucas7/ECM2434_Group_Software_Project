@@ -1,3 +1,4 @@
+<!-- Code by Henry -->
 {% extends 'base.html' %}
 
 {% load static %}
@@ -59,9 +60,8 @@
         <h2 class="username">{{ user.username|default:"Username" }}</h2>
         <div class="stats">
           <p>Current Streak: {{ user.streak|default:"0" }}</p>
-          <!-- <p>Monthly Streak: {{ user.profile.stat2|default:"0" }}</p> -->
           <p>Best Streak: {{ user.best_streak|default:"0" }}</p>
-          <p>Score: {{ user.score|default:"0" }}</p> <!-- Updated this line to display the score -->
+          <p>Score: {{ user.score|default:"0" }}</p> 
         </div>
       
 
@@ -71,14 +71,14 @@
         </a>
       </div>
 
-      <a href="{% url 'make_post' %}"><button class="btn btn-success mb-3" ><!-- type="button" data-toggle="modal" data-target="#challengePopup" -->
+      <a href="{% url 'make_post' %}"><button class="btn btn-success mb-3" >
         Today's Challenge
       </button>
       </a>
     </div>
     
     <!-- Completed Challenges Section -->
-    <div class="col-12 col-lg-8 mb-5"> <!-- Added mb-5 for bottom margin -->
+    <div class="col-12 col-lg-8 mb-5"> 
       <div class="border p-4 rounded-3 shadow-sm" style="background-color: #f8f9fa;">
         <h2 class="mb-4 text-center">Completed Challenges</h2>
         {% if user_challenges %}

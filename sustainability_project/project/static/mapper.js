@@ -1,5 +1,4 @@
-
-
+// Code by Ben
 
 function inCircle(distance, radius){
     return distance < radius;

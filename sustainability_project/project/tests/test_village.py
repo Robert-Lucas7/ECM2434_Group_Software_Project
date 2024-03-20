@@ -1,3 +1,4 @@
+#Code by Ben
 from django.contrib.messages import get_messages
 from django.test import TestCase, Client
 from django.urls import reverse
@@ -56,8 +57,3 @@ class TestVillage(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEquals(self.user.coins, 100)
         self.assertEquals(self.user.score, 100)
-
-
-
-
-

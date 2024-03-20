@@ -18,11 +18,11 @@ from .forms import Signup, LoginForm, MakePost, ChangeProfilePicture
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge, Village, VillageShop
 import json
 import random
+import os
 
 
 def index(request):
     return render(request, 'project/index.html')
-
 
 def privacy_policy(request):
     return render(request, 'project/privacy_policy.html')
@@ -34,29 +34,26 @@ def terms_conditions(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('index')  # Redirect to the index page after logging out
+    return redirect('index')  
 
 
 def sample_profile(request):
     return render(request, 'project/sample_profile.html')
 
-
+# Code by Dan
 @login_required
 def remove_item(request):
     if request.method == "POST":
         pos = request.POST.get('position')
         if pos:
-            pos = int(pos)  # Ensure pos is an integer
+            pos = int(pos) 
             # Retrieve the item to be removed
             item_to_remove = Village.objects.filter(user=request.user, position=pos).first()
+            # Delete item from the village and refund user
             if item_to_remove:
-                # Calculate refund amount (60% of the item's cost)
                 refund_amount = int(item_to_remove.item.cost * 0.6)
-                # Add the refund amount to the user's coins
                 request.user.coins += refund_amount
-                # Save the updated user
                 request.user.save()
-                # Delete the item from the village
                 item_to_remove.delete()
                 messages.success(request, f"Item successfully removed. {refund_amount} coins refunded.")
             else:
@@ -66,10 +63,9 @@ def remove_item(request):
     # Redirect back to the referring page or to the 'village'
     return redirect(request.META.get('HTTP_REFERER', 'village'))
 
+# Code by Ben
 @login_required()
 def map(request):
-    # Will update
-
     user = request.user
 
     completed_challenges = UserChallenges.objects.filter(user=user).exclude(user_lat__isnull=True)
@@ -85,9 +81,7 @@ def map(request):
                                                 'todays_challenges': json.dumps(todays_challenge_list)})
 
 
-
-from django.shortcuts import render, redirect
-
+# Code by Rob
 @login_required()
 def village_shop(request):
     pos = request.GET.get('position', None)
@@ -112,7 +106,7 @@ def village_shop(request):
                 'items': items,
                 'position': pos,
                 'item_to_remove': item_to_remove,
-                'refund_amount': refund_amount,  # Add this to the context
+                'refund_amount': refund_amount, 
             }
     else:
         return redirect('error_page')  # Redirect to an error page or handle as fits your application
@@ -120,14 +114,13 @@ def village_shop(request):
     return render(request, 'project/village_shop.html', context)
 
 
-    
-
+# Code by Dan
 @login_required
 def village(request, username):
     user = get_object_or_404(CustomUser, username=username)
+    # check for invalid requests
     if request.method == "POST" and user == request.user:
         item_name = request.POST.get('item')
-
         pos = request.POST.get('position')
 
         if not pos.isdigit() or not item_name:
@@ -161,8 +154,8 @@ def village(request, username):
         Village.objects.create(user=user, item=shop_item, position=pos)
         user.save()
         messages.success(request, "Item placed successfully.")
-    else:
-        # Handling for GET requests or any other method
+    else:  # Valid request
+        # Create board with items in the correct positions
         all_village_items = Village.objects.filter(user=user).order_by("position")
         board = []
         total_score = 0
@@ -193,8 +186,9 @@ def village(request, username):
     # Redirect back to the village page after POST action
     return redirect('village', username=username)
 
-
+# Code by Rob
 @login_required
+# Displays leaderboard of users based on the metric passed in the URL
 def leaderboard(request, metric="streak"):
     users = CustomUser.objects.all()
     users_by_streak = list(users.order_by("-streak"))
@@ -217,7 +211,6 @@ def leaderboard(request, metric="streak"):
 
         data.append({
             "username": user.username,
-            # The keys are displayed as a column header (so should be full words).
             "streak": user.streak,
             "monthly coins": this_months_coins,
             "village score" : user.score, 
@@ -226,7 +219,6 @@ def leaderboard(request, metric="streak"):
         'entries': data,
         'user_position': position_of_current_user + 1,
         'first_page': data[:5],
-        # To iterate over in the template to display the page buttons.
         'num_pages': range(math.ceil(len(users) / entries_per_page)),
         'num_challenges_completed': {
             "username": request.user.username,
@@ -236,9 +228,7 @@ def leaderboard(request, metric="streak"):
     return render(request, 'project/leaderboard.html', context)
 
 
-import os
-
-
+# Code by Henry
 def registration(request):
     form = Signup(request.POST)
     if request.method == 'POST':
@@ -248,10 +238,6 @@ def registration(request):
             profile_picture  = form.cleaned_data.get('profile_picture')
             user.profile_picture = profile_picture
             user.save()
-            # request_file = open(os.path.join(settings.BASE_DIR, 'project', 'static/project/Example_Profile_Pic.jpg'), 'rb')  # This should be changed for when the custom profile picture is implemented.
-            # if request_file:
-            #     fs = FileSystemStorage(location=f"{settings.MEDIA_ROOT}/{form.cleaned_data.get('username')}")
-            #     fs.save("profile-picture.jpg", request_file)
             return redirect("login")
         else:
             print(form.errors)
@@ -260,7 +246,7 @@ def registration(request):
         form = Signup()
         return render(request, 'project/registration.html', {'form': form})
 
-
+# Code by Henry
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -278,43 +264,32 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
-
+# Code by Henry
 @login_required()
 def profile(request, username):
-    # If a POST request is made to this page with an image (profile picture) save it to '/media/{username}/profile-picture.{extension}'
-    # Needs improved security - only jpg and png should be uploaded.
     if request.method == "POST":  
         profile_picture = request.POST.get('profile_picture')
         if profile_picture:
             user = request.user
             user.profile_picture = profile_picture
             user.save()
-    # If the user requesting the profile page isn't that user, redirect them to the homepage.
-    # if request.user.username == username:
     user = get_object_or_404(CustomUser, username=username)
     user_challenges = UserChallenges.objects.filter(user=user)
-    # Corrected from "date_assigned" to "assigned"
     todays_challenge = DailyChallenge.objects.latest("-assigned")
     context = {
         'user': user,
         'user_challenges': user_challenges,
         'user_points': user_challenges.aggregate(Sum("points"))['points__sum']
-        # 'todays_challenge': todays_challenge.challenge
     }
     return render(request, 'project/profile.html', context)
-    # else:
-    #   return redirect("home")
 
 
-# This is the view for the home page. It will display the most recent posts.
+# Code by Elliot
 @login_required()
 def home(request):
     item = VillageShop.objects.get(item="Tree")
     print(item)
-    # Get the most recent challenge from the database.
-    # Currently doesn't actually get latest, just so can test out all challenges
     todays_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
-    # Get all posts that are for the most recent challenge
     posts_for_todays_challenge = UserChallenges.objects.filter(
         daily_challenge=todays_challenge).order_by("-submitted")
     users_challenge = posts_for_todays_challenge.filter(user=request.user)
@@ -326,12 +301,12 @@ def home(request):
             'created_at': post.submitted,
             'content': post.response
         } for post in posts_for_todays_challenge],
-        # If the user has already completed the daily challenge, they will be given the option to resubmit it.
+        # If user already completed daily challenge, they can resubmit 
         'already_completed_challenge': True if users_challenge else False
     }
     return render(request, 'home.html', context)
 
-
+# Code by Henry
 @login_required()
 def make_post(request):
     user = request.user
@@ -391,15 +366,17 @@ def make_post(request):
     }
     return render(request, 'make_post.html', context)
 
-
+# Code by Ben
 @login_required()
 def gamekeeper(request):
     if request.method == 'POST':
+        # Delete post
         if 'deleteButton' in request.POST:
             post_id = request.POST.get('post_id')
             post = UserChallenges.objects.get(id=post_id)
             post.delete()
 
+        # Edit post
         elif 'editButton' in request.POST:
             post_id = request.POST.get('post_id')
             post = UserChallenges.objects.get(id=post_id)
@@ -407,12 +384,15 @@ def gamekeeper(request):
             new_response = request.POST.get('response')
             post.response = new_response
             post.save()
+
+        # Delete challenge
         elif 'challengeDelete' in request.POST:
             challenge_title = request.POST.get('challenge_title')
             challenge = Challenge.objects.get(title=challenge_title)
             print(f'Challenge {challenge_title} has been deleted')
             challenge.delete()
 
+        # Edit challenge
         elif 'challengeEdit' in request.POST:
             edit_title = request.POST.get('edit_title')
             edit_description = request.get('edit_description')
@@ -426,6 +406,7 @@ def gamekeeper(request):
             challenge.save()
 
 
+        # Submit new challenge
         elif 'submit_challenge' in request.POST:
             challenge_title = request.POST.get('new_title')
             challenge_description = request.POST.get('new_description')
@@ -445,6 +426,7 @@ def gamekeeper(request):
 
             challenge.save()
 
+        # Assign new daily challenge
         elif "random_challenge" in request.POST:
             daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
             challenges = Challenge.objects.exclude(title = daily_challenge.challenge.title)
@@ -458,10 +440,6 @@ def gamekeeper(request):
 
             daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
             print(daily_challenge.challenge.title)
-
-
-
-
 
     user = request.user
     if user.is_gamekeeper:

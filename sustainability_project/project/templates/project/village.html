@@ -1,3 +1,4 @@
+<!-- Code by Dan -->
 {% extends 'base.html' %}
 
 {% load static %}
@@ -29,7 +30,7 @@
     {% endif %}
     <div class="game-board">
         {% for row in board %}
-            <div class="row"> <!-- Consider renaming this class to avoid confusion with Bootstrap's .row -->
+            <div class="row"> 
                 {% for cell in row %}
                     {% if user == request.user %}
                         <a href="{% url 'village_shop'%}?position={{ forloop.parentloop.counter0|find_grid_position:forloop.counter0 }}"> 

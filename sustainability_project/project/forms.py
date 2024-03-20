@@ -1,3 +1,5 @@
+# Code by Henry
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
@@ -35,9 +37,3 @@ class MakePost(forms.Form):
 
 class ChangeProfilePicture(forms.Form):
     profile_picture = forms.CharField(max_length=25)
-
-# class BuyItemForm(forms.Form):
-#     item = forms.CharField(max_length=25)
-#     position = forms.IntegerField()
-
-
