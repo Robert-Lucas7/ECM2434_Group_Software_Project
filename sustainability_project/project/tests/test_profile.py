@@ -34,13 +34,14 @@ class TestUserProfile(TestCase):
 
     def test_change_profile_picture(self):
 
-        response = self.client.post(reverse('change_profile_picture'), {'profile_picture': "cat.jpeg"})
+        response = self.client.post(reverse('profile', args=[self.user.username]), {'profile_picture': "cat.jpeg"})
 
-        self.assertEquals(CustomUser.profile_picture, "cat.jpeg")
+        self.user.refresh_from_db()
+        self.assertEquals(self.user.profile_picture, "cat.jpeg")
 
     def test_change_profile_picture_stays_same(self):
+        response = self.client.post(reverse('profile', args=[self.user.username]), {'profile_picture': ""})
 
-        response = self.client.post(reverse('change_profile_picture'), {'profile_picture': "Select Profile Picture"})
-
-        self.assertEquals(CustomUser.profile_picture, "cat.jpeg")
+        self.user.refresh_from_db()
+        self.assertEquals(self.user.profile_picture, "dog.jpeg")
     

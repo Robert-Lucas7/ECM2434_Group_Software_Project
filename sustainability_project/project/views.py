@@ -127,6 +127,7 @@ def village(request, username):
     user = get_object_or_404(CustomUser, username=username)
     if request.method == "POST" and user == request.user:
         item_name = request.POST.get('item')
+
         pos = request.POST.get('position')
 
         if not pos.isdigit() or not item_name:
@@ -142,6 +143,7 @@ def village(request, username):
             shop_item = VillageShop.objects.get(item=item_name)
         except VillageShop.DoesNotExist:
             messages.error(request, "Item does not exist.")
+            print("here3")
             return redirect('village', username=username)
 
         existing_item = Village.objects.filter(user=user, position=pos).first()
@@ -152,6 +154,7 @@ def village(request, username):
 
         if user.coins < shop_item.cost:
             messages.error(request, "Insufficient coins to buy this item.")
+            print(shop_item.cost)
             return redirect('village', username=username)
 
         user.coins -= shop_item.cost
@@ -306,6 +309,8 @@ def profile(request, username):
 # This is the view for the home page. It will display the most recent posts.
 @login_required()
 def home(request):
+    item = VillageShop.objects.get(item="Tree")
+    print(item)
     # Get the most recent challenge from the database.
     # Currently doesn't actually get latest, just so can test out all challenges
     todays_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
