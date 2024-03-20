@@ -15,7 +15,8 @@
         <h2 class="mb-4 text-center" id="title">Completed Challenges</h2>
         <div class="text-center">
         <button type="button" class="btn btn-success" id="add_challenge" name="add_challenge" style="margin-bottom: 8px; display: none";>Add Challenge</button>
-        <form>
+        <form id="randomForm" method="post" action="{% url 'gamekeeper' %}">
+            {% csrf_token %}
             <button type="submit" class="btn btn-success" id="random_challenge" name="random_challenge" style="margin-bottom: 8px; display: none";>Randomize Challenge</button>
         </form>
         </div>

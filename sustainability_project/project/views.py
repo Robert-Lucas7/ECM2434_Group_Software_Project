@@ -10,6 +10,9 @@ from django.core.exceptions import ValidationError
 
 from datetime import datetime
 import math
+import django
+
+from . import cron
 from .forms import Signup, LoginForm, MakePost, ChangeProfilePicture
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge, Village, VillageShop
 import json
@@ -397,8 +400,21 @@ def gamekeeper(request):
 
             challenge.save()
 
-        elif 'random_challenge' in request.POST:
-            pass
+        elif "random_challenge" in request.POST:
+            daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
+            challenges = Challenge.objects.exclude(title = daily_challenge.challenge.title)
+            print(daily_challenge.challenge.title)
+
+
+            challenge = random.choice(challenges)
+
+            new_daily_challenge = DailyChallenge(challenge=challenge, assigned=django.utils.timezone.now())
+            new_daily_challenge.save()
+
+            daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
+            print(daily_challenge.challenge.title)
+
+
 
 
 
@@ -406,7 +422,7 @@ def gamekeeper(request):
     if user.is_gamekeeper:
         user_challenges = UserChallenges.objects.all()
         challenges = Challenge.objects.all()
-        daily_challenge = DailyChallenge.objects.latest("-assigned")
+        daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
 
         return render(request, 'game_keeper.html', context={'userchallenges': user_challenges, 'challenges': challenges, 'daily_challenge': daily_challenge})
     else:
