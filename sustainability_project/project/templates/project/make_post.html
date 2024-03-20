@@ -32,29 +32,38 @@
             margin-top: 25px;
         }
 
+        .content{
+            border-radius: 50px; 
+            padding: 0px;
+            margin-left: auto;
+            margin-right: auto; 
+        }
+
+        .form-section{
+            border-radius: 10px; 
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto; 
+        }
+
+
     </style>
 </head>
    
     {% if completed %}  
     
-    <div class="content">
+    <div>
         <div class="challenge-section"> 
             <!-- Background image set inline to utilize the Django static file system -->
             <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}');"></div>
             <div class="content">
                 <a>Previous Submission:</a>
-                <pre></pre>
 
                 <submission>{{ response | default:"Previous Comment"}}</submission>
 
-                <pre></pre>
-                <pre></pre>
-                <pre></pre>
-                <pre></pre>
-                <pre></pre>
 
                 <h1>{{ daily_challenge.title|default:"Daily Challenge Sample Text" }}</h1>
-                <a align="center">Wanting to change your comment?</a>
+                <a align="center" >Wanting to change your comment?</a>
 
                 <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" >
                     {% csrf_token %}
@@ -95,7 +104,7 @@
                 <h1>{{ daily_challenge.title|default:"Daily Challenge Sample Text" }}</h1>
                 <a align="center">Write a comment about the challenege then submit</a>
 
-                <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" >
+                <form id="MakePost" method="post" align="center" action="{% url 'make_post' %}" class="form-section">
                     {% csrf_token %}
                     {{form.comment}}
                     <input type="hidden" id="userLat" name="user_lat">
