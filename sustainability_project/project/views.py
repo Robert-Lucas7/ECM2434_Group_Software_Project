@@ -304,7 +304,7 @@ def home(request):
 @login_required()
 def make_post(request):
     user = request.user
-    daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[2]
+    daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
 
     try:
         previous_challenge_completed = UserChallenges.objects.filter(user=user, daily_challenge=daily_challenge)[0]
