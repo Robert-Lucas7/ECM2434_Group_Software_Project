@@ -129,9 +129,9 @@ def village(request, username):
                     if item_in_position:
                         item_in_position.delete()
                     new_item = Village(user=request.user, item=shop_item, position=pos)
-                    request.user.coins -= shop_item.cost
+                    user.coins -= shop_item.cost
                     new_item.save()
-                    request.user.save()
+                    user.save()
             else:
                 print("INVALID POST PARAMS")
     
