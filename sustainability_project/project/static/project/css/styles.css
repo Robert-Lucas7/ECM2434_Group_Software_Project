@@ -205,7 +205,9 @@
 .leaderboard:hover{
     cursor: pointer;
 }
-
+.link{
+    color:black;
+}
 
 /* Index styles */
 .index-container {
@@ -301,19 +303,43 @@
     margin-left: 10px; /* Add some space between the text and the coin image */
 }
 
+.user-info-display {
+    display: flex;
+    flex-direction: column; /* Stack score and coins vertically */
+    align-items: center; /* Center-align the items */
+    justify-content: center; /* Center content vertically if there's extra space */
+    position: absolute; /* Adjust as necessary */
+    top: 100px; /* Adjust based on your navbar height */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+}
+
+.total-score-display {
+    margin-bottom: 20px; /* Adjust spacing as needed */
+    font-weight: bold; /* Makes the font bold */
+    font-size: 24px; /* Increases the font size, adjust as needed */
+}
+
+
+/* Optionally, adjust the bottom margin of the last item to reduce excess space */
+.coins-display {
+    margin-bottom: 0; /* Removes bottom margin from the coins display if unnecessary */
+}
+
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .cell {
-        width: 16vw;
-        height: 16vw;
+        width: 12vw;
+        height: 12vw;
     }
 }
 
 @media (max-width: 480px) {
     .cell {
-        width: 24vw;
-        height: 24vw;
+        width: 12vw;
+        height: 12vw;
     }
 }
 

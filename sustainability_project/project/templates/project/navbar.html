@@ -35,6 +35,7 @@
             <a class="dropdown-item" href="{% url 'village' %}">My Village</a>
             <a class="dropdown-item" href="{% url 'map' %}">Map</a>
             <a class="dropdown-item" href="{% url 'privacy_policy' %}">Privacy Policy</a>
+            <a class="dropdown-item" href="{% url 'terms_conditions' %}">Terms and Conditions</a>
             {% if request.user.is_gamekeeper %}
                 <a class="dropdown-item" href="{% url 'gamekeeper' %}">Gamekeeper page</a>
             {% endif %}

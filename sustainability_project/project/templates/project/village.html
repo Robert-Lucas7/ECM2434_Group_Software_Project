@@ -14,10 +14,15 @@
             </div>
         {% endfor %}
     {% endif %}
-    <div class="user-coins-display">
-        <div class="coins-text-and-value">Coins: {{ num_coins }}</div>
-        <div class="coin-img-container">
-            <img class="coin-img" src="{% static 'project/coin.png' %}" alt="Coin">
+    <div class="user-info-display">
+        <div class="total-score-display">
+            Score: {{ total_score }}
+        </div>
+        <div class="coins-display">
+            <div class="coins-text-and-value">Coins: {{ num_coins }}</div>
+            <div class="coin-img-container">
+                <img class="coin-img" src="{% static 'project/coin.png' %}" alt="Coin">
+            </div>
         </div>
     </div>
     <div class="game-board">
