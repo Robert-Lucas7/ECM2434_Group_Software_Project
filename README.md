@@ -12,7 +12,7 @@ The group members are:
 5. Daniel Price 
 
 
-This is a submission for Sprint 1. There are three types of document that you will find the following places.
+This is a submission for Sprint 2. There are three types of document that you will find the following places.
 
 ## PROCESS DOCUMENTS
 Our process documents are managed in the trello platform. The link to our project page is below. We (@elliotkent1) have added solomonoyelere1 to the board so it is visible.
@@ -40,9 +40,16 @@ We have also included the versioned source code for archiving.
 
 
 ## PRODUCT DOCUMENTS
-Our product documents are primarily in the form of a product UI. We have not yet hosted our website however it can be viewed by running on your local machine. Instructions for this can be found in: ./product-documents/UI.md 
-
+Our product documents are primarily in the form of a product UI. Our website can be viewed at 34.147.173.101 however it is blocked on university wifi. A product-document.docx containing information for the client has been included as well as a poster (poster.jpg)about our application.
 
 The UI and design documents for the client have also been archived under the link below:
 
 [./product-documents/](./product-documents/)
+
+### Using the website
+
+To access the gameKeeper features use the login: 
+username: robert
+password: pluto2015
+
+This will allow you to view the gamekeeper page 
