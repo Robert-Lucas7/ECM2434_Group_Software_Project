@@ -397,12 +397,17 @@ def gamekeeper(request):
 
             challenge.save()
 
+        elif 'random_challenge' in request.POST:
+            pass
+
+
 
     user = request.user
     if user.is_gamekeeper:
         user_challenges = UserChallenges.objects.all()
         challenges = Challenge.objects.all()
+        daily_challenge = DailyChallenge.objects.latest("-assigned")
 
-        return render(request, 'game_keeper.html', context={'userchallenges': user_challenges, 'challenges': challenges})
+        return render(request, 'game_keeper.html', context={'userchallenges': user_challenges, 'challenges': challenges, 'daily_challenge': daily_challenge})
     else:
         return redirect('home')

@@ -9,10 +9,15 @@
      <div class="col-12 col-lg-8 mb-5"> <!-- Added mb-5 for bottom margin -->
       <div class="border p-4 rounded-3 shadow-sm" style="background-color: #f8f9fa;">
       <button type="button" class="btn btn-primary" style="float: right;" id="rightBtn">→</button>
+      <button type="button" class="btn btn-primary" style="float: right; display: none;" id="rightBtn2">→</button>
       <button type="button" class="btn btn-primary" style="float: left; display: none;" id="leftBtn">←</button>
+      <button type="button" class="btn btn-primary" style="float: left; display: none;" id="leftBtn2">←</button>
         <h2 class="mb-4 text-center" id="title">Completed Challenges</h2>
         <div class="text-center">
-            <button type="button" class="btn btn-success" id="add_challenge" name="add_challenge" style="margin-bottom: 8px; display: none";>Add Challenge</button>
+        <button type="button" class="btn btn-success" id="add_challenge" name="add_challenge" style="margin-bottom: 8px; display: none";>Add Challenge</button>
+        <form>
+            <button type="submit" class="btn btn-success" id="random_challenge" name="random_challenge" style="margin-bottom: 8px; display: none";>Randomize Challenge</button>
+        </form>
         </div>
          <div class="list-group" id="user_posts">
                 {% for uc in userchallenges %}
@@ -60,16 +65,41 @@
                     </form>
                   </div>
           </div>
+          <div class="list-group" id="add_challenge_page" style="display: none">
+                  <div class="list-group-item list-group-item-action mb-2 rounded text-start" style="background-color: #e9ecef;" >
+                    <h5 class="mb-1">New Challenge</h5>
+                    <form id="addChallengeForm" method="post" action="{% url 'gamekeeper' %}">
+                        {% csrf_token %}
+                        <textarea class="mb-1 col-12" name="new_title" id="new_title" placeholder="Challenge Title"></textarea>
+                        <textarea class="mb-1 col-12" name="new_description" id="new_description" placeholder="Challenge Description"></textarea>
+                        <p class="mb-1">Optional inputs: </p>
+                        <textarea class="mb-1 col-12" name="challenge_lat" id="challenge_lat" placeholder="Challenge Latitude"></textarea>
+                        <textarea class="mb-1 col-12" name="challenge_long" id="challenge_long" placeholder="Challenge Longitude"></textarea>
+
+                        <button type="submit" class="btn btn-success" style="float: right; margin-left: 5px" name="submit_challenge">Submit</button>
+                        <button type="button" class="btn btn-danger" style="float: right;" name="cancel" id="cancel">Cancel</button>
+                        <div style="clear: both;"></div>
+                    </form>
+                  </div>
+          </div>
+          <div class="list-group" id="daily_challenge_page" style="display: none">
+                  <div class="list-group-item list-group-item-action mb-2 rounded text-start" style="background-color: #e9ecef;" >
+                    <h5 class="mb-1">Current Challenge</h5>
+                    <h5 class="mb-1">Title: {{ daily_challenge.challenge.title }}</h5>
+                    <p class="mb-1">Description: {{ daily_challenge.challenge.description }}</p>
+                  </div>
+          </div>
          </div>
       </div>
      </div>
   </div>
- </div>
+
 
      <script>
     document.getElementById("rightBtn").addEventListener("click", function () {
         document.getElementById("title").textContent = "Challenges";
         document.getElementById("rightBtn").style.display = "none";
+        document.getElementById("rightBtn2").style.display = "inline";
         document.getElementById("leftBtn").style.display = "inline";
 
         document.getElementById("challenge_list").style.display="inline";
@@ -78,15 +108,43 @@
 
     });
 
+    document.getElementById("rightBtn2").addEventListener("click", function () {
+        document.getElementById("title").textContent = "Daily Challenge";
+        document.getElementById("rightBtn2").style.display = "none";
+        document.getElementById("leftBtn").style.display = "none";
+        document.getElementById("leftBtn2").style.display = "inline";
+
+        document.getElementById("challenge_list").style.display="none";
+        document.getElementById("daily_challenge_page").style.display="inline";
+        document.getElementById("add_challenge").style.display="none";
+        document.getElementById("random_challenge").style.display="inline";
+
+    });
+
     document.getElementById("leftBtn").addEventListener("click", function () {
         document.getElementById("title").textContent = "Completed Challenges"
         document.getElementById("leftBtn").style.display = "none";
         document.getElementById("rightBtn").style.display = "inline";
+        document.getElementById("rightBtn2").style.display = "none";
 
+        document.getElementById("add_challenge").style.display="none";
         document.getElementById("challenge_list").style.display="none";
         document.getElementById("user_posts").style.display="inline";
-        document.getElementById("add_challenge").style.display="none";
     });
+
+    document.getElementById("leftBtn2").addEventListener("click", function () {
+        document.getElementById("title").textContent = "Challenges"
+        document.getElementById("leftBtn").style.display = "inline";
+        document.getElementById("leftBtn2").style.display = "none";
+        document.getElementById("rightBtn2").style.display = "inline";
+
+        document.getElementById("daily_challenge_page").style.display="none";
+        document.getElementById("challenge_list").style.display="inline";
+        document.getElementById("random_challenge").style.display="none";
+        document.getElementById("add_challenge").style.display="inline";
+    });
+
+
 
     document.getElementById("add_challenge").addEventListener("click", function () {
         document.getElementById("title").textContent = "Add Challenge";
