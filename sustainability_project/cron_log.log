@@ -1493,3 +1493,1367 @@ Traceback (most recent call last):
   File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
     raise RuntimeError(
 RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!
+System check identified some issues:
+
+WARNINGS:
+project.DailyChallenge.assigned: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.UserChallenges.submitted: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+project.Village.purchased: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+Traceback (most recent call last):
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 22, in <module>
+    main()
+  File "/home/rob/Documents/University23-24/Term_2/Group_Software_Engineering_Project/ECM2434_Group_Software_Project/sustainability_project/manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 412, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django/core/management/base.py", line 458, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/management/commands/crontab.py", line 29, in handle
+    Crontab().run_job(options['jobhash'])
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rob/anaconda3/lib/python3.11/site-packages/django_crontab/crontab.py", line 171, in __get_job_by_hash
+    raise RuntimeError(
+RuntimeError: No job with hash 37ab192eb7bd5b4fb8aa0851cab9b7c0 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!

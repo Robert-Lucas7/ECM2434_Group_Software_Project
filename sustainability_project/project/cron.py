@@ -1,12 +1,16 @@
-from .models import Challenge, ChallengesAssigned
+from .models import Challenge, DailyChallenge
 import random 
-import datetime
+import django
+
+DONT_REPEAT = 7
 
 def get_new_daily_challenge():
     print("=== STARTING CRON ===")
-    all_challenges = list(Challenge.objects.all())
-    random_challenge = random.choice(all_challenges)
-    new_daily_challenge = ChallengesAssigned(challenge=random_challenge, date_assigned = datetime.datetime.today())
+    recent_daily_challenges = DailyChallenge.objects.all().order_by('assigned')[:DONT_REPEAT + 1].values_list('challenge',flat=True)
+    possible_challenges = Challenge.objects.filter(pk__in=recent_daily_challenges)
+
+    random_challenge = random.choice(possible_challenges)
+    new_daily_challenge = DailyChallenge(challenge=random_challenge, assigned = django.utils.timezone.now())
     new_daily_challenge.save()
-    print(f"{new_daily_challenge.date_assigned.strftime('%Y-%m-%d')}: {new_daily_challenge.challenge.title}")
+    print(f"{new_daily_challenge.assigned.strftime('%Y-%m-%d')}: {new_daily_challenge.challenge.title}")
     print("=== ENDING CRON ===")

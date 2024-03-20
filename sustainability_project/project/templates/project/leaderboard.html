@@ -23,26 +23,15 @@
     </div>
     <!-- Display the 'streak' and 'points' buttons to switch what is displayed on the leaderboard. -->
     <div class="btn-group btn-group-toggle mt-3" data-toggle="buttons">
-        <label id="streak_button" class="btn btn-secondary active ">
+        <label id="streak_button" class="btn btn-secondary active " onclick="sortData('streak')">
             <input type="radio" name="leaderboard_options" id="streak_button" checked> Streak
         </label>
-        <label id="points_button" class="btn btn-secondary " data-target="#point_button_options" aria-expanded="false" aria-controls="point_button_options">
-            <input type="radio" name="leaderboard_options"> Points
+        <label id="village_score_button" class="btn btn-secondary " onclick="sortData('village score')">
+            <input type="radio" name="leaderboard_options"> Village Score
         </label>
-    </div>
-    <!-- The options for how to display the points: overall, weekly, monthly -->
-    <div class="collapse" id="point_button_options">
-        <div class="btn-group btn-group-toggle mt-1" data-toggle="buttons">
-            <label id="streak_button" class="btn btn-secondary active ">
-                <input type="radio" name="point_options" id="total_points_button" checked onclick="sortData('points')"> Total
-            </label>
-            <label id="points_button" class="btn btn-secondary ">
-                <input type="radio" name="point_options" id="weekly_points_button" onclick="sortData('this weeks points')"> Weekly
-            </label>
-            <label id="points_button" class="btn btn-secondary ">
-                <input type="radio" name="point_options" id="monthly_points_button" onclick="sortData('this months points')"> Monthly
-            </label>
-        </div>
+        <label id="monthly_coins_button" class="btn btn-secondary" onclick="sortData('monthly coins')">
+            <input type="radio" name="leaderboard_options"> Monthly Coins
+        </label>
     </div>
     <div class="container mt-4">
         <!-- Write the table headers -->
@@ -64,7 +53,6 @@
                     <div class="col">
                         {{entry.streak}}
                     </div>
-                    <div class="expand_row" id="expand_row_{{forloop.counter0}}"></div>
                 </div>
             {% empty %}
                 <li>No data available</li>
@@ -76,9 +64,9 @@
     {% for pageNumber in num_pages%}
         <label class="btn btn-secondary active rounded-circle">
             {% if forloop.first %}
-                <input onclick="changeDataDisplayed( '{{forloop.counter0}}' )" type="radio" name="options" id="streak_button" checked> {{forloop.counter0|add:"1"}}
+                <input onclick="changeDataDisplayed( '{{forloop.counter0}}' )" type="radio" name="options" checked> {{forloop.counter0|add:"1"}}
             {% else %}
-                <input onclick="changeDataDisplayed( '{{forloop.counter0}}' )" type="radio" name="options" id="streak_button"> {{forloop.counter0|add:"1"}}
+                <input onclick="changeDataDisplayed( '{{forloop.counter0}}' )" type="radio" name="options"> {{forloop.counter0|add:"1"}}
             {% endif %}
         </label>
         {% empty %}

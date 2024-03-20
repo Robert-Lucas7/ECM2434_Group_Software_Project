@@ -1,23 +1,4 @@
 
-// If the points button is clicked and the time period options are not displayed, display them.
-$('#points_button').on("click", function(evt) {
-    evt.preventDefault(); //Stop it activating twice
-    if( $('#points_button').attr("aria-expanded") == "false" ){
-        $('.collapse').collapse('show');
-        $('#points_button').attr("aria-expanded", "true");
-    }
-    sortData("points");
-});
-// If the streak button is clicked and the time period options are displayed, hide them.
-$('#streak_button').on("click", function(evt){
-    evt.preventDefault();
-    if( $('#points_button').attr("aria-expanded") == "true" ){
-        $('.collapse').collapse('hide');
-        $('#points_button').attr("aria-expanded", "false");
-    }
-    sortData("streak");
-});
-
 //On page load - get the user and points data from the script tag.
 let data = JSON.parse(
     document.currentScript.nextElementSibling.textContent
@@ -55,18 +36,7 @@ function getUserPosition(metricToSort){
 }
 function updateCardsDisplayed(metricToSort){
     //Update the 'challenges completed' card displayed at the top of the page.
-    let num_challenges = 0;
-    switch(metricToSort){
-        case "this weeks points":
-            console.log("HELLO");
-            num_challenges = challengesData[`challenges_completed this weeks points`];
-            break;
-        case "this months points":
-            num_challenges = challengesData["challenges_completed this months points"];
-            break;
-        default:
-            num_challenges = challengesData["challenges_completed"];
-    }
+    let num_challenges = challengesData["challenges_completed"];
     $('#challenges_completed_text').html(`Challenges Completed: ${num_challenges}`);
     //Update the position card displayed at the top of the page.
     let user_position = getUserPosition(metricToSort);
