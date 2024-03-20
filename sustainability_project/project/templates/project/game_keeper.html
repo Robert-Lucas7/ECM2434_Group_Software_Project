@@ -15,7 +15,8 @@
         <h2 class="mb-4 text-center" id="title">Completed Challenges</h2>
         <div class="text-center">
         <button type="button" class="btn btn-success" id="add_challenge" name="add_challenge" style="margin-bottom: 8px; display: none";>Add Challenge</button>
-        <form>
+        <form id="randomForm" method="post" action="{% url 'gamekeeper' %}">
+            {% csrf_token %}
             <button type="submit" class="btn btn-success" id="random_challenge" name="random_challenge" style="margin-bottom: 8px; display: none";>Randomize Challenge</button>
         </form>
         </div>
@@ -25,6 +26,7 @@
                     <h5 class="mb-1">Challenge Title: {{ uc.daily_challenge.challenge.title }}</h5>
                       <p class="mb-1">User: {{ uc.user.username }}</p>
                     <form id="combinedForm" method="post" action="{% url 'gamekeeper' %}">
+                        {% csrf_token %}
                         <textarea class="mb-1 col-12" name="response" id="response_id">{{ uc.response }}</textarea>
                         <small class="text-muted">Date Completed: {{ uc.submitted|date:"d M Y" }}</small>
                         <input type="hidden" name="post_id" value="{{ uc.id }}" id="post_id">
@@ -38,12 +40,16 @@
           <div class="list-group" id="challenge_list" style="display: none">
                 {% for challenge in challenges %}
                   <div class="list-group-item list-group-item-action mb-2 rounded text-start" style="background-color: #e9ecef;" >
-                    <h5 class="mb-1">Title: {{ challenge.title }}</h5>
-                    <p class="mb-1">Description: {{ challenge.description }}</p>
                     <form id="challengeForm" method="post" action="{% url 'gamekeeper' %}">
                         {% csrf_token %}
+                        <h5 class="mb-1">Challenge Title:</h5>
+                        <textarea class="mb-1 col-12" name="edit_title" id="edit_title">{{ challenge.title }}</textarea>
+                        <p class="mb-1">Challenge Description: </p>
+                        <textarea class="mb-1 col-12" name="edit_description" id="edit_description">{{ challenge.description }}</textarea>
                         <input type="hidden" name="challenge_title" value="{{ challenge.title }}" id="challenge_title">
-                        <button type="submit" class="btn btn-danger" name="challengeDelete">Delete Challenge</button>
+                        <button type="submit" class="btn btn-success" name="challengeEdit" style="float: right; margin-left: 5px;">Edit Challenge</button>
+                        <button type="submit" class="btn btn-danger" name="challengeDelete" style="float: right;">Delete Challenge</button>
+                        <div style="clear: both;"></div>
                     </form>
                   </div>
                 {% endfor %}

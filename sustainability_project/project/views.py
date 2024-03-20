@@ -10,6 +10,9 @@ from django.core.exceptions import ValidationError
 
 from datetime import datetime
 import math
+import django
+
+from . import cron
 from .forms import Signup, LoginForm, MakePost, ChangeProfilePicture
 from .models import CustomUser, Challenge, UserChallenges, DailyChallenge, Village, VillageShop
 import json
@@ -126,9 +129,9 @@ def village(request, username):
                     if item_in_position:
                         item_in_position.delete()
                     new_item = Village(user=request.user, item=shop_item, position=pos)
-                    request.user.coins -= shop_item.cost
+                    user.coins -= shop_item.cost
                     new_item.save()
-                    request.user.save()
+                    user.save()
             else:
                 print("INVALID POST PARAMS")
     
@@ -378,6 +381,19 @@ def gamekeeper(request):
             print(f'Challenge {challenge_title} has been deleted')
             challenge.delete()
 
+        elif 'challengeEdit' in request.POST:
+            edit_title = request.POST.get('edit_title')
+            edit_description = request.get('edit_description')
+
+            challenge_title = request.POST.get('challenge_title')
+
+            challenge = Challenge.objects.get(title=challenge_title)
+            challenge.title = edit_title
+            challenge.description =edit_description
+
+            challenge.save()
+
+
         elif 'submit_challenge' in request.POST:
             challenge_title = request.POST.get('new_title')
             challenge_description = request.POST.get('new_description')
@@ -397,8 +413,21 @@ def gamekeeper(request):
 
             challenge.save()
 
-        elif 'random_challenge' in request.POST:
-            pass
+        elif "random_challenge" in request.POST:
+            daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
+            challenges = Challenge.objects.exclude(title = daily_challenge.challenge.title)
+            print(daily_challenge.challenge.title)
+
+
+            challenge = random.choice(challenges)
+
+            new_daily_challenge = DailyChallenge(challenge=challenge, assigned=django.utils.timezone.now())
+            new_daily_challenge.save()
+
+            daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
+            print(daily_challenge.challenge.title)
+
+
 
 
 
@@ -406,7 +435,7 @@ def gamekeeper(request):
     if user.is_gamekeeper:
         user_challenges = UserChallenges.objects.all()
         challenges = Challenge.objects.all()
-        daily_challenge = DailyChallenge.objects.latest("-assigned")
+        daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
 
         return render(request, 'game_keeper.html', context={'userchallenges': user_challenges, 'challenges': challenges, 'daily_challenge': daily_challenge})
     else:
