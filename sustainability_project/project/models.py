@@ -21,7 +21,7 @@ class CustomUser(AbstractUser):
 class Village(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)  #The user that the village items are for.
     item = models.ForeignKey(VillageShop, on_delete=models.CASCADE) #Details on how much the items cost and the maximum number of them allowed.
-    purchased = models.DateTimeField(default=now()) #When the item was purchased
+    purchased = models.DateTimeField(default=now) #When the item was purchased
     # item_number = models.PositiveIntegerField() #The occurrence number of that item (e.g. tree0, tree1, tree2, etc)
     position = models.PositiveIntegerField() # Position must be positive or zero.
     def __self__(self):
@@ -39,13 +39,13 @@ class Challenge(models.Model):
     
 class DailyChallenge(models.Model):
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE)
-    assigned = models.DateTimeField(default=now(), null=True)
+    assigned = models.DateTimeField(default=now, null=True)
 
 
 class UserChallenges(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)  # Set these as composite primary keys
     daily_challenge = models.ForeignKey(DailyChallenge, on_delete=models.CASCADE)
-    submitted = models.DateTimeField(default=now())
+    submitted = models.DateTimeField(default=now)
     completed = models.BooleanField(default=False)
     response = models.CharField(max_length=250)
     points = models.PositiveIntegerField(default=0)

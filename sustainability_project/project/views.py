@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db.models import Sum, Count
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
+from django.core.exceptions import ValidationError
 
 from datetime import datetime
 import math
@@ -303,7 +304,7 @@ def home(request):
 @login_required()
 def make_post(request):
     user = request.user
-    daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
+    daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[2]
 
     try:
         previous_challenge_completed = UserChallenges.objects.filter(user=user, daily_challenge=daily_challenge)[0]
@@ -380,6 +381,26 @@ def gamekeeper(request):
             challenge = Challenge.objects.get(title=challenge_title)
             print(f'Challenge {challenge_title} has been deleted')
             challenge.delete()
+
+        elif 'submit_challenge' in request.POST:
+            challenge_title = request.POST.get('new_title')
+            challenge_description = request.POST.get('new_description')
+
+            challenge_lat = request.POST.get('challenge_lat')
+            challenge_long = request.POST.get('challenge_long')
+
+            if challenge_lat and challenge_long:
+                try:
+                    challenge = Challenge(title=challenge_title, description=challenge_description, location_lat=challenge_lat, location_long=challenge_long)
+                except ValidationError as e:
+                    challenge = Challenge(title=challenge_title, description=challenge_description)
+
+
+            else:
+                challenge = Challenge(title=challenge_title, description=challenge_description)
+
+            challenge.save()
+
 
     user = request.user
     if user.is_gamekeeper:
