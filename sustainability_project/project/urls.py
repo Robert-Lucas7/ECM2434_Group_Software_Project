@@ -17,6 +17,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('map/', views.map, name='map'),
     path('privacy_policy/', views.privacy_policy, name='privacy_policy'),
+    path('terms_conditions/', views.terms_conditions, name='terms_conditions'),
     path('gamekeeper/', views.gamekeeper, name='gamekeeper')
 
 ]
