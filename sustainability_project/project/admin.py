@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here. (so that they can be interracted with by admins)
 from django.contrib import admin
 
-from .models import Village, VillageShop, CustomUser
+from .models import Village, VillageShop, CustomUser, DailyChallenge
 
 @admin.register(Village)
 class VillageAdmin(admin.ModelAdmin):
@@ -16,3 +16,7 @@ class VillageShopAdmin(admin.ModelAdmin):
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
     pass
+@admin.register(DailyChallenge)
+class DailyChallengeAdmin(admin.ModelAdmin):
+    pass
+
