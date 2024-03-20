@@ -25,6 +25,7 @@
                     <h5 class="mb-1">Challenge Title: {{ uc.daily_challenge.challenge.title }}</h5>
                       <p class="mb-1">User: {{ uc.user.username }}</p>
                     <form id="combinedForm" method="post" action="{% url 'gamekeeper' %}">
+                        {% csrf_token %}
                         <textarea class="mb-1 col-12" name="response" id="response_id">{{ uc.response }}</textarea>
                         <small class="text-muted">Date Completed: {{ uc.submitted|date:"d M Y" }}</small>
                         <input type="hidden" name="post_id" value="{{ uc.id }}" id="post_id">
