@@ -7,6 +7,7 @@ class VillageShop(models.Model):
     cost = models.PositiveIntegerField() #The cost of the item.
     max_quantity = models.PositiveIntegerField()
     image_name = models.CharField(max_length=50, default="")
+    score = models.IntegerField(default=0)  # Add this line for the score of each item
     def __str__(self):
         return self.item
     
@@ -14,6 +15,7 @@ class CustomUser(AbstractUser):
     streak = models.PositiveIntegerField(default=0)
     best_streak =  models.PositiveIntegerField(default=0)
     coins = models.PositiveIntegerField(default=0)
+    score = models.IntegerField(default=0)  # Add this line for the score of each item
     profile_picture = models.CharField(max_length=25, default="blank.jpeg")
     is_gamekeeper = models.BooleanField(default=False)
 

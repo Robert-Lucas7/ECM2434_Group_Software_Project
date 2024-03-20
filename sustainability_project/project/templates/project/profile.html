@@ -50,7 +50,7 @@
           <p>Current Streak: {{ user.streak|default:"0" }}</p>
           <!-- <p>Monthly Streak: {{ user.profile.stat2|default:"0" }}</p> -->
           <p>Best Streak: {{ user.best_streak|default:"0" }}</p>
-          <p>Points: {{ user_points|default:"0" }}</p>
+          <p>Score: {{ user.score|default:"0" }}</p> <!-- Updated this line to display the score -->
         </div>
       </div>
       <a href="{% url 'make_post' %}"><button class="btn btn-success mb-3" ><!-- type="button" data-toggle="modal" data-target="#challengePopup" -->
