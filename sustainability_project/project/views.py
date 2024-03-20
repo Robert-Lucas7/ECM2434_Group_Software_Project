@@ -78,7 +78,6 @@ def village_shop(request):
         items = [{
             'item': item.item,
             'cost': item.cost,
-            'quantity_remaining': item.max_quantity - Village.objects.filter(user=request.user, item=item).count(),
             'can_afford': num_coins > item.cost,
             'image_name': item.image_name
         } for item in VillageShop.objects.all()]
@@ -115,8 +114,6 @@ def village(request):
             if valid:
                 shop_item = all_items[0]  # all_items has exactly one element in it.
                 num_same_items = Village.objects.filter(user=request.user, item=shop_item).count()
-                if num_same_items >= shop_item.max_quantity:
-                    errors.append("Cannot buy item due to max quantity")
                 if shop_item.cost > request.user.coins:
                     errors.append("Insufficient coints to buy item")
                 if len(errors) == 0:  # Can buy the item.
@@ -132,26 +129,30 @@ def village(request):
             else:
                 print("INVALID POST PARAMS")
     
-    # Build the board from the DB.
-    all_village_items = list(Village.objects.filter(user=request.user).order_by("position"))
+    user = request.user
+    all_village_items = Village.objects.filter(user=user).order_by("position")
     board = []
-    for row in range(6):  # Assuming a 6x6 board
+    total_score = 0 #initialize score
+    for row in range(6):
         board_row = []
         for col in range(6):
             image_path = None
-            if len(all_village_items) > 0 and all_village_items[0].position == row * 6 + col:
-                image_path = all_village_items[0].item.image_name
-                all_village_items.pop(0)
-            board_row.append({'image_path': image_path})       
+            item_score = 0
+            if all_village_items.exists() and all_village_items[0].position == row * 6 + col:
+                village_item = all_village_items[0]
+                image_path = village_item.item.image_name
+                item_score = village_item.item.score # Fetch the score
+                all_village_items = all_village_items[1:] # Move to the next item
+            board_row.append({'image_path': image_path, 'score': item_score})
+            total_score += item_score # Add the score to the total score    
         board.append(board_row)
-    # print(board)
-    num_coins = request.user.coins  # Get the current user's coins
-    if not num_coins:
-        num_coins = 0  # Default to 0 if None
+    user.score = total_score # Update the user's score
+    user.save()
+    num_coins = user.coins if user.coins else 0
     context = {
         'board': board,
-        'num_coins': num_coins,  # Add num_coins to the context
-        'errors' : errors
+        'num_coins': num_coins,
+        'total_score': total_score,
     }
     return render(request, 'project/village.html', context)
 
