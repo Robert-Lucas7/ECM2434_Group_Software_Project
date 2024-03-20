@@ -39,7 +39,7 @@ class TestVillage(TestCase):
 
         self.assertEqual(response.status_code, 302)
         self.assertEquals(self.user.coins, 0)
-        self.assertEquals(self.user.score, 200)
+        self.assertEquals(self.user.score, 100)
 
     def test_not_afford_item(self):
         response = self.client.post(reverse('village', args=[self.user.username]), {'item': 'Phoenix King', 'position': 1})
