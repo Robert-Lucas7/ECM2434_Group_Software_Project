@@ -65,7 +65,7 @@ function changeDataDisplayed(pageNumber){
         let username = data[pageNumber * entriesPerPage + i]["username"];
         let aTag = document.createElement('a');
         aTag.className = "link";
-        aTag.href = `localhost:8000/profile/${username}`;
+        aTag.href = `/profile/${username}`;
         let row = document.createElement('div');
         // Styling (specifically background colour) of the rows
         let positionStyle = "leaderboard-other"
