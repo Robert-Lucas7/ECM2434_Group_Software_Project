@@ -48,8 +48,8 @@ The UI and design documents for the client have also been archived under the lin
 
 ### Using the website
 
-To access the gameKeeper features use the login: 
-username: robert
-password: pluto2015
+To access the gameKeeper features use the login: \
+username: robert\
+password: pluto2015\
 
 This will allow you to view the gamekeeper page 
