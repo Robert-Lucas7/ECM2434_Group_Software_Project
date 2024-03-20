@@ -13,6 +13,7 @@ class TestUserLogin(TestCase):
             'email': 'testuser@exeter.ac.uk',
             'password1': 'testpassword1',
             'password2': 'testpassword1',
+            'profile_picture':  'cat.jpeg'
         }
 
     
