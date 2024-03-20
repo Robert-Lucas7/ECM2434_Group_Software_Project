@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
@@ -14,6 +15,10 @@
     }
     button.change-profile-picture:hover{
       background-color: black;
+    }
+    .village-button{
+      background-color: lightblue;
+      color: white;
     }
 
 </style>
@@ -58,7 +63,14 @@
           <p>Best Streak: {{ user.best_streak|default:"0" }}</p>
           <p>Score: {{ user.score|default:"0" }}</p> <!-- Updated this line to display the score -->
         </div>
+      
+
+        <a href="{% url 'village' user.username %}"><button class="btn village-button" >
+          View Village
+        </button>
+        </a>
       </div>
+
       <a href="{% url 'make_post' %}"><button class="btn btn-success mb-3" ><!-- type="button" data-toggle="modal" data-target="#challengePopup" -->
         Today's Challenge
       </button>

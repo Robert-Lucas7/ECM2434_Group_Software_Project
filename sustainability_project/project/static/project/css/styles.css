@@ -205,6 +205,9 @@
 .leaderboard:hover{
     cursor: pointer;
 }
+.link{
+    color: black;
+}
 
 
 /* Index styles */

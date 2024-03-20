@@ -7,7 +7,7 @@
 {% if error %}
     <div class="text-center rounded-lg bg-warning w-50 mx-auto p-3">
         <h1>An error has occurred</h1>
-        <a href="{% url 'village' %}"><button class="btn btn-danger">Back to village</button></a>
+        <a href="{% url 'village' request.user.username%}"><button class="btn btn-danger">Back to village</button></a>
     </div>
 {% else %}
 <h1 class="text-center">Village Shop</h1>
@@ -40,14 +40,14 @@
                 {{item.quantity_remaining}}
             </div>
             <div class="col-2 my-auto">
-                <form action="{% url 'village' %}" method="POST">
+                <form action="{% url 'village' request.user.username %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="item" value="{{item.item}}">
                     <input type="hidden" name="position" value="{{position}}">
                     <button type='submit' class='btn {% if item.can_afford > 0 %} btn-success {% else %} btn-danger {% endif %}'>Buy</button>
                 </form>
                 <!-- {% if item.can_afford %}
-                    <a href="{% url 'village' %}"><button onclick="buyVillageItem('{{item.item}}')" class="btn {% if item.can_afford and item.quantity_remaining %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button></a>
+                    <a href="{% url 'village' request.user.username %}"><button onclick="buyVillageItem('{{item.item}}')" class="btn {% if item.can_afford and item.quantity_remaining %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button></a>
                 {% else %}
                     <button class="btn {% if item.can_afford and item.quantity_remaining %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button>
                 {% endif %} -->
@@ -62,7 +62,7 @@
         </div>
     </div>
     <div class="row mt-2">
-        <a href="{% url 'village' %}" class="mx-auto"><button class="btn btn-primary">Return to village</button></a>
+        <a href="{% url 'village' request.user.username %}" class="mx-auto"><button class="btn btn-primary">Return to village</button></a>
     </div>
 </div>
 <div>
