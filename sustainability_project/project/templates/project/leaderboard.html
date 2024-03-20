@@ -46,7 +46,7 @@
         <div id="table-contents">
             <!-- Display the first page of the leaderboard-->
             {% for entry in first_page %}
-                <a href="{% url 'profile' entry.username %}">
+                <a href="{% url 'profile' entry.username %}" class="link">
                 <div class="row rounded-pill my-2 p-3 leaderboard {% if forloop.first %} leaderboard-first {% elif forloop.counter0 == 1 %}leaderboard-second{% elif forloop.counter0 == 2 %}leaderboard-third{% else %}leaderboard-other{% endif %}">
                     <div class="col">
                         {{ entry.username }}
