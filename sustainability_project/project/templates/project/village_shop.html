@@ -10,8 +10,24 @@
         <a href="{% url 'village' request.user.username%}"><button class="btn btn-danger">Back to village</button></a>
     </div>
 {% else %}
-<h1 class="text-center">Village Shop</h1>
-<div class="container text-center shop-table-container rounded-lg py-2">
+<div class="container text-center shop-table-container rounded-lg py-2" style="position: relative;">
+    <!-- Return to village button at the top left corner with an arrow -->
+    <div style="position: absolute; top: 10px; left: 10px;">
+        <a href="{% url 'village' %}" style="text-decoration: none; color: inherit;">
+            <button class="btn btn-primary">
+                <span>&larr;</span>
+            </button>
+        </a>
+    </div>
+    
+    <h1 class="text-center">Village Shop</h1>
+    <div class="row mt-2">
+        <div class="col">
+            Coins: {{num_coins}}
+            <img class="coin-img" src="{% static 'project/coin.png' %}">
+        </div>
+    </div>
+
     <div class="row mx-1">
         <div class="col-4">
             <h3>Items</h3>
@@ -19,53 +35,29 @@
         <div class="col-4">
             <h3>Cost</h3>
         </div>
-        <div class="col-2">
-            <h3>Remaining</h3>
-        </div>
-       <div class="col">
-            <!-- Placeholder -->
+       <div class="col-4">
+            <h3>Purchase</h3>
        </div>
     </div>
     {% for item in items %}
         <div class="row py-2 bg-secondary m-1 rounded-pill">
             <div class="col-4 my-auto">
-                {{item.item}}
                 <img class="coin-img" src="{% static 'project/game_assets/'|add:item.image_name %}">
             </div>
             <div class="col-4 my-auto">
                 {{item.cost}}
                 <img class="coin-img" src="{% static 'project/coin.png' %}">
             </div>
-            <div class="col-2 my-auto">
-                {{item.quantity_remaining}}
-            </div>
-            <div class="col-2 my-auto">
-                <form action="{% url 'village' request.user.username %}" method="POST">
+            <div class="col-4 my-auto">
+                <form action="{% url 'village' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="item" value="{{item.item}}">
                     <input type="hidden" name="position" value="{{position}}">
                     <button type='submit' class='btn {% if item.can_afford > 0 %} btn-success {% else %} btn-danger {% endif %}'>Buy</button>
                 </form>
-                <!-- {% if item.can_afford %}
-                    <a href="{% url 'village' request.user.username %}"><button onclick="buyVillageItem('{{item.item}}')" class="btn {% if item.can_afford and item.quantity_remaining %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button></a>
-                {% else %}
-                    <button class="btn {% if item.can_afford and item.quantity_remaining %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button>
-                {% endif %} -->
             </div>
-            
         </div>
     {% endfor %}
-    <div class="row mt-2">
-        <div class="col">
-            Coins: {{num_coins}}
-            <img class="coin-img" src="{% static 'project/coin.png' %}">
-        </div>
-    </div>
-    <div class="row mt-2">
-        <a href="{% url 'village' request.user.username %}" class="mx-auto"><button class="btn btn-primary">Return to village</button></a>
-    </div>
-</div>
-<div>
 </div>
 {% endif %}
 <script src="/static/village_shop.js"></script>

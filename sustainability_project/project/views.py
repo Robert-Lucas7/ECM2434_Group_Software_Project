@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db.models import Sum, Count
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
+from django.core.exceptions import ValidationError
 
 from datetime import datetime
 import math
@@ -22,6 +23,8 @@ def index(request):
 def privacy_policy(request):
     return render(request, 'project/privacy_policy.html')
 
+def terms_conditions(request):
+    return render(request, 'project/terms_conditions.html')
 def terms_conditions(request):
     return render(request, 'project/terms_conditions.html')
 
@@ -133,9 +136,19 @@ def village(request, username):
     board = []
     total_score = 0 #initialize score
     for row in range(6):
+    total_score = 0 #initialize score
+    for row in range(6):
         board_row = []
         for col in range(6):
             image_path = None
+            item_score = 0
+            if all_village_items.exists() and all_village_items[0].position == row * 6 + col:
+                village_item = all_village_items[0]
+                image_path = village_item.item.image_name
+                item_score = village_item.item.score # Fetch the score
+                all_village_items = all_village_items[1:] # Move to the next item
+            board_row.append({'image_path': image_path, 'score': item_score})
+            total_score += item_score # Add the score to the total score    
             item_score = 0
             if all_village_items.exists() and all_village_items[0].position == row * 6 + col:
                 village_item = all_village_items[0]
@@ -297,7 +310,7 @@ def home(request):
 @login_required()
 def make_post(request):
     user = request.user
-    daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
+    daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[2]
 
     try:
         previous_challenge_completed = UserChallenges.objects.filter(user=user, daily_challenge=daily_challenge)[0]
@@ -374,6 +387,26 @@ def gamekeeper(request):
             challenge = Challenge.objects.get(title=challenge_title)
             print(f'Challenge {challenge_title} has been deleted')
             challenge.delete()
+
+        elif 'submit_challenge' in request.POST:
+            challenge_title = request.POST.get('new_title')
+            challenge_description = request.POST.get('new_description')
+
+            challenge_lat = request.POST.get('challenge_lat')
+            challenge_long = request.POST.get('challenge_long')
+
+            if challenge_lat and challenge_long:
+                try:
+                    challenge = Challenge(title=challenge_title, description=challenge_description, location_lat=challenge_lat, location_long=challenge_long)
+                except ValidationError as e:
+                    challenge = Challenge(title=challenge_title, description=challenge_description)
+
+
+            else:
+                challenge = Challenge(title=challenge_title, description=challenge_description)
+
+            challenge.save()
+
 
     user = request.user
     if user.is_gamekeeper:

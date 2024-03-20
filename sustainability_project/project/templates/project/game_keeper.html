@@ -3,6 +3,7 @@
 {% load static %}
 
  {% block content %}
+
  <div class="container" style="margin-top: 100px">
   <div class="row justify-content-center">
      <div class="col-12 col-lg-8 mb-5"> <!-- Added mb-5 for bottom margin -->
@@ -10,6 +11,9 @@
       <button type="button" class="btn btn-primary" style="float: right;" id="rightBtn">→</button>
       <button type="button" class="btn btn-primary" style="float: left; display: none;" id="leftBtn">←</button>
         <h2 class="mb-4 text-center" id="title">Completed Challenges</h2>
+        <div class="text-center">
+            <button type="button" class="btn btn-success" id="add_challenge" name="add_challenge" style="margin-bottom: 8px; display: none";>Add Challenge</button>
+        </div>
          <div class="list-group" id="user_posts">
                 {% for uc in userchallenges %}
                   <div class="list-group-item list-group-item-action mb-2 rounded text-start" style="background-color: #e9ecef;">
@@ -21,6 +25,7 @@
                         <input type="hidden" name="post_id" value="{{ uc.id }}" id="post_id">
                         <button type="submit" class="btn btn-success" style="float: right; margin-left: 5px" name="editButton">Edit Post</button>
                         <button type="submit" class="btn btn-danger" style="float: right;" name="deleteButton">Delete Post</button>
+                        <div style="clear: both;"></div>
                     </form>
                   </div>
                 {% endfor %}
@@ -38,6 +43,23 @@
                   </div>
                 {% endfor %}
           </div>
+          <div class="list-group" id="add_challenge_page" style="display: none">
+                  <div class="list-group-item list-group-item-action mb-2 rounded text-start" style="background-color: #e9ecef;" >
+                    <h5 class="mb-1">New Challenge</h5>
+                    <form id="addChallengeForm" method="post" action="{% url 'gamekeeper' %}">
+                        {% csrf_token %}
+                        <textarea class="mb-1 col-12" name="new_title" id="new_title" placeholder="Challenge Title"></textarea>
+                        <textarea class="mb-1 col-12" name="new_description" id="new_description" placeholder="Challenge Description"></textarea>
+                        <p class="mb-1">Optional inputs: </p>
+                        <textarea class="mb-1 col-12" name="challenge_lat" id="challenge_lat" placeholder="Challenge Latitude"></textarea>
+                        <textarea class="mb-1 col-12" name="challenge_long" id="challenge_long" placeholder="Challenge Longitude"></textarea>
+
+                        <button type="submit" class="btn btn-success" style="float: right; margin-left: 5px" name="submit_challenge">Submit</button>
+                        <button type="button" class="btn btn-danger" style="float: right;" name="cancel" id="cancel">Cancel</button>
+                        <div style="clear: both;"></div>
+                    </form>
+                  </div>
+          </div>
          </div>
       </div>
      </div>
@@ -52,6 +74,7 @@
 
         document.getElementById("challenge_list").style.display="inline";
         document.getElementById("user_posts").style.display="none";
+        document.getElementById("add_challenge").style.display="inline";
 
     });
 
@@ -62,6 +85,28 @@
 
         document.getElementById("challenge_list").style.display="none";
         document.getElementById("user_posts").style.display="inline";
+        document.getElementById("add_challenge").style.display="none";
+    });
+
+    document.getElementById("add_challenge").addEventListener("click", function () {
+        document.getElementById("title").textContent = "Add Challenge";
+        document.getElementById("leftBtn").style.display = "none";
+        document.getElementById("rightBtn").style.display = "none";
+        document.getElementById("add_challenge").style.display="none";
+
+        document.getElementById("challenge_list").style.display="none";
+        document.getElementById("add_challenge_page").style.display="inline";
+
+    });
+
+    document.getElementById("cancel").addEventListener("click", function () {
+        document.getElementById("title").textContent = "Completed Challenges";
+        document.getElementById("leftBtn").style.display = "inline";
+        document.getElementById("rightBtn").style.display = "none";
+        document.getElementById("add_challenge").style.display="inline";
+
+        document.getElementById("challenge_list").style.display="inline";
+        document.getElementById("add_challenge_page").style.display="none";
     });
 </script>
 {% endblock %}

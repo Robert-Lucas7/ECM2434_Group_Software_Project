@@ -62,6 +62,9 @@ function changeDataDisplayed(pageNumber){
     }
     let i = 0;
     while( entriesPerPage > i && pageNumber * entriesPerPage + i < data.length){
+        let username = data[pageNumber * entriesPerPage + i]["username"];
+        let aTag = document.createElement('a');
+        aTag.className = "link";
         let row = document.createElement('div');
         // Styling (specifically background colour) of the rows
         let positionStyle = "leaderboard-other"
@@ -78,13 +81,14 @@ function changeDataDisplayed(pageNumber){
         // Populate row with the data needed.
         let col = document.createElement("div");
         col.className = "col";
-        col.innerHTML = data[pageNumber * entriesPerPage + i]["username"];
+        col.innerHTML = username;
         row.appendChild(col);
         let col2 = document.createElement('div')
         col2.className = "col";
         col2.innerHTML = data[pageNumber * entriesPerPage + i][currentlySortedBy];
         row.appendChild(col2);
-        contentDiv.append(row);
+        aTag.appendChild(row);
+        contentDiv.append(aTag);
         i += 1;
     }
 }
