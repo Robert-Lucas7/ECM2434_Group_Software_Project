@@ -25,11 +25,25 @@
         }
 
         #map {
-            height: 300px;
-            width: 300px;
-            justify-content: center;
-            display: flex;
-            margin-top: 25px;
+            height: 30%;
+            width: 63%;
+            position: absolute;
+
+            left: 50%;
+            top: 70%;
+
+            transform: translate(-50%, -50%);
+
+            margin-top: 50px;
+        }
+
+        .content {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
         }
 
     </style>
@@ -38,10 +52,10 @@
     {% if completed %}  
     
     <div class="content">
-        <div class="challenge-section"> 
+        <div class="challenge-section" id="challenge-section">
             <!-- Background image set inline to utilize the Django static file system -->
             <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}');"></div>
-            <div class="content">
+            <div class="content" id="content">
                 <a>Previous Submission:</a>
                 <pre></pre>
 
@@ -88,10 +102,10 @@
             const DESCRIPTION = "{{ daily_challenge.description }}";
             console.log("{{ daily_challenge}}")
         </script>
-        <div class="challenge-section">
+        <div class="challenge-section" id="challenge-section">
             <!-- Background image set inline to utilize the Django static file system -->
             <div class="background-image" style="background-image: url('{% static 'project/exeter_uni_campus.jpg' %}');"></div>
-            <div class="content">
+            <div class="content" id="content">
                 <h1>{{ daily_challenge.title|default:"Daily Challenge Sample Text" }}</h1>
                 <a align="center">Write a comment about the challenege then submit</a>
 
@@ -102,8 +116,8 @@
                     <input type="hidden" id="userLong" name="user_long">
                     <button id="submitBtn" type="submit" class="btn btn-primary mt-3">Challenge Completed</button>
                 </form>
-                <div id="map"></div>
             </div>
+            <div id="map"></div>
 
         </div>
 
@@ -121,7 +135,13 @@
                 </div>
             {% endif %}
         </div>
+        <script>
+            if( LAT !== 'None'){
+                document.getElementById("content").style.top = "35%";
+            }
+        </script>
         <script src="{% static 'mapper.js' %}"></script>
+
 
     {% endif %}
 
