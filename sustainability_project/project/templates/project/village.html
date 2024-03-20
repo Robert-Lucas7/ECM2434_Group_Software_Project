@@ -5,10 +5,18 @@
 
 {% block content %}
 <div class="game-board-container">
-    <div class="village-name-display">
-        <!-- Display the village name here -->
-        Village: {{ village_name }}
+    <div class="user-info-container">
+        <div class="username-display">Username: {{ username }}</div>
+        <div class="score-and-coins">
+            <div class="total-score-display">Score: {{ total_score }}</div>
+            <div class="coins-display">
+                <div class="coins-text-and-value">Coins: {{ num_coins }}</div>
+                <img class="coin-img" src="{% static 'project/coin.png' %}" alt="Coin">
+            </div>
+        </div>
     </div>
+    <div class="instructions-display">Click on a tile to build your village!</div>
+    <div class="game-board">
     {% if errors %}
         {% for error in errors %}
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -20,21 +28,6 @@
         {% endfor %}
     {% endif %}
     <div class="game-board">
-        <div class="user-info-display" style="display: flex; flex-direction: column;">
-            <div class="total-score-display">
-                Score: {{ total_score }}
-            </div>
-            <div class="coins-display" style="display: flex; align-items: center;">
-                <div class="coins-text-and-value">Coins: {{ num_coins }}</div>
-                <div class="coin-img-container">
-                    <img class="coin-img" src="{% static 'project/coin.png' %}" alt="Coin" style="width: auto; height: 5vh;">
-                </div>
-            </div>
-            <div class="game-explanation">
-                <!-- Add your game explanation here -->
-                Click a tile to build your village!
-            </div>
-        </div>
         {% for row in board %}
             <div class="row"> <!-- Consider renaming this class to avoid confusion with Bootstrap's .row -->
                 {% for cell in row %}
