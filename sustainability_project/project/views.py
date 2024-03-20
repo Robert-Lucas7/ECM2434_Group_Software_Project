@@ -278,7 +278,7 @@ def profile(request, username):
 def home(request):
     # Get the most recent challenge from the database.
     # Currently doesn't actually get latest, just so can test out all challenges
-    todays_challenge = DailyChallenge.objects.all()[0]
+    todays_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
     # Get all posts that are for the most recent challenge
     posts_for_todays_challenge = UserChallenges.objects.filter(
         daily_challenge=todays_challenge).order_by("-submitted")
@@ -300,7 +300,7 @@ def home(request):
 @login_required()
 def make_post(request):
     user = request.user
-    daily_challenge = DailyChallenge.objects.all()[0]
+    daily_challenge = DailyChallenge.objects.all().order_by('-assigned')[0]
 
     try:
         previous_challenge_completed = UserChallenges.objects.filter(user=user, daily_challenge=daily_challenge)[0]
