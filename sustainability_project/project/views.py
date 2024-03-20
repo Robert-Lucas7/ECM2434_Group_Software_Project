@@ -381,6 +381,19 @@ def gamekeeper(request):
             print(f'Challenge {challenge_title} has been deleted')
             challenge.delete()
 
+        elif 'challengeEdit' in request.POST:
+            edit_title = request.POST.get('edit_title')
+            edit_description = request.get('edit_description')
+
+            challenge_title = request.POST.get('challenge_title')
+
+            challenge = Challenge.objects.get(title=challenge_title)
+            challenge.title = edit_title
+            challenge.description =edit_description
+
+            challenge.save()
+
+
         elif 'submit_challenge' in request.POST:
             challenge_title = request.POST.get('new_title')
             challenge_description = request.POST.get('new_description')
