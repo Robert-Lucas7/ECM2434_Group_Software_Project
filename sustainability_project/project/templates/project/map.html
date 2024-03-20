@@ -51,6 +51,7 @@
         const challenges = JSON.parse('{{ challenges|safe }}')
         const todays_challenges = JSON.parse('{{ todays_challenges|safe }}')
         const marker_pic = "{% static "project/marker/marker.jpg" %}"
+        const multiple_marker = "{% static "project/marker/multiple_markers.png" %}"
     </script>
     {% for challenge in challenges %}
         {{ challenge.response }}

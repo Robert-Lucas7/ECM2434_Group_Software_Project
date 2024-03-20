@@ -4,13 +4,18 @@ const EXETER_CENTER = [50.737096, -3.535094]
 const RADIUS = 80
 var env_icon = L.icon({
     iconUrl: marker_pic,
-    iconSize:     [35, 35], // size of the icon
+    iconSize:     [25, 25], // size of the icon
+});
+
+var multiple_icon = L.icon({
+    iconUrl: multiple_marker,
+    iconSize:     [50, 50], // size of the icon
 });
 
 
 var markers = new L.MarkerClusterGroup({
     iconCreateFunction: function (cluster) {
-        return env_icon;
+        return multiple_icon;
     },
 });
 
