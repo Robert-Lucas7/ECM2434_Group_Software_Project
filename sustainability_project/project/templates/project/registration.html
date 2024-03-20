@@ -82,10 +82,10 @@
 
             <div>   
                 <input type="checkbox" name="{{ form.tsandcs }}"  required>
-                <label for="tsandcs"> I have read and agree to the terms and conditions</label>
+                <label for="tsandcs"> I have read and agree to the <a href="{% url 'terms_conditions' %}">Terms and Conditions</a></label>
             </div>
 
-            <a href="{% url 'privacy_policy' %}">Terms and Conditions</a>
+            
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Sign up</button>

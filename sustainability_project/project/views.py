@@ -22,6 +22,8 @@ def index(request):
 def privacy_policy(request):
     return render(request, 'project/privacy_policy.html')
 
+def terms_conditions(request):
+    return render(request, 'project/terms_conditions.html')
 
 def logout_view(request):
     logout(request)
