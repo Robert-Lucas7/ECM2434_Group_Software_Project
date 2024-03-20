@@ -2,12 +2,16 @@ const MIN_ZOOM = 14;
 const EXETER_BOUNDS = L.latLngBounds([50.742380, -3.524876], [50.731452, -3.545301])
 const EXETER_CENTER = [50.737096, -3.535094]
 const RADIUS = 80
-var markers = L.markerClusterGroup();
-
 var env_icon = L.icon({
     iconUrl: marker_pic,
-
     iconSize:     [35, 35], // size of the icon
+});
+
+
+var markers = new L.MarkerClusterGroup({
+    iconCreateFunction: function (cluster) {
+        return env_icon;
+    },
 });
 
 var map = L.map('map', {
