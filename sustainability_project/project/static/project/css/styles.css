@@ -332,14 +332,57 @@
 }
 
 .coins-display {
-    margin-bottom: 0; 
+    margin-bottom: 0; /* Removes bottom margin from the coins display if unnecessary */
 }
+
+/* Village Name Display at the Top */
+.village-name-display {
+    text-align: center;
+    width: 100%;
+    font-size: 24px; /* Adjust based on your preference */
+    margin-top: 20px; /* Ensure it's visible and not overlapped by any navbar */
+    font-weight: bold;
+}
+
+/* Game Explanation Section */
+.game-explanation {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    font-size: 16px; /* Match with your content font size */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 80%; /* Adjust based on your layout */
+    margin-left: auto;
+    margin-right: auto; /* Centering the block */
+}
+
+/* Ensuring Coins Image Scales Properly */
+/* (Your existing .coin-img class seems adequate, but here's a reinforcement if needed) */
+.coin-img {
+    height: 5vh; /* Responsive height based on viewport */
+    margin-left: 10px; /* Space between the text and image */
+}
+
 
 /* Adjustments for mobile devices */
 @media (max-width: 768px) {
     .cell {
         width: 12vw;
         height: 12vw;
+    }
+    .village-name-display {
+        font-size: 20px; /* Smaller font size for smaller screens */
+    }
+    .game-explanation {
+        font-size: 14px; /* Adjust the font size for better readability on small devices */
+        padding: 8px;
+        width: 90%; /* Increase width to utilize more screen space */
+    }
+    /* Additional responsive adjustments for the coins and user info display */
+    .user-info-display, .coins-display, .coin-img-container {
+        /* Adjust positioning and sizing if necessary for smaller screens */
     }
 }
 
