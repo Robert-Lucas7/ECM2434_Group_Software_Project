@@ -136,8 +136,6 @@ def village(request, username):
     board = []
     total_score = 0 #initialize score
     for row in range(6):
-    total_score = 0 #initialize score
-    for row in range(6):
         board_row = []
         for col in range(6):
             image_path = None
@@ -148,15 +146,7 @@ def village(request, username):
                 item_score = village_item.item.score # Fetch the score
                 all_village_items = all_village_items[1:] # Move to the next item
             board_row.append({'image_path': image_path, 'score': item_score})
-            total_score += item_score # Add the score to the total score    
-            item_score = 0
-            if all_village_items.exists() and all_village_items[0].position == row * 6 + col:
-                village_item = all_village_items[0]
-                image_path = village_item.item.image_name
-                item_score = village_item.item.score # Fetch the score
-                all_village_items = all_village_items[1:] # Move to the next item
-            board_row.append({'image_path': image_path, 'score': item_score})
-            total_score += item_score # Add the score to the total score    
+            total_score += item_score # Add the score to the total score     
         board.append(board_row)
     user.score = total_score # Update the user's score
     user.save()
@@ -197,7 +187,7 @@ def leaderboard(request, metric="streak"):
             # The keys are displayed as a column header (so should be full words).
             "streak": user.streak,
             "monthly coins": this_months_coins,
-            "village score" : 0 #This needs to be changed when the village score is implemented
+            "village score" : user.score, 
         })
     context = {
         'entries': data,

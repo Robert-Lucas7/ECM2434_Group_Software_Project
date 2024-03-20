@@ -13,7 +13,7 @@
 <div class="container text-center shop-table-container rounded-lg py-2" style="position: relative;">
     <!-- Return to village button at the top left corner with an arrow -->
     <div style="position: absolute; top: 10px; left: 10px;">
-        <a href="{% url 'village' %}" style="text-decoration: none; color: inherit;">
+        <a href="{% url 'village' request.user.username %}" style="text-decoration: none; color: inherit;">
             <button class="btn btn-primary">
                 <span>&larr;</span>
             </button>
@@ -49,7 +49,7 @@
                 <img class="coin-img" src="{% static 'project/coin.png' %}">
             </div>
             <div class="col-4 my-auto">
-                <form action="{% url 'village' %}" method="POST">
+                <form action="{% url 'village' request.user.username %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="item" value="{{item.item}}">
                     <input type="hidden" name="position" value="{{position}}">
