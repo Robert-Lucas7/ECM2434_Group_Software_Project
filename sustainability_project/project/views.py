@@ -76,7 +76,6 @@ def village_shop(request):
         items = [{
             'item': item.item,
             'cost': item.cost,
-            'quantity_remaining': item.max_quantity - Village.objects.filter(user=request.user, item=item).count(),
             'can_afford': num_coins > item.cost,
             'image_name': item.image_name
         } for item in VillageShop.objects.all()]
@@ -113,8 +112,6 @@ def village(request):
             if valid:
                 shop_item = all_items[0]  # all_items has exactly one element in it.
                 num_same_items = Village.objects.filter(user=request.user, item=shop_item).count()
-                if num_same_items >= shop_item.max_quantity:
-                    errors.append("Cannot buy item due to max quantity")
                 if shop_item.cost > request.user.coins:
                     errors.append("Insufficient coints to buy item")
                 if len(errors) == 0:  # Can buy the item.

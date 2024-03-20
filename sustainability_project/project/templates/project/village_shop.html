@@ -44,7 +44,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="item" value="{{item.item}}">
                     <input type="hidden" name="position" value="{{position}}">
-                    <button type='submit' class='btn {% if item.can_afford and item.quantity_remaining > 0 %} btn-success {% else %} btn-danger {% endif %}'>Buy</button>
+                    <button type='submit' class='btn {% if item.can_afford > 0 %} btn-success {% else %} btn-danger {% endif %}'>Buy</button>
                 </form>
                 <!-- {% if item.can_afford %}
                     <a href="{% url 'village' %}"><button onclick="buyVillageItem('{{item.item}}')" class="btn {% if item.can_afford and item.quantity_remaining %}btn-success{% else %}btn-danger{% endif %} rounded-circle">Buy</button></a>
@@ -66,8 +66,6 @@
     </div>
 </div>
 <div>
-    Attributions:
-    <a href="https://www.flaticon.com/free-icons/coin" title="coin icons">Coin icons created by Freepik - Flaticon</a>
 </div>
 {% endif %}
 <script src="/static/village_shop.js"></script>
